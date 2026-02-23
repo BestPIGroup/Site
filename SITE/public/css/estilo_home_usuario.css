@@ -28,7 +28,7 @@ header{
 .nav{
   display: flex;
   margin-left: 3%;
-  width: 30%;
+  width: 50%;
   justify-content: space-evenly;
 }
 .nav2{
