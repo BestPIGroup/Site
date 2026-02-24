@@ -62,6 +62,8 @@ function cadastrar(req, res) {
     var funcao = req.body.funcaoServer;
     var matricula = req.body.matriculaServer;
     var senha = req.body.senhaServer;
+    var confirmacao_senha = senha;
+    var fk_responsavel = null;
     /* var fkEmpresa = req.body.idEmpresaVincularServer; */
 
     // Faça as validações dos valores
@@ -71,12 +73,18 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    } else if (fkEmpresa == undefined) {
+    } else if (telefone == undefined) {
         res.status(400).send("Sua empresa a vincular está undefined!");
-    } else {
+    } else if(funcao == undefined) {
+        res.status(400).send("Sua função está undefined!");
+    } else if (matricula == undefined){
+        res.status(400).send("Sua função está undefined!");
+    } else if (confirmacao_senha != senha){
+        res.status(400).send("Suas senhas não conhecidem!");
+    }else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa)
+        usuarioModel.cadastrar(nome, email, senha, telefone, funcao, matricula, fk_responsavel)
             .then(
                 function (resultado) {
                     res.json(resultado);

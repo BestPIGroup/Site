@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
-<body onload="listar()">
+<body>
     <header>
     <div class="nav">
       <a href="./index.html" style="font-weight: bold;">Home</a>
@@ -117,31 +117,30 @@
 <script>
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
+  //let listaEmpresasCadastradas = [];
 
   function cadastrar() {
     // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
-    var emailVar = email_input.value;
-    var telefoneVar = telefone_input.value;
-    var funcaoVar = funcao_input.value; // Função deveria ser um formulario por select
-    var matriculaVar = matricula_input.value;
-    var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
+    var nome = nome_input.value;
+    var email = email_input.value;
+    var telefone = telefone_input.value;
+    var funcao = funcao_input.value; // Função deveria ser um formulario por select
+    var matricula = matricula_input.value;
+    var senha = senha_input.value;
+    var confirmacaoSenha = confirmacao_senha_input.value;
+    var fk_responsavel = null
 
     // Verificando se há algum campo em branco
     if (
-      nomeVar == "" ||
-      emailVar == "" ||
-      matriculaVar == ""||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
-      codigoVar == ""
+      nome == "" ||
+      email == "" ||
+      telefone == "" ||
+      matricula == ""||
+      senha == "" ||
+      confirmacaoSenha == ""
     ) {
       cardErro.style.display = "block";
       mensagem_erro.innerHTML =
@@ -175,13 +174,13 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        telefoneServer: telefoneVar,
-        funcaoServer: funcaoVar,
-        matriculaServer: matriculaVar,
-        senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        nomeServer: nome,
+        emailServer: email,
+        senhaServer: senha,
+        telefoneServer: telefone,
+        funcaoServer: funcao,
+        matriculaServer: matricula,
+        fk_responsavelServer: fk_responsavel
       }),
     })
       .then(function (resposta) {
@@ -212,25 +211,6 @@
   }
 
   // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
-
   function sumirMensagem() {
     cardErro.style.display = "none";
   }

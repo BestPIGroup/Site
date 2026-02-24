@@ -23,3 +23,4 @@ with open(arquivo_csv, mode="a",encoding="utf-8") as file:
         file.flush()
 
         time.sleep(1)
+        []
