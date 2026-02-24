@@ -1,88 +1,84 @@
-Create database projeto_argos;
-use projeto_argos;
+CREATE DATABASE projeto_Argos;
+USE projeto_Argos;
+CREATE TABLE unidade(
+idUnidade INT PRIMARY KEY AUTO_INCREMENT,
+cod_Unidade VARCHAR(45),
+CEP VARCHAR(45),
+cidade VARCHAR(45),
+rua VARCHAR(45),
+bairro VARCHAR(45)
+);
 
-CREATE TABLE `Unidade` (
-  `id_unidade` INT PRIMARY KEY,
-  `nome_unidade` VARCHAR(45),
-  `sigla` VARCHAR(45),
-  `telefone` CHAR(12));
+CREATE TABLE servidor(
+idServidor INT,
+fornecedor VARCHAR(45),
+modelo VARCHAR(45),
+numero_Manutenção VARCHAR(45),
+numero_Serie VARCHAR(45),
+ultima_Manutenção VARCHAR(45),
+statuss VARCHAR(45),
+fkUnidade INT,
+FOREIGN KEY (fkUnidade) 
+      REFERENCES unidade (idUnidade),
+    CONSTRAINT PRIMARY KEY (idServidor, fkUnidade)
+);
 
-CREATE TABLE `Endereco` (
-  `id_unidade` INT PRIMARY KEY,
-  `unidade_federal` VARCHAR(45) NOT NULL,
-  `CEP` VARCHAR(45) NOT NULL,
-  `cidade` VARCHAR(45) NOT NULL,
-  `rua` VARCHAR(45) NOT NULL,
-  `bairro` VARCHAR(45) NOT NULL,
-  CONSTRAINT `fk_Endereco_Unidade`
-    FOREIGN KEY (`id_unidade`)
-    REFERENCES `Unidade` (`id_unidade`));
-    
-CREATE TABLE Servidor (
-  `id_servidor` INT NOT NULL,
-  `fk_unidade` INT NOT NULL,
-  `fornecedor` VARCHAR(45),
-  `modelo` VARCHAR(45),
-  `numero_serie` VARCHAR(45) ,
-  `ultima_manutencao` VARCHAR(45),
-  `hostname` VARCHAR(45),
-  `status` VARCHAR(45),
-  PRIMARY KEY (`id_servidor`, `fk_unidade`),
-  CONSTRAINT `fk_Servidor_Unidade`
-    FOREIGN KEY (`fk_unidade`)
-    REFERENCES `Unidade` (`id_unidade`));
+CREATE TABLE usuario(
+idUsuario INT,
+nome VARCHAR(45),
+email VARCHAR(45),
+senha VARCHAR(45),
+telefone CHAR(12),
+função VARCHAR(45),
+fkResponsavel INT,
+fkUnidade INT,
+FOREIGN KEY (fkResponsavel) 
+      REFERENCES usuario (idUsuario),
+FOREIGN KEY (fkUnidade)
+      REFERENCES unidade (idUnidade),
+    CONSTRAINT PRIMARY KEY (idUsuario, fkUnidade)
+);
 
-CREATE TABLE `Configuracao` (
-  `Servidor_id_servidor` INT NOT NULL,
-  `CPU` VARCHAR(45),
-  `RAM` VARCHAR(45),
-  `DISCO` INT,
-  PRIMARY KEY (`Servidor_id_servidor`),
-  CONSTRAINT `fk_Configuracao_Servidor`
-    FOREIGN KEY (`Servidor_id_servidor`)
-    REFERENCES `Servidor` (`id_servidor`));
+CREATE TABLE limite(
+idLimite INT,
+limiteCPU DECIMAL,
+limiteRAM DECIMAL,
+limiteDISCO DECIMAL,
+fkServidor INT,
+FOREIGN KEY (fkServidor)
+      REFERENCES servidor (idServidor),
+    CONSTRAINT PRIMARY KEY (idLimite, fkServidor)
+);
 
+CREATE TABLE infor_serv(
+idInfo INT,
+uso_CPU DECIMAL,
+uso_RAM DECIMAL,
+uso_DISCO DECIMAL,
+info_TIME DATETIME,
+fkServidor INT,
+FOREIGN KEY (fkServidor)
+      REFERENCES servidor (idServidor),
+    CONSTRAINT PRIMARY KEY (idInfo, fkServidor)
+);
 
-CREATE TABLE `Info_Serv` (
-  `id_info` INT NOT NULL,
-  `fk_servidor` INT NOT NULL,
-  `uso_cpu` DECIMAL(4,1),
-  `uso_ram` DECIMAL(4,1),
-  `uso_disco` DECIMAL(4,1),
-  `info_time` DATETIME,
-  PRIMARY KEY (`id_info`, `fk_servidor`),
-  CONSTRAINT `fk_Info_Serv_Servidor`
-    FOREIGN KEY (`fk_servidor`)
-    REFERENCES `Servidor` (`id_servidor`));
+CREATE TABLE tolken(
+fkServidor INT,
+fkUsuario INT,
+tolken VARCHAR(45),
+end_check DATETIME,
+FOREIGN KEY (fkServidor) 
+      REFERENCES servidor (idServidor),
+FOREIGN KEY (fkUsuario)
+      REFERENCES usuario (idUsuario),
+    CONSTRAINT PRIMARY KEY (fkServidor, fkUsuario)
+);
 
-CREATE TABLE `funcionario` (
-  `id_funcionario` INT NOT NULL,
-  `fk_unidade` INT NOT NULL,
-  `nome` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(45) NOT NULL,
-  `senha` VARCHAR(45) NOT NULL,
-  `token` VARCHAR(45) NOT NULL,
-  `telefone` CHAR(12),
-  `data_admissao` DATE,
-  `funcao` VARCHAR(45),
-  `id_responsavel` INT NOT NULL,
-  PRIMARY KEY (`id_funcionario`, `fk_unidade`),
-  CONSTRAINT `fk_funcionario_Unidade`
-    FOREIGN KEY (`fk_unidade`)
-    REFERENCES `sakila`.`Unidade` (`id_unidade`),
-  CONSTRAINT `fk_funcionario_responsavel`
-    FOREIGN KEY (`id_responsavel`)
-    REFERENCES `funcionario` (`id_funcionario`));
-
-CREATE TABLE `Administrador` (
-  `id_funcionario` INT NOT NULL,
-  `id_servidor` INT NOT NULL,
-  `time_check` TIME NULL,
-  `end_check` TIME NULL,
-  PRIMARY KEY (`id_funcionario`, `id_servidor`),
-  CONSTRAINT `fk_Administrador_funcionario`
-    FOREIGN KEY (`id_funcionario`)
-    REFERENCES `sakila`.`funcionario` (`id_funcionario`),
-	CONSTRAINT `fk_Administrador_Servidor`
-    FOREIGN KEY (`id_servidor`)
-    REFERENCES`Servidor` (`id_servidor`));
+CREATE TABLE  permissões(
+idPermissao INT,
+tipo_usuario VARCHAR(45),
+fkUsuario INT,
+FOREIGN KEY (fkUsuario)
+      REFERENCES usuario (idUsuario),
+      CONSTRAINT PRIMARY KEY (idPermissao, fkUsuario)
+);
