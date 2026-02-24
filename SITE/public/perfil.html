@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/perfil.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header>
+        <div class="nav">
+            <a href="./index_usuario.html" style="font-weight: bold;">Home</a>
+            <a href="./cadastro_unidade.html">Cadastro de Unidade</a>
+            <a href="./index_usuario.html">Cadastro de Servidor</a>
+        </div>
+        <div class="nav2">
+            <p> Olá, nome do usuario</p>
+            <p>|</p>
+            <a href="perfil.html">Perfil</a>
+        </div>
+    </header>
+
+    <div class="container-nav">
+        <h2> Geral </h2>
+        <nav id="menu-nav" class="menu-nav">
+
+
+            <ul>
+                <li onclick="info_pessoal()">
+                    <a><i class="fa fa-user" aria-hidden="true"></i>Informações Pessoais</a>
+                </li>
+                <li onclick="info_unidade()">
+                    <a><i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade</a>
+                </li>
+                <li onclick="info_servidor()">
+                    <a><i class="fa fa-server" aria-hidden="true"></i></i>Informações do Servidor</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+    <section class="secao-perfil" id="div_info_pessoal" style="display: block;" >
+
+
+        <div class="container-informacao">
+            <h2><i class="fa fa-user" aria-hidden="true"></i> Informações Pessoais </h2>
+            <hr>
+            <div class="pessoal_informacao">
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> Nome Completo </p>
+                    </div>
+                </div>
+
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> E-mail </p>
+                    </div>
+                </div>
+
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> Telefone </p>
+                    </div>
+                </div>
+
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> Função </p>
+                    </div>
+                </div>
+
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> Matrícula </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="secao-perfil" style="display: none;" id="div_info_unidade">
+
+
+        <div class="container-informacao">
+            <h2> <i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade </h2>
+            <hr>
+            <div class="pessoal_informacao">
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> Código da Unidade </p>
+                    </div>
+                </div>
+
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> CEP </p>
+                    </div>
+                </div>
+
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> Cidade </p>
+                    </div>
+                </div>
+
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> Rua </p>
+                    </div>
+                </div>
+
+                <div class="container-botao-alinhar">
+                    <div class="campo">
+                        <p class="titulo"> Bairro </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
+
+<script>
+    function info_unidade() {
+        div_info_pessoal.style.display = "none";
+        div_info_unidade.style.display = "block";
+    }
+
+    function info_pessoal(){
+        div_info_pessoal.style.display = "block";
+        div_info_unidade.style.display = "none";
+    }
+</script>
