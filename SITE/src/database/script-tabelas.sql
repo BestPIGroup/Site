@@ -9,41 +9,39 @@ comandos para mysql server
 CREATE DATABASE projeto_Argos;
 USE projeto_Argos;
 
+CREATE TABLE usuario(
+idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(45),
+email VARCHAR(45),
+senha VARCHAR(45),
+telefone CHAR(11),
+funcao VARCHAR(45),
+matricula CHAR(7),
+fkResponsavel INT,
+FOREIGN KEY (fkResponsavel) REFERENCES usuario(idUsuario)
+);
+
 CREATE TABLE unidade(
 idUnidade INT PRIMARY KEY AUTO_INCREMENT,
 cod_Unidade VARCHAR(45),
 CEP VARCHAR(45),
 cidade VARCHAR(45),
 rua VARCHAR(45),
-bairro VARCHAR(45)
+bairro VARCHAR(45),
+fkResponsavel int NOT NULL,
+FOREIGN KEY (fkResponsavel) REFERENCES usuario (idUsuario)
 );
 
 CREATE TABLE servidor(
-idServidor INT,
+idServidor INT PRIMARY KEY AUTO_INCREMENT,
 fornecedor VARCHAR(45),
 modelo VARCHAR(45),
 numero_Manutenção VARCHAR(45),
 numero_Serie VARCHAR(45),
 ultima_Manutenção VARCHAR(45),
 statuss VARCHAR(45),
-fkUnidade INT,
-FOREIGN KEY (fkUnidade) REFERENCES unidade (idUnidade),
-    CONSTRAINT PRIMARY KEY (idServidor, fkUnidade)
-);
-
-CREATE TABLE usuario(
-idUsuario INT,
-nome VARCHAR(45),
-email VARCHAR(45),
-senha VARCHAR(45),
-telefone CHAR(12),
-função VARCHAR(45),
-matricula CHAR(7),
-fkResponsavel INT,
-fkUnidade INT,
-FOREIGN KEY (fkResponsavel) REFERENCES usuario (idUsuario),
-FOREIGN KEY (fkUnidade) REFERENCES unidade (idUnidade),
-    CONSTRAINT PRIMARY KEY (idUsuario, fkUnidade)
+fkUnidade INT NOT NULL,
+FOREIGN KEY (fkUnidade) REFERENCES unidade (idUnidade)
 );
 
 CREATE TABLE limite(
@@ -77,9 +75,10 @@ FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario),
     CONSTRAINT PRIMARY KEY (fkServidor, fkUsuario)
 );
 
-CREATE TABLE  permissões(
+CREATE TABLE  permissoes(
 idPermissao INT,
 tipo_usuario VARCHAR(45),
 fkUsuario INT,
 FOREIGN KEY (fkUsuario) REFERENCES usuario (idUsuario),
-CONSTRAINT PRIMARY KEY (idPermissao, fkUsuario))
+CONSTRAINT PRIMARY KEY (idPermissao, fkUsuario)
+);
