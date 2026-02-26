@@ -12,7 +12,19 @@
 </head>
 
 <body>
-  <header>
+  <header style="display: none;" id="navLogada">
+    <div class="nav">
+      <a href="#home" style="font-weight: bold;">Home</a>
+      <a href="./cadastro_unidade.html">Cadastro de Unidade</a>
+      <a href="./index_usuario.html">Cadastro de Servidor</a>
+    </div>
+    <div class="nav2">
+      <p> Olá, <p id="nomeUsuario"></p></p>
+      <p>|</p>
+      <a href="perfil.html">Perfil</a>
+    </div>
+  </header>
+  <header style="display: flex;" id="navDeslogada">
     <div class="nav">
       <a href="#home" style="font-weight: bold;">Home</a>
       <a href="#pilares">Nossos Pilares</a>
@@ -149,5 +161,19 @@
     </div>
   </footer>
 </body>
-
 </html>
+<script>
+  window.onload = verificarLogin();
+
+    function verificarLogin() {
+        if (sessionStorage.NOME_USUARIO != null) {
+            navLogada.style.display = 'flex'
+            navDeslogada.style.display = 'none'
+            nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
+        }
+    }
+
+    function deslogar() {
+        sessionStorage.clear()
+    }
+</script>

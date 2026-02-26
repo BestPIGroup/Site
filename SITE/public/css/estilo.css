@@ -28,13 +28,13 @@ header{
 .nav{
   display: flex;
   margin-left: 3%;
-  width: 30%;
+  width: 50%;
   justify-content: space-evenly;
 }
 .nav2{
   display: flex;
   margin-right: 5%;
-  width: 15%;
+  width: 20%;
   justify-content: space-around;
   align-items: center;
 }

@@ -31,7 +31,7 @@ senha VARCHAR(45),
 telefone CHAR(12),
 função VARCHAR(45),
 fkResponsavel INT,
-matrciula varchar(45),
+matricula varchar(45),
 fkUnidade INT,
 FOREIGN KEY (fkResponsavel) 
 REFERENCES usuario (idUsuario),
@@ -100,6 +100,8 @@ SELECT
 FROM 
     unidade;
   
-
-
+insert into unidade (idUnidade) values (
+	1);
+insert into usuario (idUsuario, nome, email, senha, matricula, fkUnidade) values (
+	1, 'Matheus', 'email.com', 1, 1, 1);
 

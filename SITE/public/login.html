@@ -29,11 +29,6 @@
         </div>
     </header>
     <div class="login">
-        <div class="alerta_erro" , style="display: none;">
-            <div class="card_erro" id="cardErro">
-                <span id="mensagem_erro"></span>
-            </div>
-        </div>
         <div class="containers">
             <div class="cardsLogin card-login1">
                 <h2>LOGIN</h2>
@@ -50,6 +45,9 @@
                         <span>Código de matricula<b style="color: red;">*</b></span> <br>
                         <input id="codigo_input" type="text" placeholder="Digite o seu código de matricula">
                     </div>
+                    <div id="cardVazio" style="display: none; color: red; text-align: center;">
+                        <span id="mensagem_erro"></span>
+                    </div>
                     <button class="botao" onclick="entrar()">LOGAR</button>
                     <a href="cadastro.html">Ainda não possui uma conta? Cadastre aqui</a>
                 </div>
@@ -62,11 +60,6 @@
                 <a href="cadastro.html">Ainda não possui uma conta? Cadastre aqui</a>
             </div>
         </div>
-        <div id="div_aguardar" class="loading-div" style="display: none;">
-            <img src="./assets/circle-loading.gif" id="loading-gif">
-        </div>
-
-        <div style="display: none;" id="div_erros_login"></div>
     </div>
     <footer>
         <div class="footer">
@@ -87,27 +80,19 @@
 </html>
 
 <script>
-
-
     function entrar() {
-        // Ativa função aguardar
-        aguardar();
 
         // Recolhe os valores dos campos
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
         var matricula = codigo_input.value;
         // Se um dos campos estiver vazio, ativa
-        if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
-            finalizarAguardar();
+        if (emailVar == "" || senhaVar == "" || matricula == "") {
+            cardVazio.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha todos os campos corretamente!"
+            setInterval(sumirMensagem, 3000)
             return false;
             // Termina função aguardar e retorna valor falso dessa função
-        }
-        else {
-            // Se não for aquilo encima, vai colocar intervalo de 5s pra sumir a mensagem
-            setInterval(sumirMensagem, 5000)
         }
 
         // Mostra o Login e Senha no terminal
@@ -142,21 +127,22 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                
+
 
                     setTimeout(function () {
-                        window.location = "./dashboard/cards.html";
+                        window.location = "./index.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
 
             } else {
-
+                cardVazio.style.display = "block"
+                mensagem_erro.innerHTML = "Dados inválidos! Tente novamente"
+                setInterval(sumirMensagem, 3000)
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
 
@@ -168,7 +154,7 @@
     }
 
     function sumirMensagem() {
-        cardErro.style.display = "none"
+        cardVazio.style.display = "none"
     }
 
 </script>
