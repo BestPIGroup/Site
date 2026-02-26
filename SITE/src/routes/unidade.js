@@ -10,3 +10,5 @@ router.post("/cadastrar_unidade", function (req, res) {
 router.post("/verificar_unidade", function(req,res){
     unidadeController.verificar_unidade(req,res)
 })
+
+module.exports = router;

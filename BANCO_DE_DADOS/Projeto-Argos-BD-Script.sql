@@ -31,6 +31,7 @@ senha VARCHAR(45),
 telefone CHAR(12),
 função VARCHAR(45),
 fkResponsavel INT,
+matrciula varchar(45),
 fkUnidade INT,
 FOREIGN KEY (fkResponsavel) 
 REFERENCES usuario (idUsuario),
@@ -98,3 +99,7 @@ SELECT
     cod_Unidade
 FROM 
     unidade;
+  
+
+
+

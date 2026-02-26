@@ -96,7 +96,7 @@
         // Recolhe os valores dos campos
         var emailVar = email_input.value;
         var senhaVar = senha_input.value;
-
+        var matricula = codigo_input.value;
         // Se um dos campos estiver vazio, ativa
         if (emailVar == "" || senhaVar == "") {
             cardErro.style.display = "block"
@@ -113,6 +113,7 @@
         // Mostra o Login e Senha no terminal
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
+        console.log("FORM SENHA: ", matricula);
 
         // Faz uma requisição HTTP via JS
         // Método POST (enviar/criar dados)
@@ -124,12 +125,13 @@
             body: JSON.stringify({
                 // Defini no server as variáveis email e senha
                 emailServer: emailVar,
-                senhaServer: senhaVar
+                senhaServer: senhaVar,
+                matriculaServer: matricula
             })
         }).then(function (resposta) {
             // Então, após isso, executa a função com resposta
             console.log("ESTOU NO THEN DO entrar()!")
-
+            console.log("Status:", resposta.status);
             // Se estiver tudo bem, executa no console.log a resposta
             if (resposta.ok) {
                 console.log(resposta);
@@ -140,7 +142,7 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
+                
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
