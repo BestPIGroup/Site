@@ -70,6 +70,17 @@
 </html>
 
 <script>
+    
+    function mostrarModal(titulo, mensagem) {
+        modal_titulo.innerHTML = titulo;
+        modal_mensagem.innerHTML = mensagem;
+        modal_container.style.display = "flex";
+    }
+    
+    function fecharModal() {
+        modal_container.style.display = "none";
+    }
+    
     function cadastrar() {
 
 var codigo = codigo_input.value
@@ -86,22 +97,65 @@ bairro == ""
 ){
     console.log("Prencha todo o formulário")
 }else{
+    fetch("unidade/verificar_unidade",{
+        method: "POST",
+        headers:{
+            "Content-Type": "application/json",
+        },body: JSON.stringify({
+        codigoServer: codigo,
+        cepServer: cep,
+        cidadeServer: cidade,
+        ruaServer: rua,
+        bairroServer: bairro
+        })
+    }).then(function(resposta){
+        console.log("Resposta: ", resposta);
 
-    const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
+        if(resposta.ok){
+
+            fetch("unidade/cadastrar_unidade",{
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json",
+                }, body: JSON.stringify({
+                codigoServer: codigo,
+                cepServer: cep,
+                cidadeServer: cidade,
+                ruaServer: rua,
+                bairroServer: bairro
+                })
+            })      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            console.log("Cadastro_unidade realizado com sucesso! Redirecionando para tela de Login...")
+            
+            const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
+            
+            mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
+            
+            setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+        }else{
+            console.log("Houve um erro ao tentar realizar o cadastro da unidade!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+        }
+    })
     
-    mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
-    
-    
-    }
-    
-    function mostrarModal(titulo, mensagem) {
-        modal_titulo.innerHTML = titulo;
-        modal_mensagem.innerHTML = mensagem;
-        modal_container.style.display = "flex";
-    }
-    
-    function fecharModal() {
-        modal_container.style.display = "none";
     }
 }
 </script>
