@@ -19,8 +19,8 @@ ultima_Manutenção VARCHAR(45),
 statuss VARCHAR(45),
 fkUnidade INT,
 FOREIGN KEY (fkUnidade) 
-      REFERENCES unidade (idUnidade),
-    CONSTRAINT PRIMARY KEY (idServidor, fkUnidade)
+REFERENCES unidade (idUnidade),
+CONSTRAINT PRIMARY KEY (idServidor, fkUnidade)
 );
 
 CREATE TABLE usuario(
@@ -33,10 +33,10 @@ função VARCHAR(45),
 fkResponsavel INT,
 fkUnidade INT,
 FOREIGN KEY (fkResponsavel) 
-      REFERENCES usuario (idUsuario),
+REFERENCES usuario (idUsuario),
 FOREIGN KEY (fkUnidade)
-      REFERENCES unidade (idUnidade),
-    CONSTRAINT PRIMARY KEY (idUsuario, fkUnidade)
+REFERENCES unidade (idUnidade),
+CONSTRAINT PRIMARY KEY (idUsuario)
 );
 
 CREATE TABLE limite(
@@ -46,8 +46,8 @@ limiteRAM DECIMAL,
 limiteDISCO DECIMAL,
 fkServidor INT,
 FOREIGN KEY (fkServidor)
-      REFERENCES servidor (idServidor),
-    CONSTRAINT PRIMARY KEY (idLimite, fkServidor)
+REFERENCES servidor (idServidor),
+CONSTRAINT PRIMARY KEY (idLimite, fkServidor)
 );
 
 CREATE TABLE infor_serv(
@@ -58,8 +58,8 @@ uso_DISCO DECIMAL,
 info_TIME DATETIME,
 fkServidor INT,
 FOREIGN KEY (fkServidor)
-      REFERENCES servidor (idServidor),
-    CONSTRAINT PRIMARY KEY (idInfo, fkServidor)
+REFERENCES servidor (idServidor),
+CONSTRAINT PRIMARY KEY (idInfo, fkServidor)
 );
 
 CREATE TABLE tolken(
@@ -68,10 +68,10 @@ fkUsuario INT,
 tolken VARCHAR(45),
 end_check DATETIME,
 FOREIGN KEY (fkServidor) 
-      REFERENCES servidor (idServidor),
+REFERENCES servidor (idServidor),
 FOREIGN KEY (fkUsuario)
-      REFERENCES usuario (idUsuario),
-    CONSTRAINT PRIMARY KEY (fkServidor, fkUsuario)
+REFERENCES usuario (idUsuario),
+CONSTRAINT PRIMARY KEY (fkServidor, fkUsuario)
 );
 
 CREATE TABLE  permissões(
@@ -79,6 +79,22 @@ idPermissao INT,
 tipo_usuario VARCHAR(45),
 fkUsuario INT,
 FOREIGN KEY (fkUsuario)
-      REFERENCES usuario (idUsuario),
-      CONSTRAINT PRIMARY KEY (idPermissao, fkUsuario)
+REFERENCES usuario (idUsuario),
+CONSTRAINT PRIMARY KEY (idPermissao, fkUsuario)
 );
+
+CREATE VIEW vw_usuarios AS
+SELECT 
+    idUsuario, 
+    nome, 
+    email, 
+    fkUnidade
+FROM 
+    usuario;
+
+CREATE VIEW vw_unidade AS
+SELECT 
+    CEP, 
+    cod_Unidade
+FROM 
+    unidade;

@@ -72,21 +72,36 @@
 <script>
     function cadastrar() {
 
+var codigo = codigo_input.value
+var cep = cep_input.value
+var cidade = cidade_input.value
+var rua = rua_input.value
+var bairro = bairro_input.value
 
-        const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
+if(codigo == ""||
+cep == ""||
+cidade == ""||
+rua == ""||
+bairro == ""
+){
+    console.log("Prencha todo o formulário")
+}else{
 
-        mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
-
-
+    const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
+    
+    mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
+    
+    
     }
-
+    
     function mostrarModal(titulo, mensagem) {
         modal_titulo.innerHTML = titulo;
         modal_mensagem.innerHTML = mensagem;
         modal_container.style.display = "flex";
     }
-
+    
     function fecharModal() {
         modal_container.style.display = "none";
     }
+}
 </script>
