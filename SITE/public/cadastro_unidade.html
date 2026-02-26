@@ -112,7 +112,8 @@ bairro == ""
         console.log("Resposta: ", resposta);
 
         if(resposta.ok){
-
+            console.log("entrei no cadastro unidade")
+            
             fetch("unidade/cadastrar_unidade",{
                 method: "POST",
                 headers:{
@@ -139,17 +140,18 @@ bairro == ""
           }, "2000");
 
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+            throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
         finalizarAguardar();
-      });
-
-        }else{
-            console.log("Houve um erro ao tentar realizar o cadastro da unidade!");
-
+    });
+    
+}else{
+    console.log("Houve um erro ao tentar realizar o cadastro da unidade!");
+    
+    console.log("não entrei")
                 resposta.text().then(texto => {
                     console.error(texto);
                 });

@@ -8,7 +8,9 @@ function verificar_unidade(cep, codigoUnidade){
 }
 function cadastrar_unidade(codigoUnidade, cep, cidade, rua, bairro){
         console.log("ACESSEI O MODEL DA UNIDADE \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar_Unidade(): ")
-        var instrucaoSql = `INSERT INTO unidade (cod_Unidade, CEP, cidade, rua, bairro) VALUES ('${codigoUnidade}, ${cep}, ${cidade}, ${rua}, ${bairro}')';`;
+        var instrucaoSql = `INSERT INTO unidade (cod_Unidade, CEP, cidade, rua, bairro) 
+        VALUES 
+        ('${codigoUnidade}', '${cep}', '${cidade}', '${rua}', '${bairro}');`;
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
         return database.executar(instrucaoSql);
 }
