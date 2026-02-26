@@ -1,0 +1,27 @@
+{
+  "name": "projeto-argos",
+  "version": "1.0.0",
+  "description": "*Projeto de pesquisa e inovação*",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Xtreme-654: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@github.com/BestPIGroup/Projeto-Argos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BestPIGroup/Projeto-Argos/issues"
+  },
+  "homepage": "https://github.com/BestPIGroup/Projeto-Argos#readme",
+  "dependencies": {
+    "express": "^4.18.0",
+    "react": "^18.2.0",
+    "start": "^5.1.0",
+    "starts": "^0.0.0"
+  }
+}

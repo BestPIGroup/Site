@@ -77,7 +77,7 @@ CONSTRAINT PRIMARY KEY (fkServidor, fkUsuario)
 
 CREATE TABLE  permissões(
 idPermissao INT,
-tipo_usuario VARCHAR(45),
+tipo_usuario VARCHAR(45), 
 fkUsuario INT,
 FOREIGN KEY (fkUsuario)
 REFERENCES usuario (idUsuario),
