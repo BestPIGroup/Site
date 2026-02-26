@@ -52,11 +52,11 @@
             <input id="email_input" type="text" />
           </div>
           <div class="campo">
-            <span>Telefone</span>
-            <input id="telefone_input" type="number" />
+            <span>Telefone<span style="color: red;">*</span></span>
+            <input id="telefone_input" type="text" maxlength="15" oninput="validarTelefone()"/>
           </div>
           <div class="campo">
-            <span>Função</span>
+            <span>Função<span style="color: red;">*</span></span>
             <input id="funcao_input" type="text"  />
           </div>
           <div class="campo">
@@ -64,11 +64,11 @@
             <input id="matricula_input" type="text"  />
           </div>
           <div class="campo">
-            <span>Senha <span style="color: red;">*</span></span>
+            <span>Senha<span style="color: red;">*</span></span>
             <input id="senha_input" type="password"  />
           </div>
           <div class="campo">
-            <span>Confirmar Senha <span style="color: red;">*</span></span>
+            <span>Confirmar Senha<span style="color: red;">*</span></span>
             <input id="confirmacao_senha_input" type="password"  />
           </div>
           <div id="cardErro" style="display: none; color: red; text-align: center;" class="campo">
@@ -117,6 +117,25 @@
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   //let listaEmpresasCadastradas = [];
 
+  function validarTelefone(){
+    var telefone = telefone_input.value;
+    var tamanho = telefone.length
+    var telFormatado = ''
+        for (var i = 1; i <= tamanho; i++) {
+            if (i == 1 && telefone[i - 1] != '(') {
+                telFormatado += '('
+            } else if (i == 4 && telefone[i - 1] != ')') {
+                telFormatado += ')'
+            } else if (i == 5 && telefone[i - 1] != ' ') {
+                telFormatado += ' '
+            } else if (i == 11 && telefone[i - 1] != '-') {
+                telFormatado += '-'
+            }
+            telFormatado += telefone[i - 1]
+        }
+        telefone_input.value = telFormatado
+  }
+
   function cadastrar() {
     // aguardar();
 
@@ -142,10 +161,18 @@
     ) {
       cardErro.style.display = "flex";
       mensagem_erro.innerHTML = "Preencha todos os campos!";
-      setInterval(sumirMensagem, 3000);
+      setInterval(sumirMensagem, 4000);
       return false;
-    } else {
-      setInterval(sumirMensagem, 3000);
+    } else if(!email.includes('@', '.')){
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "O email precisa conter '@' e '.'";
+      setInterval(sumirMensagem, 4000);
+      return false;
+    } else if(senha != confirmacaoSenha){
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "As senhas não são correspondentes";
+      setInterval(sumirMensagem, 4000);
+      return false;
     }
 
     // Verificando se o código de ativação é de alguma empresa cadastrada
