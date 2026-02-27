@@ -17,6 +17,7 @@ body{
 header{
   display: flex;
   width: 100%;
+  min-height: 80px;
   height: 1%;
   background-color: #00375D;
   justify-content: space-between;
@@ -558,7 +559,7 @@ img{
   }
 
   .pilares-card1, .pilares-card2 {
-    min-height: 250px;
+    min-height: 370px;
     margin: 10px;
   }
 
@@ -587,6 +588,7 @@ img{
   footer {
     display: flex;
     flex-direction: column;
+    min-height: auto;
   }
 
   .footer {
@@ -603,7 +605,7 @@ img{
   }
 
   .footer img {
-    width: 30%;
+    width: 20%;
   }
 
   footer hr {
@@ -619,7 +621,7 @@ img{
   }
 
   .sociais-img {
-    width: 60%;
+    width: 40%;
   }
 
   /* Tela sobre-nós */
@@ -657,7 +659,7 @@ img{
 
   .mini-box{
     font-size: 12px;
-    min-width: 400px;
+    min-width: 300px;
   }
 
   #imagem-div2{
@@ -682,6 +684,7 @@ img{
     justify-content: center;
     gap: 80px;
     font-size: 16px;
+    min-height: auto;
   }
 
   header .nav, header .nav2 {
@@ -829,6 +832,7 @@ img{
   footer {
     display: flex;
     flex-direction: column;
+    min-height: auto;
   }
 
   .footer {

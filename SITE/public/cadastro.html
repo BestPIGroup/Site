@@ -9,7 +9,6 @@
   <title>Argos | Cadastro</title>
 
   <script src="./js/sessao.js"></script>
-
   <link rel="stylesheet" href="./css/estilo.css" />
   <link rel="stylesheet" href="./css/cadastro.css" />
   <link rel="icon" href="./assets/favicon.png">
@@ -17,10 +16,21 @@
 </head>
 
 <body>
-    <header>
+    <header style="display: none;" id="navLogada">
     <div class="nav">
-      <a href="./index.html" style="font-weight: bold;">Home</a>
-      <a href="./index.html">Nossos Pilares</a>
+      <a href="#home" style="font-weight: bold;">Home</a>
+      <a href="./cadastro_unidade.html">Cadastro de Unidade</a>
+      <a href="./index_usuario.html">Cadastro de Servidor</a>
+    </div>
+    <div class="nav2">
+      <p> Olá, <p id="nomeUsuario"></p></p>
+      <p>|</p>
+      <a href="perfil.html">Perfil</a>
+    </div>
+  </header>
+  <header style="display: flex;" id="navDeslogada">
+    <div class="nav">
+      <a href="#home" style="font-weight: bold;">Home</a>
       <a href="./sobrenos.html">Conheça a Argos</a>
     </div>
     <div class="nav2">
@@ -109,10 +119,21 @@
     </div>
   </footer>
 </body>
-
 </html>
-
 <script>
+  window.onload = verificarLogin();
+
+    function verificarLogin() {
+        if (sessionStorage.NOME_USUARIO != null) {
+            navLogada.style.display = 'flex'
+            navDeslogada.style.display = 'none'
+            nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
+        }
+    }
+
+    function deslogar() {
+        sessionStorage.clear()
+    }
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   //let listaEmpresasCadastradas = [];

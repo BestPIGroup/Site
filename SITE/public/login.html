@@ -10,24 +10,36 @@
 
     <script src="./js/sessao.js"></script>
 
+    <link rel="stylesheet" href="./css/estilo.css">
     <link rel="stylesheet" href="./css/login.css">
     <link rel="icon" href="./assets/favicon.png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
 
 <body>
-    <header>
-        <div class="nav">
-            <a href="./index.html" style="font-weight: bold;">Home</a>
-            <a href="./index.html">Nossos Pilares</a>
-            <a href="./sobrenos.html">Conheça a Argos</a>
-        </div>
-        <div class="nav2">
-            <a href="cadastro.html">Cadastro</a>
-            <p>|</p>
-            <a href="login.html">Login</a>
-        </div>
-    </header>
+    <header style="display: none;" id="navLogada">
+    <div class="nav">
+      <a href="#home" style="font-weight: bold;">Home</a>
+      <a href="./cadastro_unidade.html">Cadastro de Unidade</a>
+      <a href="./index_usuario.html">Cadastro de Servidor</a>
+    </div>
+    <div class="nav2">
+      <p> Olá, <p id="nomeUsuario"></p></p>
+      <p>|</p>
+      <a href="perfil.html">Perfil</a>
+    </div>
+  </header>
+  <header style="display: flex;" id="navDeslogada">
+    <div class="nav">
+      <a href="#home" style="font-weight: bold;">Home</a>
+      <a href="./sobrenos.html">Conheça a Argos</a>
+    </div>
+    <div class="nav2">
+      <a href="cadastro.html">Cadastro</a>
+      <p>|</p>
+      <a href="login.html">Login</a>
+    </div>
+  </header>
     <div class="login">
         <div class="containers">
             <div class="cardsLogin card-login1">
@@ -62,24 +74,37 @@
         </div>
     </div>
     <footer>
-        <div class="footer">
-            <img src="./assets/logo.png" alt="Logo">
-            <p>2026 Argos. Todos os direitos reservados.</p>
-        </div>
-        <div class="sociais">
-            <p>Entre em contato conosco: <br>argos@argos.com.br</p>
-            <div class="sociais-img">
-                <img src="./assets/instagram (1) 1.png" alt="Instagram">
-                <img src="./assets/whatsapp 1.png" alt="WhatsApp">
-                <img src="./assets/linkedin 1.png" alt="Linkedin">
-            </div>
-        </div>
-    </footer>
+    <div class="footer">
+      <img src="./assets/logo.png" alt="Logo">
+      <p>2026 Argos. Todos os direitos reservados.</p>
+    </div>
+    <hr>
+    <div class="sociais">
+      <p>Entre em contato conosco: <br>argos@argos.com.br</p>
+      <div class="sociais-img">
+        <img src="./assets/instagram (1) 1.png" alt="Instagram">
+        <img src="./assets/whatsapp 1.png" alt="WhatsApp">
+        <img src="./assets/linkedin 1.png" alt="Linkedin">
+      </div>
+    </div>
+  </footer>
 </body>
-
 </html>
-
 <script>
+  window.onload = verificarLogin();
+
+    function verificarLogin() {
+        if (sessionStorage.NOME_USUARIO != null) {
+            navLogada.style.display = 'flex'
+            navDeslogada.style.display = 'none'
+            nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
+        }
+    }
+
+    function deslogar() {
+        sessionStorage.clear()
+    }
+
     function entrar() {
 
         // Recolhe os valores dos campos
