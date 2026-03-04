@@ -12,13 +12,13 @@
     <header>
         <div class="nav">
             <a href="./index.html" style="font-weight: bold;">Home</a>
-            <a href="#cadastro_unidade">Cadastro de Unidade</a>
+            <a href="./cadastro_unidade.html">Cadastro de Unidade</a>
             <a href="./cadastro_servidor.html">Cadastro de Servidor</a>
         </div>
         <div class="nav2">
             <p> Olá, nome do usuario</p>
             <p>|</p>
-            <a href="perfil.html">Perfil</a>z
+            <a href="perfil.html">Perfil</a>
         </div>
     </header>
 
@@ -29,7 +29,7 @@
 
                 <div class="campo">
                     <span>Código da Unidade <span style="color: red;">*</span></span>
-                    <input id="codigo_input" type="text"/>
+                    <input id="codigo_input" type="text" />
                 </div>
                 <div class="campo">
                     <span>CEP<span style="color: red;">*</span></span>
@@ -42,10 +42,6 @@
                 <div class="campo">
                     <span>Rua</span>
                     <input id="rua_input" type="text" />
-                </div>
-                <div class="campo">
-                    <span>estado</span>
-                    <input id="estado_input" type="text" />
                 </div>
                 <div class="campo">
                     <span>Bairro<span style="color: red;">*</span></span>
@@ -92,14 +88,12 @@ var cep = cep_input.value
 var cidade = cidade_input.value
 var rua = rua_input.value
 var bairro = bairro_input.value
-var estado = estado_input.value
 
 if(codigo == ""||
 cep == ""||
 cidade == ""||
 rua == ""||
-bairro == ""||
-estado == ""
+bairro == ""
 ){
     console.log("Prencha todo o formulário")
 }else{
@@ -112,8 +106,7 @@ estado == ""
         cepServer: cep,
         cidadeServer: cidade,
         ruaServer: rua,
-        bairroServer: bairro,
-        estadoServer: estado
+        bairroServer: bairro
         })
     }).then(function(resposta){
         console.log("Resposta: ", resposta);
@@ -130,8 +123,7 @@ estado == ""
                 cepServer: cep,
                 cidadeServer: cidade,
                 ruaServer: rua,
-                bairroServer: bairro,
-                estadoServer: estado
+                bairroServer: bairro
                 })
             })      .then(function (resposta) {
         console.log("resposta: ", resposta);

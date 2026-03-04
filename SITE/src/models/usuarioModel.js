@@ -19,7 +19,7 @@ function cadastrar(nome, email, senha, telefone, funcao, matricula, fk_responsav
     ? "NULL"
     : Number(fk_responsavel); // garante número
     var instrucaoSql = `
-        INSERT INTO usuario (nome, email, senha, telefone, funcao, matricula, fkResponsavel) VALUES ('${nome}', '${email}', '${senha}', '${telefone}', '${funcao}', '${matricula}', ${fk});
+        INSERT INTO usuario (nome, email, senha, telefone, funcao, matricula, fk_responsavel) VALUES ('${nome}', '${email}', '${senha}', '${telefone}', '${funcao}', '${matricula}', ${fk});
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
