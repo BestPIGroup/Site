@@ -17,7 +17,7 @@
             <a href="./index_usuario.html">Cadastro de Servidor</a>
         </div>
         <div class="nav2">
-            <p> Olá, nome do usuario</p>
+            <p> Olá, <span id="nome_usuario"></span>!</p>
             <p>|</p>
             <a href="perfil.html">Perfil</a>
         </div>
@@ -128,6 +128,8 @@
 </html>
 
 <script>
+        nome_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
+
     function info_unidade() {
         div_info_pessoal.style.display = "none";
         div_info_unidade.style.display = "block";
