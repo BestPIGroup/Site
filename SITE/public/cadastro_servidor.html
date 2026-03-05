@@ -39,6 +39,10 @@
                     <span>Numero de série</span>
                     <input id="numero_input" type="number" />
                 </div>
+                 <div class="campo">
+                    <span>Status do servidor</span>
+                    <input id="status_input" type="text" />
+                </div>
                 <button class="botao" onclick="cadastrar()">CADASTRAR UNIDADE</button>
             </div>
             <div id="div_erros_login"></div>
@@ -78,10 +82,12 @@
 var fornecedor = fornecedor_input.value;
 var modelo = modelo_input.value;
 var numero = numero_input.value;
+var status = status_input.value;
 
 if(fornecedor == ""||
 modelo == ""||
-numero == ""
+numero == ""||
+status == ""
 ){
     console.log("Prencha todo o formulário")
 }else{
@@ -94,6 +100,7 @@ numero == ""
                 fornecedorServer: fornecedor,
                 modeloServer: modelo,
                 numeroServer: numero,
+                statusServer: status
                 })
             })      .then(function (resposta) {
         console.log("resposta: ", resposta);
