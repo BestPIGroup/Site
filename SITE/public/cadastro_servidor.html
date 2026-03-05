@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Argos | Cadastrar Servidor</title>
     <link rel="stylesheet" href="./css/cadastro_unidade.css">
+    <link rel="icon" href="./assets/favicon.png">
 </head>
 
 <body>
@@ -23,33 +24,44 @@
     </header>
 
     <div class="login">
-        <div class="cadastro">
-            <h2>CADASTRO DO SERVIDOR</h2>
-            <div class="formulario">
-
-                <div class="campo">
-                    <span>Fornecedor<span style="color: red;">*</span></span>
-                    <input id="fornecedor_input" type="text" />
+        <div class="modal">
+            <div class="modal-info">
+                <h2>CADASTRO DE SERVIDORES</h2>
+                <div class="modal-card">
+                    <img src="./assets/admin-panel.png" alt="">
+                    <h2>Mantenha o controle total</h2>
+                    <p>Cadastre seus servidores agora e antecipe falhas antes que elas aconteçam.</p>
                 </div>
-                <div class="campo">
-                    <span>Modelo<span style="color: red;">*</span></span>
-                    <input id="modelo_input" type="text" />
+                <div class="modal-card">
+                    <img src="./assets/view.png" alt="">
+                    <h2>Visibilidade em tempo real</h2>
+                    <p>Adicione suas máquinas e monitore CPU, Memória e Disco em um só lugar.</p>
                 </div>
-                <div class="campo">
-                    <span>Numero de série</span>
-                    <input id="numero_input" type="number" />
+                <div class="modal-card">
+                    <img src="./assets/surprise-box.png" alt="">
+                    <h2>Não seja pego de surpresa</h2>
+                    <p>Registre seus servidores e receba alertas automáticos de performance.</p>
                 </div>
-                 <div class="campo">
-                    <span>Status do servidor</span>
-                    <input id="status_input" type="text" />
-                </div>
-                <button class="botao" onclick="cadastrar()">CADASTRAR UNIDADE</button>
             </div>
-            <div id="div_erros_login"></div>
+            <div class="modal-inputs">
+                <div class="modal-form1">
+                    <p>Fornecedor</p>
+                    <input type="text" id="fornecedor_input">
+                    <p>Modelo</p>
+                    <input type="text" id="modelo_input">
+                    <p>Número de Série</p>
+                    <input type="text" id="numero_input">
+                </div>
+                <div class="modal-form2">
+                    <p>Status</p>
+                    <input type="text" id="status_input">
+                </div>
+                <button onclick="cadastrar()">Realizar Cadastro</button>
+            </div>
         </div>
-
-        <div class="effect-text"> </div>
-
+        <div class="fundo">
+            <div class="effect-text"></div>
+        </div>
     </div>
 
     <div id="modal_container" class="modal-container">
@@ -59,7 +71,6 @@
             <button onclick="fecharModal()" class="botao">OK</button>
         </div>
     </div>
-
 
 </body>
 
@@ -72,58 +83,58 @@
         modal_mensagem.innerHTML = mensagem;
         modal_container.style.display = "flex";
     }
-    
+
     function fecharModal() {
         modal_container.style.display = "none";
     }
-    
+
     function cadastrar() {
 
-var fornecedor = fornecedor_input.value;
-var modelo = modelo_input.value;
-var numero = numero_input.value;
-var status = status_input.value;
+        var fornecedor = fornecedor_input.value;
+        var modelo = modelo_input.value;
+        var numero = numero_input.value;
+        var status = status_input.value;
 
-if(fornecedor == ""||
-modelo == ""||
-numero == ""||
-status == ""
-){
-    console.log("Prencha todo o formulário")
-}else{
-        
-            fetch("servidores/cadastrar_servidor",{
+        if (fornecedor == "" ||
+            modelo == "" ||
+            numero == "" ||
+            status == ""
+        ) {
+            console.log("Prencha todo o formulário")
+        } else {
+
+            fetch("servidores/cadastrar_servidor", {
                 method: "POST",
-                headers:{
+                headers: {
                     "Content-Type": "application/json",
                 }, body: JSON.stringify({
-                fornecedorServer: fornecedor,
-                modeloServer: modelo,
-                numeroServer: numero,
-                statusServer: status
+                    fornecedorServer: fornecedor,
+                    modeloServer: modelo,
+                    numeroServer: numero,
+                    statusServer: status
                 })
-            })      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+            }).then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-            console.log("Cadastro_unidade realizado com sucesso! Redirecionando para tela de Login...")
-            
-            const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
-            
-            mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
-            
-            setTimeout(() => {
-            window.location = "perfil.html";
-          }, "2000");
+                if (resposta.ok) {
+                    console.log("Cadastro_unidade realizado com sucesso! Redirecionando para tela de Login...")
 
-        } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
+                    const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
+
+                    mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
+
+                    setTimeout(() => {
+                        window.location = "perfil.html";
+                    }, "2000");
+
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                    finalizarAguardar();
+                });
         }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-    });
-}
-}
+    }
 </script>

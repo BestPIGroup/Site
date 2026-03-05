@@ -55,7 +55,6 @@ footer{
   font-weight: lighter;
   align-items: center;
   font-family: "Poppins", sans-serif;
-  font-weight: 500;
 }
 .footer{
   display: flex;
@@ -90,7 +89,7 @@ hr{
 
 p  {
   font-family: "Poppins", sans-serif;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 /*
@@ -121,7 +120,7 @@ p  {
 
  .banner-button {
   background-color: #ffff;
-  color: #022036;
+  color: black;
   font-family: "Poppins", sans-serif;
   border: none;
   padding: 20px;
@@ -133,10 +132,18 @@ p  {
   text-decoration: none;
 }
 
+.banner-button a{
+  color: black;
+}
+
 .banner-button:hover{ 
   background-color: #031929;
-  color: #ffff;
+  color: white;
   transition: 0.2s;
+}
+
+.banner-button:hover a{
+  color: white;
 }
 
 .banner img{
@@ -171,7 +178,7 @@ p  {
   color: #ffff;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 26px;
+  font-size: 50px;
 }
 .card {
   background-color: #f9f9f9;
@@ -324,7 +331,8 @@ summary {
   font-family: 'Poppins', sans-serif;
   font-size: 18px;
   background-color: white;
-  width: 30%;
+  width: 40%;
+  height: 50px;
   border-radius: 10px;
   border: none;
   cursor: pointer;
@@ -415,7 +423,7 @@ summary {
 }
 
 img{
-  width: 30%;
+  width: 35%;
 }
 
 #imagem-div2{
@@ -439,9 +447,6 @@ img{
     flex-direction: row;
     /* justify-content: space-between; */
     justify-content: center;
-    gap: 80px;
-    /* padding-left: 20px;
-    padding-right: 80px; */
 
     font-size: 16px;
   }
@@ -454,14 +459,14 @@ img{
 
   header .nav {
     display: flex;
-    width: 300px;
+    width: 50%;
     flex-direction: row;
     justify-content: space-around;
   }
 
   header .nav2{
     display: flex;
-    width: 150px;
+    width: 50%;
   }
 
 
@@ -547,7 +552,9 @@ img{
   }
 
   .pilares-card {
+    flex-direction: column;
     width: 100%;
+    align-items: center;
   }
 
   .pilares-card h4 {
@@ -559,7 +566,8 @@ img{
   }
 
   .pilares-card1, .pilares-card2 {
-    min-height: 370px;
+    min-height: 250px;
+    min-width: 70%;
     margin: 10px;
   }
 
