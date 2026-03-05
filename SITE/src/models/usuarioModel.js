@@ -25,7 +25,16 @@ function cadastrar(nome, email, senha, telefone, funcao, matricula, fk_responsav
     return database.executar(instrucaoSql);
 }
 
+function ver_usuario(id_usuario, email){
+    console.log("cheguei ao model")
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", id_usuario,email)
+    var instrucaoSql = `SELECT * FROM usuario WHERE id_usuario = '${id_usuario}' AND email = '${email}' ;`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    ver_usuario
 };

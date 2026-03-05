@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
+
+<body onload="exibir()">
     <header>
         <div class="nav">
             <a href="./index_usuario.html" style="font-weight: bold;">Home</a>
@@ -52,31 +53,31 @@
             <div class="pessoal_informacao">
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> Nome Completo </p>
+                        <p class="titulo"> Nome Completo - <span id="nome_completo_usuario"></span></p>
                     </div>
                 </div>
 
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> E-mail </p>
+                        <p class="titulo"> E-mail - <span id="email_usuario"></span></p>
                     </div>
                 </div>
 
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> Telefone </p>
+                        <p class="titulo"> Telefone - <span id="telefone_usuario"></span></p>
                     </div>
                 </div>
 
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> Função </p>
+                        <p class="titulo"> Função - <span id="funcao_usuario"></span></p>
                     </div>
                 </div>
 
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> Matrícula </p>
+                        <p class="titulo"> Matrícula - <span id="matricula_usuario"></span></p>
                     </div>
                 </div>
             </div>
@@ -93,31 +94,31 @@
             <div class="pessoal_informacao">
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> Código da Unidade </p>
+                        <p class="titulo"> Código da Unidade -</p>
                     </div>
                 </div>
 
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> CEP </p>
+                        <p class="titulo"> CEP -</p>
                     </div>
                 </div>
 
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> Cidade </p>
+                        <p class="titulo"> Cidade -</p>
                     </div>
                 </div>
 
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> Rua </p>
+                        <p class="titulo"> Rua -</p>
                     </div>
                 </div>
 
                 <div class="container-botao-alinhar">
                     <div class="campo">
-                        <p class="titulo"> Bairro </p>
+                        <p class="titulo"> Bairro -</p>
                     </div>
                 </div>
             </div>
@@ -130,7 +131,50 @@
 <script>
         nome_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
 
-    function info_unidade() {
+        
+        function exibir(){
+            
+            var emailVar = sessionStorage.EMAIL_USUARIO;
+            var idVar = sessionStorage.ID_USUARIO;
+
+          
+             fetch("/usuarios/ver_usuario", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // Defini no server as variáveis email e senha
+                emailServer: emailVar,
+                idServer: idVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+            console.log("Status:", resposta.status);
+            // Se estiver tudo bem, executa no console.log a resposta
+            if (resposta.ok) {
+                console.log(resposta);
+                
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    nome_completo_usuario.innerHTML = json.nome;
+                    email_usuario.innerHTML = json.email;
+                    telefone_usuario.innerHTML = json.telefone;
+                    funcao_usuario.innerHTML = json.funcao;
+                    matricula_usuario.innerHTML = json.matricula;
+                });
+            }else {
+                console.log("Houve um erro ao tentar coletar as informações!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        })
+    }
+
+        function info_unidade() {
         div_info_pessoal.style.display = "none";
         div_info_unidade.style.display = "block";
     }

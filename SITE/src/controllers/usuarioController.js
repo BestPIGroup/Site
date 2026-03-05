@@ -22,6 +22,7 @@ function autenticar(req, res) {
                 if (resultadoAutenticar.length == 1) {
 
                     res.json({
+                        id_usuario: resultadoAutenticar[0].id_usuario,
                         email: resultadoAutenticar[0].email,
                         nome: resultadoAutenticar[0].nome,
                         senha: resultadoAutenticar[0].senha,
@@ -94,7 +95,51 @@ function cadastrar(req, res) {
     }
 }
 
+function ver_usuario(req, res){
+    var email = req.body.emailServer
+    var id_usuario = req.body.idServer
+
+    if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    } else if (id_usuario == undefined) {
+        res.status(400).send("Sua ID está indefinida!");
+    } else {
+        console.log("Entrei no controller")
+
+        usuarioModel.ver_usuario(id_usuario, email)
+            .then(function (resultadoAutenticar) {
+
+                console.log(`Resultados encontrados: ${resultadoAutenticar.length}`);
+
+                if (resultadoAutenticar.length == 1) {
+
+                    res.json({
+                        email: resultadoAutenticar[0].email,
+                        nome: resultadoAutenticar[0].nome,
+                        telefone: resultadoAutenticar[0].telefone,
+                        funcao: resultadoAutenticar[0].funcao,
+                        matricula: resultadoAutenticar[0].matricula,
+                    });
+
+                } else if (resultadoAutenticar.length == 0) {
+
+                    res.status(403).send("Email e/ou senha inválido(s)");
+
+                } else {
+
+                    res.status(403).send("Mais de um usuário com o mesmo login!");
+
+                }
+
+            })
+            .catch(function (erro) {
+                console.log("Erro no login:", erro);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    ver_usuario
 }
