@@ -15,7 +15,7 @@
     <header>
         <div class="nav">
             <a href="./index_usuario.html" style="font-weight: bold;">Home</a>
-            <a href="./cadastro_unidade.html">Cadastro de Unidade</a>
+            <a href="./cadastro_func.html">Cadastro de Funcionário</a>
             <a href="./cadastro_servidor.html">Cadastro de Servidor</a>
         </div>
         <div class="nav2">
@@ -92,8 +92,6 @@
 
 
     <section class="secao-perfil" style="display: none;" id="div_info_unidade">
-
-
         <div class="container-informacao">
             <h2> <i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade </h2>
             <hr>
@@ -217,18 +215,18 @@
 
     function info_unidade() {
         div_info_pessoal.style.display = "none";
-        div_info_unidade.style.display = "flex";
+        div_info_unidade.style.display = "block";
         div_info_servidor.style.display = "none";
     }
 
     function info_pessoal() {
-        div_info_pessoal.style.display = "flex";
+        div_info_pessoal.style.display = "block";
         div_info_unidade.style.display = "none";
         div_info_servidor.style.display = "none";
     }
 
     function info_servidor(){
-        div_info_servidor.style.display = "flex";
+        div_info_servidor.style.display = "block";
         div_info_unidade.style.display = "none";
         div_info_pessoal.style.display = "none";
     }

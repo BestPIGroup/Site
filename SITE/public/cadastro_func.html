@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Argos | Cadastrar Funcionário</title>
+    <link rel="stylesheet" href="./css/cadastro_func.css">
+    <link rel="icon" href="./assets/favicon.png">
+</head>
+
+<body>
+    <header>
+        <div class="nav">
+            <a href="./index.html" style="font-weight: bold;">Home</a>
+            <a href="./cadastro_func.html">Cadastro de Funcionário</a>
+            <a href="./cadastro_servidor.html">Cadastro de Servidor</a>
+        </div>
+        <div class="nav2">
+            <p> Olá, <span id="nome_usuario"></span>!</p>
+            <p>|</p>
+            <a href="perfil.html">Perfil</a>
+        </div>
+    </header>
+
+    <div class="login">
+        <div class="fundo">
+            <div class="effect-text"></div>
+            <div class="modal-info">
+                <h2>CADASTRO DE FUNCIONÁRIOS</h2>
+                <div class="modal-card">
+                    <img src="./assets/management.png" alt="">
+                    <h2>Gestão da equipe</h2>
+                    <p>Adicione novos administradores para monitorar sua infraestrutura.</p>
+                </div>
+                <div class="modal-card">
+                    <img src="./assets/control-center.png" alt="">
+                    <h2>Controle de acesso</h2>
+                    <p>Cadastre quem terá permissão para visualizar os alertas de hardware.</p>
+                </div>
+                <div class="modal-card">
+                    <img src="./assets/monitoring.png" alt="">
+                    <h2>Novo monitor</h2>
+                    <p>Registre um técnico para gerenciar os servidores da sua unidade.</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-inputs">
+            <div class="modal-form1">
+                <p>Nome Completo</p>
+                <input type="text" id="nome_input">
+                <p>Email</p>
+                <input type="text" id="email_input">
+                <p>Telefone</p>
+                <input type="text" id="telefone_input">
+                <p>Unidade/Setor</p>
+                <input type="text" id="unidade_input">
+                <p>Função</p>
+                <input type="text" id="função_input">
+                <p>Matricula</p>
+                <input type="text" id="matricula_input">
+                <p>Senha</p>
+                <input type="text" id="senha_input">
+                <p>Confirmar Senha</p>
+                <input type="text" id="confirmarSenha_input">
+            </div>
+            <button onclick="cadastrar()">Realizar Cadastro</button>
+        </div>
+    </div>
+
+    <div id="modal_container" class="modal-container">
+        <div class="modal-content">
+            <h3 id="modal_titulo">Alerta</h3>
+            <p id="modal_mensagem"></p>
+            <button onclick="fecharModal()" class="botao">OK</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    function mostrarModal(titulo, mensagem) {
+        modal_titulo.innerHTML = titulo;
+        modal_mensagem.innerHTML = mensagem;
+        modal_container.style.display = "flex";
+    }
+
+    function fecharModal() {
+        modal_container.style.display = "none";
+    }
+
+    function cadastrar() {
+
+        var codigo = codigo_input.value
+        var cep = cep_input.value
+        var cidade = cidade_input.value
+        var rua = rua_input.value
+        var bairro = bairro_input.value
+        var estado = estado_input.value
+
+        if (codigo == "" ||
+            cep == "" ||
+            cidade == "" ||
+            rua == "" ||
+            bairro == "" ||
+            estado == ""
+        ) {
+            console.log("Prencha todo o formulário")
+        } else {
+            fetch("unidade/verificar_unidade", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                }, body: JSON.stringify({
+                    codigoServer: codigo,
+                    cepServer: cep,
+                    cidadeServer: cidade,
+                    ruaServer: rua,
+                    bairroServer: bairro,
+                    estadoServer: estado
+                })
+            }).then(function (resposta) {
+                console.log("Resposta: ", resposta);
+
+                if (resposta.ok) {
+                    console.log("entrei no cadastro unidade")
+
+                    fetch("unidade/cadastrar_unidade", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        }, body: JSON.stringify({
+                            codigoServer: codigo,
+                            cepServer: cep,
+                            cidadeServer: cidade,
+                            ruaServer: rua,
+                            bairroServer: bairro,
+                            estadoServer: estado
+                        })
+                    }).then(function (resposta) {
+                        console.log("resposta: ", resposta);
+
+                        if (resposta.ok) {
+                            console.log("Cadastro_unidade realizado com sucesso! Redirecionando para tela de Login...")
+
+                            const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
+
+                            mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
+
+                            setTimeout(() => {
+                                window.location = "login.html";
+                            }, "2000");
+
+                        } else {
+                            throw "Houve um erro ao tentar realizar o cadastro!";
+                        }
+                    })
+                        .catch(function (resposta) {
+                            console.log(`#ERRO: ${resposta}`);
+                            finalizarAguardar();
+                        });
+
+                } else {
+                    console.log("Houve um erro ao tentar realizar o cadastro da unidade!");
+
+                    console.log("não entrei")
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            })
+
+        }
+    }
+</script>
