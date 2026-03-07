@@ -16,13 +16,15 @@
 </head>
 
 <body>
-    <header style="display: none;" id="navLogada">
+  <header style="display: none;" id="navLogada">
     <div class="nav">
       <a href="#home" style="font-weight: bold;">Home</a>
       <a href="./cadastro_unidade.html">Cadastro de Unidade</a>
     </div>
     <div class="nav2">
-      <p> Olá, <p id="nomeUsuario"></p></p>
+      <p> Olá,
+      <p id="nomeUsuario"></p>
+      </p>
       <p>|</p>
       <a href="perfil.html">Perfil</a>
     </div>
@@ -41,52 +43,92 @@
   </header>
 
   <div class="login">
-<!--     <div class="alerta_erro">
+    <!--     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
       </div>
     </div> -->
-    <div class="cadastro">
-        <h2>CADASTRO</h2>
-        <div class="formulario">
-          <!--
+    <div class="cadastro" id="div_cadastro">
+      <h2>CADASTRO</h2>
+      <div class="imagem-indicador"><img src="./assets/indicador1.png" alt=""></div>
+      <div class="formulario">
+        <!--
                          Para inserir mais um campo, copie uma das inputs abaixo.
                          Assim que inserir vá para o script abaixo.
                      -->
-          <div class="campo">
-            <span>Nome Completo <span style="color: red;">*</span></span>
-            <input id="nome_input" type="text" />
-          </div>
-          <div class="campo">
-            <span>Email<span style="color: red;">*</span></span>
-            <input id="email_input" type="text" />
-          </div>
-          <div class="campo">
-            <span>Telefone<span style="color: red;">*</span></span>
-            <input id="telefone_input" type="text" maxlength="15" oninput="validarTelefone()"/>
-          </div>
-          <div class="campo">
-            <span>Função<span style="color: red;">*</span></span>
-            <input id="funcao_input" type="text"  />
-          </div>
-          <div class="campo">
-            <span>Matrícula<span style="color: red;">*</span></span>
-            <input id="matricula_input" type="text"  />
-          </div>
-          <div class="campo">
-            <span>Senha<span style="color: red;">*</span></span>
-            <input id="senha_input" type="password"  />
-          </div>
-          <div class="campo">
-            <span>Confirmar Senha<span style="color: red;">*</span></span>
-            <input id="confirmacao_senha_input" type="password"  />
-          </div>
-          <div id="cardErro" style="display: none; color: red; text-align: center;" class="campo">
-            <span id="mensagem_erro"></span>
-          </div>
-          <button class="botao" onclick="cadastrar()">REALIZAR CADASTRO</button>
-          <a href="./login.html">Já possui cadastro? Logue Aqui!</a>
+        <div class="campo">
+          <span>Nome Completo <span style="color: red;">*</span></span>
+          <input id="nome_input" type="text" />
         </div>
+        <div class="campo">
+          <span>Email<span style="color: red;">*</span></span>
+          <input id="email_input" type="text" />
+        </div>
+        <div class="campo">
+          <span>Telefone<span style="color: red;">*</span></span>
+          <input id="telefone_input" type="text" maxlength="15" oninput="validarTelefone()" />
+        </div>
+        <div class="campo">
+          <span>Função<span style="color: red;">*</span></span>
+          <input id="funcao_input" type="text" />
+        </div>
+        <div class="campo">
+          <span>Matrícula<span style="color: red;">*</span></span>
+          <input id="matricula_input" type="text" />
+        </div>
+        <div class="campo">
+          <span>Senha<span style="color: red;">*</span></span>
+          <input id="senha_input" type="password" />
+        </div>
+        <div class="campo">
+          <span>Confirmar Senha<span style="color: red;">*</span></span>
+          <input id="confirmacao_senha_input" type="password" />
+        </div>
+        <div id="cardErro" style="display: none; color: red; text-align: center;" class="campo">
+          <span id="mensagem_erro"></span>
+        </div>
+        <button class="botao" onclick="exibirTelaUni()">REALIZAR CADASTRO</button>
+        <a href="./login.html">Já possui cadastro? Logue Aqui!</a>
+      </div>
+    </div>
+
+    <div class="cadastroUni" id="div_telaUni" style="display: none;">
+      <h2>UNIDADE</h2>
+      <div class="imagem-indicador"><img src="./assets/Indicador2.png" alt=""></div>
+      <div class="formulario">
+        <!--
+                         Para inserir mais um campo, copie uma das inputs abaixo.
+                         Assim que inserir vá para o script abaixo.
+                     -->
+        <div class="campo">
+          <span>Código da Unidade <span style="color: red;">*</span></span>
+          <input id="codigo_input" type="text" />
+        </div>
+        <div class="campo">
+          <span>CEP<span style="color: red;">*</span></span>
+          <input id="cep_input" type="text" />
+        </div>
+        <div class="campo">
+          <span>Rua<span style="color: red;">*</span></span>
+          <input id="rua_input" type="text" />
+        </div>
+        <div class="campo">
+          <span>Bairro<span style="color: red;">*</span></span>
+          <input id="bairro_input" type="text" />
+        </div>
+        <div class="campo">
+          <span>Cidade<span style="color: red;">*</span></span>
+          <input id="cidade_input" type="text" />
+        </div>
+        <div class="campo">
+          <span>Estado<span style="color: red;">*</span></span>
+          <input id="estado_input" type="password" />
+        </div>
+        <div id="cardErroUni" style="display: none; color: red; text-align: center;" class="campo">
+          <span id="mensagem_erroUni"></span>
+        </div>
+        <button class="botao" onclick="cadastrarUnidade()">REALIZAR CADASTRO</button>
+      </div>
     </div>
 
     <div class="effect-text">
@@ -99,7 +141,7 @@
       <p>Comece a proteger sua</p>
       <p>infraestrutura hoje mesmo.</p>
 
-    <a href="./login.html">Já possui cadastro? Logue Aqui!</a>
+      <a href="./login.html">Já possui cadastro? Logue Aqui!</a>
     </div>
   </div>
 
@@ -119,47 +161,65 @@
     </div>
   </footer>
 </body>
+
 </html>
 <script>
   window.onload = verificarLogin();
 
-    function verificarLogin() {
-        if (sessionStorage.NOME_USUARIO != null) {
-            navLogada.style.display = 'flex'
-            navDeslogada.style.display = 'none'
-            nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
-        }
+  function verificarLogin() {
+    if (sessionStorage.NOME_USUARIO != null) {
+      navLogada.style.display = 'flex'
+      navDeslogada.style.display = 'none'
+      nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
     }
+  }
 
-    function deslogar() {
-        sessionStorage.clear()
-    }
+  function exibirTelaUni() {
+    div_cadastro.style.display = "none"
+    div_telaUni.style.display = "Flex"
+  }
+
+  function deslogar() {
+    sessionStorage.clear()
+  }
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   //let listaEmpresasCadastradas = [];
 
-  function validarTelefone(){
+  function validarTelefone() {
     var telefone = telefone_input.value;
     var tamanho = telefone.length
     var telFormatado = ''
-        for (var i = 1; i <= tamanho; i++) {
-            if (i == 1 && telefone[i - 1] != '(') {
-                telFormatado += '('
-            } else if (i == 4 && telefone[i - 1] != ')') {
-                telFormatado += ')'
-            } else if (i == 5 && telefone[i - 1] != ' ') {
-                telFormatado += ' '
-            } else if (i == 11 && telefone[i - 1] != '-') {
-                telFormatado += '-'
-            }
-            telFormatado += telefone[i - 1]
-        }
-        telefone_input.value = telFormatado
+    for (var i = 1; i <= tamanho; i++) {
+      if (i == 1 && telefone[i - 1] != '(') {
+        telFormatado += '('
+      } else if (i == 4 && telefone[i - 1] != ')') {
+        telFormatado += ')'
+      } else if (i == 5 && telefone[i - 1] != ' ') {
+        telFormatado += ' '
+      } else if (i == 11 && telefone[i - 1] != '-') {
+        telFormatado += '-'
+      }
+      telFormatado += telefone[i - 1]
+    }
+    telefone_input.value = telFormatado
   }
+
+  // Verificando se o código de ativação é de alguma empresa cadastrada
+  /* for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+    if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+      idEmpresaVincular = listaEmpresasCadastradas[i].id
+      console.log("Código de ativação válido.");
+      break;
+    } else {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+      finalizarAguardar();
+    }
+  } */
 
   function cadastrar() {
     // aguardar();
-
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nome = nome_input.value;
@@ -176,7 +236,7 @@
       nome == "" ||
       email == "" ||
       telefone == "" ||
-      matricula == ""||
+      matricula == "" ||
       senha == "" ||
       confirmacaoSenha == ""
     ) {
@@ -184,31 +244,17 @@
       mensagem_erro.innerHTML = "Preencha todos os campos!";
       setInterval(sumirMensagem, 4000);
       return false;
-    } else if(!email.includes('@', '.')){
+    } else if (!email.includes('@', '.')) {
       cardErro.style.display = "flex";
       mensagem_erro.innerHTML = "O email precisa conter '@' e '.'";
       setInterval(sumirMensagem, 4000);
       return false;
-    } else if(senha != confirmacaoSenha){
+    } else if (senha != confirmacaoSenha) {
       cardErro.style.display = "flex";
       mensagem_erro.innerHTML = "As senhas não são correspondentes";
       setInterval(sumirMensagem, 4000);
       return false;
     }
-
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    /* for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
-      }
-    } */
-
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -233,11 +279,7 @@
         if (resposta.ok) {
           cardErro.style.display = "flex";
           mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "cadastro_unidade.html";
-          }, "2000");
-
+          exibirTelaUni();
           limparFormulario();
           finalizarAguardar();
         } else {
@@ -257,5 +299,92 @@
   // Listando empresas cadastradas 
   function sumirMensagem() {
     cardErro.style.display = "none";
+  }
+
+  function cadastrarUnidade() {
+
+    var codigo = codigo_input.value
+    var cep = cep_input.value
+    var rua = rua_input.value
+    var bairro = bairro_input.value
+    var cidade = cidade_input.value
+    var estado = estado_input.value
+
+    if (codigo == "" ||
+      cep == "" ||
+      cidade == "" ||
+      rua == "" ||
+      bairro == "" ||
+      estado == ""
+    ) {
+      cardErroUni.style.display = "flex";
+      mensagem_erroUni.innerHTML = "Preencha todos os campos!";
+      setInterval(sumirMensagem, 4000);
+      return false;
+    } else {
+      fetch("unidade/verificar_unidade", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        }, body: JSON.stringify({
+          codigoServer: codigo,
+          cepServer: cep,
+          cidadeServer: cidade,
+          ruaServer: rua,
+          bairroServer: bairro,
+          estadoServer: estado
+        })
+      }).then(function (resposta) {
+        console.log("Resposta: ", resposta);
+
+        if (resposta.ok) {
+          console.log("entrei no cadastro unidade")
+
+          fetch("unidade/cadastrar_unidade", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            }, body: JSON.stringify({
+              codigoServer: codigo,
+              cepServer: cep,
+              cidadeServer: cidade,
+              ruaServer: rua,
+              bairroServer: bairro,
+              estadoServer: estado
+            })
+          }).then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              console.log("Cadastro_unidade realizado com sucesso! Redirecionando para tela de Login...")
+
+              const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
+
+              mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
+
+              setTimeout(() => {
+                window.location = "perfil.html";
+              }, "2000");
+
+            } else {
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+          })
+            .catch(function (resposta) {
+              console.log(`#ERRO: ${resposta}`);
+              finalizarAguardar();
+            });
+
+        } else {
+          console.log("Houve um erro ao tentar realizar o cadastro da unidade!");
+
+          console.log("não entrei")
+          resposta.text().then(texto => {
+            console.error(texto);
+          });
+        }
+      })
+
+    }
   }
 </script>
