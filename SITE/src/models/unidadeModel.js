@@ -1,4 +1,4 @@
-                var database = require("../database/config");
+var database = require("../database/config");
 
 function verificar_unidade(cep, codigoUnidade){
         console.log("ACESSEI O MODEL DA UNIDADE \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function verificar_unidade(): ", cep, codigoUnidade)

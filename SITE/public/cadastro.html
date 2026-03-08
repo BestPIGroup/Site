@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -122,7 +123,7 @@
         </div>
         <div class="campo">
           <span>Estado<span style="color: red;">*</span></span>
-          <input id="estado_input" type="password" />
+          <input id="estado_input" type="text" />
         </div>
         <div id="cardErroUni" style="display: none; color: red; text-align: center;" class="campo">
           <span id="mensagem_erroUni"></span>
@@ -229,7 +230,7 @@
     var matricula = matricula_input.value;
     var senha = senha_input.value;
     var confirmacaoSenha = confirmacao_senha_input.value;
-    var fk_responsavel = null
+   
 
     // Verificando se há algum campo em branco
     if (
@@ -270,7 +271,8 @@
         telefoneServer: telefone,
         funcaoServer: funcao,
         matriculaServer: matricula,
-        fk_responsavelServer: fk_responsavel
+        fk_unidadeServer: sessionStorage.getItem("ID_UNIDADE")
+        
       }),
     })
       .then(function (resposta) {
@@ -355,9 +357,16 @@
           }).then(function (resposta) {
             console.log("resposta: ", resposta);
 
-            if (resposta.ok) {
-              console.log("Cadastro_unidade realizado com sucesso! Redirecionando para tela de Login...")
+             if (resposta.ok) {
 
+    resposta.json().then(function(json){
+
+      var idUnidade = json.insertId;
+
+      console.log("ID da unidade:", idUnidade);
+
+      sessionStorage.setItem("ID_UNIDADE", idUnidade)
+                cadastrar();// Aqui é onde realmente vai cadastrar o usuário
               const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
 
               mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
@@ -365,16 +374,11 @@
               setTimeout(() => {
                 window.location = "perfil.html";
               }, "2000");
+    });
 
-            } else {
-              throw "Houve um erro ao tentar realizar o cadastro!";
-            }
-          })
-            .catch(function (resposta) {
-              console.log(`#ERRO: ${resposta}`);
-              finalizarAguardar();
-            });
+  }
 
+});
         } else {
           console.log("Houve um erro ao tentar realizar o cadastro da unidade!");
 
@@ -386,5 +390,6 @@
       })
 
     }
+    
   }
 </script>

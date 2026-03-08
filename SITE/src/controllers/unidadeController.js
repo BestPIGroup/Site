@@ -30,7 +30,7 @@ function cadastrar_unidade(req, res) {
     var rua = req.body.ruaServer;
     var bairro = req.body.bairroServer;
     var estado = req.body.estadoServer;
-
+    
     if (codigoUnidade == undefined) {
         res.status(400).send("Seu codigo da unidade está undefined!");
     } else if (cep == undefined) {
@@ -45,9 +45,11 @@ function cadastrar_unidade(req, res) {
         res.status(400).send("Sua função está undefined!");
      } else {
         unidadeModel.cadastrar_unidade(codigoUnidade, cep, cidade, rua, bairro, estado)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
+           .then(function (resultado) {
+               res.json({
+                resultado: resultado,
+                insertId: resultado.insertId
+                });
                 }
             ).catch(
                 function (erro) {

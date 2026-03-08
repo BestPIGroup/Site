@@ -56,7 +56,8 @@ function cadastrar(req, res) {
     var matricula = req.body.matriculaServer;
     var senha = req.body.senhaServer;
     var confirmacao_senha = senha;
-    var fk_responsavel = null;
+    var fk_unidade = req.body.fk_unidadeServer;
+
     /* var fkEmpresa = req.body.idEmpresaVincularServer; */
 
     // Faça as validações dos valores
@@ -77,11 +78,9 @@ function cadastrar(req, res) {
     }else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, telefone, funcao, matricula, fk_responsavel)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
+        usuarioModel.cadastrar(nome, email, senha, telefone, funcao, matricula, fk_unidade)
+            .then(function (resultado) {
+                  res.json(resultado);}
             ).catch(
                 function (erro) {
                     console.log(erro);
