@@ -99,31 +99,31 @@
                     <div class="pessoal_informacao">
                         <div class="container-botao-alinhar">
                             <div class="campo">
-                                <p class="titulo"> Código da Unidade -</p>
+                                <p class="titulo"> Código da Unidade - <span id="cod_unidade"></span></p>
                             </div>
                         </div>
 
                         <div class="container-botao-alinhar">
                             <div class="campo">
-                                <p class="titulo"> CEP -</p>
+                                <p class="titulo"> CEP - <span id="cep_unidade"></span></p>
                             </div>
                         </div>
 
                         <div class="container-botao-alinhar">
                             <div class="campo">
-                                <p class="titulo"> Cidade -</p>
+                                <p class="titulo"> Cidade - <span id="cidade_unidade"></span></p>
                             </div>
                         </div>
 
                         <div class="container-botao-alinhar">
                             <div class="campo">
-                                <p class="titulo"> Rua -</p>
+                                <p class="titulo"> Rua - <span id="rua_unidade"></span></p>
                             </div>
                         </div>
 
                         <div class="container-botao-alinhar">
                             <div class="campo">
-                                <p class="titulo"> Bairro -</p>
+                                <p class="titulo"> Bairro - <span id="bairro_unidade"></span></p>
                             </div>
                         </div>
                     </div>
@@ -175,6 +175,7 @@
 
         var emailVar = sessionStorage.EMAIL_USUARIO;
         var idVar = sessionStorage.ID_USUARIO;
+        var idUnidade = sessionStorage.ID_UNIDADE;
 
 
         fetch("/usuarios/ver_usuario", {
@@ -202,6 +203,40 @@
                     telefone_usuario.innerHTML = json.telefone;
                     funcao_usuario.innerHTML = json.funcao;
                     matricula_usuario.innerHTML = json.matricula;
+                });
+            } else {
+                console.log("Houve um erro ao tentar coletar as informações!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        })
+
+        fetch("/unidade/ver_unidade",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // Defini no server as variáveis email e senha
+                idUnidadeServer: idUnidade
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+            console.log("Status:", resposta.status);
+            // Se estiver tudo bem, executa no console.log a resposta
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    cod_unidade.innerHTML = json.cod_unidade;
+                    cep_unidade.innerHTML = json.cep;
+                    cidade_unidade.innerHTML = json.cidade;
+                    rua_unidade.innerHTML = json.rua;
+                    bairro_unidade.innerHTML = json.bairro;
                 });
             } else {
                 console.log("Houve um erro ao tentar coletar as informações!");

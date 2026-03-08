@@ -11,15 +11,10 @@
 
 <body>
     <header>
-        <div class="nav-desktop">
+        <div class="nav">
             <a href="./index.html" style="font-weight: bold;">Home</a>
             <a href="./cadastro_func.html">Cadastro de Funcionário</a>
             <a href="./cadastro_servidor.html">Cadastro de Servidor</a>
-        </div>
-        <div class="nav-mobile">
-            <a href="./index.html" style="font-weight: bold;">Home</a>
-            <a href="./cadastro_func.html">Funcionário</a>
-            <a href="./cadastro_servidor.html">Servidor</a>
         </div>
         <div class="nav2">
             <p> Olá, <span id="nome_usuario"></span>!</p>
@@ -86,7 +81,6 @@
 </html>
 
 <script>
-    nome_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
 
     function mostrarModal(titulo, mensagem) {
         modal_titulo.innerHTML = titulo;
@@ -157,7 +151,7 @@
                             mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
 
                             setTimeout(() => {
-                                window.location = "login.html";
+                                window.location = "perfil.html";
                             }, "2000");
 
                         } else {

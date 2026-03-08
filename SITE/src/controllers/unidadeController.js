@@ -63,7 +63,51 @@ function cadastrar_unidade(req, res) {
             );
     }
 }
+
+
+function ver_unidade(req,res){
+    var idUnidade = req.body.idUnidadeServer;
+
+    if (idUnidade == undefined) {
+        res.status(400).send("Sua ID está indefinida!");
+    } else {
+        console.log("Entrei no controller")
+
+        unidadeModel.ver_unidade(idUnidade)
+        .then(function (resultadoAutenticar) {
+
+                console.log(`Resultados encontrados: ${resultadoAutenticar.length}`);
+
+                if (resultadoAutenticar.length == 1) {
+
+                    res.json({
+                        cod_unidade: resultadoAutenticar[0].cod_unidade,
+                        cep: resultadoAutenticar[0].cep,
+                        cidade: resultadoAutenticar[0].cidade,
+                        rua: resultadoAutenticar[0].rua,
+                        bairro: resultadoAutenticar[0].bairro,
+                        estado: resultadoAutenticar[0].estado,
+                    });
+
+                } else if (resultadoAutenticar.length == 0) {
+
+                    res.status(403).send("ID DA UNIDADE INEXISTENTE");
+
+                } else {
+
+                    res.status(403).send("Mais de uma unidade com esse mesmo id!");
+
+                }
+
+            })
+            .catch(function (erro) {
+                console.log("Erro no login:", erro);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
 module.exports = {
     verificar_unidade,
-    cadastrar_unidade
+    cadastrar_unidade,
+    ver_unidade
 }
