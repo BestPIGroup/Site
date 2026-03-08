@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -49,7 +48,7 @@
         <span id="mensagem_erro"></span>
       </div>
     </div> -->
-    <div class="cadastro" id="div_cadastro">
+    <div class="cadastro" id="div_cadastro" style="display: none;">
       <h2>CADASTRO</h2>
       <div class="imagem-indicador"><img src="./assets/indicador1.png" alt=""></div>
       <div class="formulario">
@@ -88,12 +87,12 @@
         <div id="cardErro" style="display: none; color: red; text-align: center;" class="campo">
           <span id="mensagem_erro"></span>
         </div>
-        <button class="botao" onclick="exibirTelaUni()">REALIZAR CADASTRO</button>
+        <button class="botao" onclick="cadastrar()">REALIZAR CADASTRO</button>
         <a href="./login.html">Já possui cadastro? Logue Aqui!</a>
       </div>
     </div>
 
-    <div class="cadastroUni" id="div_telaUni" style="display: none;">
+    <div class="cadastroUni" id="div_telaUni">
       <h2>UNIDADE</h2>
       <div class="imagem-indicador"><img src="./assets/Indicador2.png" alt=""></div>
       <div class="formulario">
@@ -175,9 +174,9 @@
     }
   }
 
-  function exibirTelaUni() {
-    div_cadastro.style.display = "none"
-    div_telaUni.style.display = "Flex"
+  function exibirTelaUsu() {
+    div_cadastro.style.display = "flex"
+    div_telaUni.style.display = "none"
   }
 
   function deslogar() {
@@ -230,7 +229,7 @@
     var matricula = matricula_input.value;
     var senha = senha_input.value;
     var confirmacaoSenha = confirmacao_senha_input.value;
-   
+
 
     // Verificando se há algum campo em branco
     if (
@@ -248,6 +247,11 @@
     } else if (!email.includes('@', '.')) {
       cardErro.style.display = "flex";
       mensagem_erro.innerHTML = "O email precisa conter '@' e '.'";
+      setInterval(sumirMensagem, 4000);
+      return false;
+    }else if(senha.length < 6){
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "A senha precisa ter no minimo 6 digitos";
       setInterval(sumirMensagem, 4000);
       return false;
     } else if (senha != confirmacaoSenha) {
@@ -272,7 +276,7 @@
         funcaoServer: funcao,
         matriculaServer: matricula,
         fk_unidadeServer: sessionStorage.getItem("ID_UNIDADE")
-        
+
       }),
     })
       .then(function (resposta) {
@@ -281,9 +285,10 @@
         if (resposta.ok) {
           cardErro.style.display = "flex";
           mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-          exibirTelaUni();
           limparFormulario();
-          finalizarAguardar();
+          setTimeout(() => {
+                window.location = "perfil.html";
+              }, "2000");
         } else {
           cardErro.style.display = "flex";
           mensagem_erro.innerHTML = "Houve um erro ao tentar realizar o cadastro!";
@@ -357,28 +362,24 @@
           }).then(function (resposta) {
             console.log("resposta: ", resposta);
 
-             if (resposta.ok) {
+            if (resposta.ok) {
 
-    resposta.json().then(function(json){
+              resposta.json().then(function (json) {
 
-      var idUnidade = json.insertId;
+                var idUnidade = json.insertId;
 
-      console.log("ID da unidade:", idUnidade);
+                console.log("ID da unidade:", idUnidade);
 
-      sessionStorage.setItem("ID_UNIDADE", idUnidade)
-                cadastrar();// Aqui é onde realmente vai cadastrar o usuário
-              const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
+                sessionStorage.setItem("ID_UNIDADE", idUnidade)
+                exibirTelaUsu();
+                const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
 
-              mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
+                mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
+              });
 
-              setTimeout(() => {
-                window.location = "perfil.html";
-              }, "2000");
-    });
+            }
 
-  }
-
-});
+          });
         } else {
           console.log("Houve um erro ao tentar realizar o cadastro da unidade!");
 
@@ -390,6 +391,6 @@
       })
 
     }
-    
+
   }
 </script>

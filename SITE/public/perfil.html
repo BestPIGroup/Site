@@ -13,10 +13,15 @@
 
 <body onload="exibir()">
     <header>
-        <div class="nav">
-            <a href="./index_usuario.html" style="font-weight: bold;">Home</a>
+        <div class="nav-desktop">
+            <a href="./index.html" style="font-weight: bold;">Home</a>
             <a href="./cadastro_func.html">Cadastro de Funcionário</a>
             <a href="./cadastro_servidor.html">Cadastro de Servidor</a>
+        </div>
+        <div class="nav-mobile">
+            <a href="./index.html" style="font-weight: bold;">Home</a>
+            <a href="./cadastro_func.html">Funcionário</a>
+            <a href="./cadastro_servidor.html">Servidor</a>
         </div>
         <div class="nav2">
             <p> Olá, <span id="nome_usuario"></span>!</p>
@@ -25,144 +30,139 @@
         </div>
     </header>
 
-    <div class="container-nav">
-        <h2> Geral </h2>
-        <nav id="menu-nav" class="menu-nav">
+    <div class="perfil">
+        <div class="container-nav">
+            <h2> Geral </h2>
+            <nav id="menu-nav" class="menu-nav">
+                <ul>
+                    <li onclick="info_pessoal()">
+                        <a><i class="fa fa-user" aria-hidden="true"></i> Informações Pessoais</a>
+                    </li>
+                    <li onclick="info_unidade()">
+                        <a><i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade</a>
+                    </li>
+                    <li onclick="info_servidor()">
+                        <a><i class="fa fa-server" aria-hidden="true"></i></i>Informações do Servidor</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
+        <section class="secao-perfil" id="div_info_pessoal" style="display: block;">
+            <div class="container-informacao">
+                <h2><i class="fa fa-user" aria-hidden="true"></i> Informações Pessoais </h2>
+                <hr>
+                <div class="informarcoes">
+                    <div class="pessoal_informacao">
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Nome Completo - <span id="nome_completo_usuario"></span></p>
+                            </div>
+                        </div>
 
-            <ul>
-                <li onclick="info_pessoal()">
-                    <a><i class="fa fa-user" aria-hidden="true"></i> Informações Pessoais</a>
-                </li>
-                <li onclick="info_unidade()">
-                    <a><i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade</a>
-                </li>
-                <li onclick="info_servidor()">
-                    <a><i class="fa fa-server" aria-hidden="true"></i></i>Informações do Servidor</a>
-                </li>
-            </ul>
-        </nav>
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> E-mail - <span id="email_usuario"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Telefone - <span id="telefone_usuario"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Função - <span id="funcao_usuario"></span></p>
+                            </div>
+                        </div>
+
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Matrícula - <span id="matricula_usuario"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imgUser">
+                        <img src="./assets/user.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao-perfil" style="display: none;" id="div_info_unidade">
+            <div class="container-informacao">
+                <h2> <i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade </h2>
+                <hr>
+                <div class="informarcoes">
+                    <div class="pessoal_informacao">
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Código da Unidade -</p>
+                            </div>
+                        </div>
+
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> CEP -</p>
+                            </div>
+                        </div>
+
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Cidade -</p>
+                            </div>
+                        </div>
+
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Rua -</p>
+                            </div>
+                        </div>
+
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Bairro -</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imgPredio">
+                        <img src="./assets/office-building.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="secao-perfil" style="display: none;" id="div_info_servidor">
+            <div class="container-informacao">
+                <h2> <i class="fa fa-building-o" aria-hidden="true"></i> Informações do Servidor </h2>
+                <hr>
+                <div class="informarcoes">
+                    <div class="pessoal_informacao" style="justify-content: center;">
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Servidores ativos -</p>
+                            </div>
+                        </div>
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Servidores sobre monitoramento -</p>
+                            </div>
+                        </div>
+                        <div class="container-botao-alinhar">
+                            <div class="campo">
+                                <p class="titulo"> Token -</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="imgServer">
+                        <img src="./assets/server.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-
-
-    <section class="secao-perfil" id="div_info_pessoal" style="display: block;">
-
-
-        <div class="container-informacao">
-            <h2><i class="fa fa-user" aria-hidden="true"></i> Informações Pessoais </h2>
-            <hr>
-            <div class="informarcoes">
-                <div class="pessoal_informacao">
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Nome Completo - <span id="nome_completo_usuario"></span></p>
-                        </div>
-                    </div>
-
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> E-mail - <span id="email_usuario"></span></p>
-                        </div>
-                    </div>
-
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Telefone - <span id="telefone_usuario"></span></p>
-                        </div>
-                    </div>
-
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Função - <span id="funcao_usuario"></span></p>
-                        </div>
-                    </div>
-
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Matrícula - <span id="matricula_usuario"></span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="imgUser">
-                    <img src="./assets/user.png" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <section class="secao-perfil" style="display: none;" id="div_info_unidade">
-        <div class="container-informacao">
-            <h2> <i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade </h2>
-            <hr>
-            <div class="informarcoes">
-                <div class="pessoal_informacao">
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Código da Unidade -</p>
-                        </div>
-                    </div>
-
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> CEP -</p>
-                        </div>
-                    </div>
-
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Cidade -</p>
-                        </div>
-                    </div>
-
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Rua -</p>
-                        </div>
-                    </div>
-
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Bairro -</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="imgPredio">
-                    <img src="./assets/office-building.png" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="secao-perfil" style="display: none;" id="div_info_servidor">
-        <div class="container-informacao">
-            <h2> <i class="fa fa-building-o" aria-hidden="true"></i> Informações do Servidor </h2>
-            <hr>
-            <div class="informarcoes">
-                <div class="pessoal_informacao" style="justify-content: center;">
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Servidores ativos -</p>
-                        </div>
-                    </div>
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Servidores sobre monitoramento -</p>
-                        </div>
-                    </div>
-                    <div class="container-botao-alinhar">
-                        <div class="campo">
-                            <p class="titulo"> Token -</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="imgServer">
-                    <img src="./assets/server.png" alt="">
-                </div>
-            </div>
-        </div>
-    </section>
-</body>
 </body>
 
 </html>
@@ -225,7 +225,7 @@
         div_info_servidor.style.display = "none";
     }
 
-    function info_servidor(){
+    function info_servidor() {
         div_info_servidor.style.display = "block";
         div_info_unidade.style.display = "none";
         div_info_pessoal.style.display = "none";

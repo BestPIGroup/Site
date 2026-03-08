@@ -21,6 +21,28 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+.imagem-indicador{
+    display: flex;
+    position: absolute;
+    width: 50%;
+    height: 90%;
+    justify-content: end;
+    align-items: flex-start;
+    z-index: -1;
+}
+
+.imagem-indicador img{
+    width: 30%;
+}
+
+.cadastroUni{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    flex-direction: column;
+}
+
 .cadastro a{
     display: none;
     justify-self: center;
@@ -140,8 +162,6 @@ input{
     font-family: 'Poppins', sans-serif;
     margin: 0px;
 }
-
-
 
 .effect-text a{
     display: flex;
