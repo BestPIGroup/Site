@@ -13,10 +13,15 @@
 
 <body>
   <header style="display: none;" id="navLogada">
-    <div class="nav">
+    <div class="nav-desktop">
       <a href="#home" style="font-weight: bold;">Home</a>
-      <a href="./cadastro_unidade.html">Cadastro de Unidade</a>
+      <a href="./cadastro_func.html">Cadastro de Unidade</a>
       <a href="./cadastro_servidor.html">Cadastro de Servidor</a>
+    </div>
+    <div class="nav-mobile">
+      <a href="#home" style="font-weight: bold;">Home</a>
+      <a href="./cadastro_func.html">Unidade</a>
+      <a href="./cadastro_servidor.html">Servidor</a>
     </div>
     <div class="nav2">
       <p> Olá, <p id="nomeUsuario"></p></p>
@@ -25,10 +30,15 @@
     </div>
   </header>
   <header style="display: flex;" id="navDeslogada">
-    <div class="nav">
+    <div class="nav-desktop">
       <a href="#home" style="font-weight: bold;">Home</a>
       <a href="#pilares">Nossos Pilares</a>
       <a href="./sobrenos.html">Conheça a Argos</a>
+    </div>
+    <div class="nav-mobile" style="display: none;">
+      <a href="#home" style="font-weight: bold;">Home</a>
+      <a href="./cadastro_func.html">Pilares</a>
+      <a href="./cadastro_servidor.html">Argos</a>
     </div>
     <div class="nav2">
       <a href="cadastro.html">Cadastro</a>
@@ -45,7 +55,7 @@
           <br> Integridade absoluta.
           <br> Prejuízo zero.
         </p>
-        <a href="cadastro.html" class="banner-button"> Começar Agora </a>
+        <a href="cadastro.html" class="banner-button" id="botoes"> Começar Agora </a>
       </div>
     </div>
   </div>
@@ -95,7 +105,7 @@
       <span>Sua gestão de servidores no próximo nível: <br>
         controle absoluto sobre o hardware para <br> sistemas que não podem parar.
       </span>
-      <a href="./cadastro.html"><button>Cadastrar</button></a>
+      <a href="./cadastro.html" id="botoes1"><button>Cadastrar</button></a>
     </div>
   </div>
 
@@ -141,7 +151,7 @@
     <div class="container-chamada2">
       <span>Monitore em tempo real e antecipe-se a falhas.</span>
         <p>Estabilidade é prioridade. Veja o desempenho agora.</p>
-      <a href="./cadastro.html"><button>Começar agora</button></a>
+      <a href="./cadastro.html" id="botoes2"><button>Começar agora</button></a>
     </div>
   </div>
 
@@ -170,6 +180,9 @@
             navLogada.style.display = 'flex'
             navDeslogada.style.display = 'none'
             nomeUsuario.innerHTML = sessionStorage.NOME_USUARIO
+            botoes.style.display = "none"
+            botoes1.style.display = "none"
+            botoes2.style.display = "none"
         }
     }
 
