@@ -6,4 +6,3 @@ package-lock.json
 .monitoramento.csv
 .env
 .env.dev
-.gitignore
