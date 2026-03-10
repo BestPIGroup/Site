@@ -50,7 +50,7 @@
     </div> -->
     <div class="cadastro" id="div_cadastro" style="display: none;">
       <h2>CADASTRO</h2>
-      <div class="imagem-indicador"><img src="./assets/indicador1.png" alt=""></div>
+      <div class="imagem-indicador"><img src="./assets/Indicador2.png" alt=""></div>
       <div class="formulario">
         <!--
                          Para inserir mais um campo, copie uma das inputs abaixo.
@@ -95,7 +95,7 @@
     <div class="cadastroUni" id="div_telaUni">
       <div class="container-unidade-indicador">
       <h2>UNIDADE</h2>
-      <div class="imagem-indicador"><img src="./assets/Indicador2.png" alt=""></div>
+      <div class="imagem-indicador"><img src="./assets/indicador1.png" alt=""></div>
       </div>
       <div class="formulario">
         <!--
@@ -137,7 +137,7 @@
       <h2>SEJA BEM-VINDO</h2>
 
       <div class="logo">
-        <img src="../assets/logo.png" alt="logo">
+        <img src="./assets/logo.png" alt="logo">
       </div>
 
       <p>Comece a proteger sua</p>
@@ -304,13 +304,11 @@
     return false;
   }
 
-  // Listando empresas cadastradas 
   function sumirMensagem() {
     cardErro.style.display = "none";
   }
 
   function cadastrarUnidade() {
-
     var codigo = codigo_input.value
     var cep = cep_input.value
     var rua = rua_input.value
@@ -374,8 +372,6 @@
                 sessionStorage.setItem("ID_UNIDADE", idUnidade)
                 exibirTelaUsu();
                 const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
-
-                mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
               });
 
             }

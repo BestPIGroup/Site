@@ -132,6 +132,7 @@ h2 {
     justify-content: space-around;
     align-items: center;
     padding: 10px;
+    margin: 0;
 }
 
 .modal-form1{
@@ -243,6 +244,15 @@ input {
     background-color: #151e2c;
     color: #ffff;
     transform: scale(1.02);
+}
+
+.campo-erro{
+    display: flex;
+    font-weight: 500;
+    font-size: 18px;
+    font-family: 'Manrope', sans-serif;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
 @media (max-width: 768px) {

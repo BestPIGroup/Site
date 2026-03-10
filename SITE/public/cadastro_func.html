@@ -67,25 +67,19 @@
                 <p>Confirmar Senha</p>
                 <input type="text" id="confirmarSenha_input">
             </div>
+            <div id="cardErro" style="display: none; color: red; text-align: center;" class="campo-erro">
+                <span id="mensagem_erro"></span>
+            </div>
             <button onclick="cadastrar()">Realizar Cadastro</button>
         </div>
     </div>
-
-    <div id="modal_container" class="modal-container">
-        <div class="modal-content">
-            <h3 id="modal_titulo">Alerta</h3>
-            <p id="modal_mensagem"></p>
-            <button onclick="fecharModal()" class="botao">OK</button>
-        </div>
-    </div>
-
 </body>
 
 </html>
 
 <script>
     nome_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
-    
+
     function mostrarModal(titulo, mensagem) {
         modal_titulo.innerHTML = titulo;
         modal_mensagem.innerHTML = mensagem;
@@ -104,22 +98,42 @@
         var função = função_input.value
         var matricula = matricula_input.value
         var senha = senha_input.value
+        var confirmacaoSenha = confirmarSenha_input.value
 
-        if (nome == "" ||
+        if (
+            nome == "" ||
             email == "" ||
             telefone == "" ||
-            função == "" ||
             matricula == "" ||
-            senha == ""
+            senha == "" ||
+            confirmacaoSenha == ""
         ) {
-            console.log("Prencha todo o formulário")
+            cardErro.style.display = "flex";
+            mensagem_erro.innerHTML = "Preencha todos os campos!";
+            setInterval(sumirMensagem, 4000);
+            return false;
+        } else if (!email.includes('@', '.')) {
+            cardErro.style.display = "flex";
+            mensagem_erro.innerHTML = "O email precisa conter '@' e '.'";
+            setInterval(sumirMensagem, 4000);
+            return false;
+        } else if (senha.length < 6) {
+            cardErro.style.display = "flex";
+            mensagem_erro.innerHTML = "A senha precisa ter no minimo 6 digitos";
+            setInterval(sumirMensagem, 4000);
+            return false;
+        } else if (senha != confirmacaoSenha) {
+            cardErro.style.display = "flex";
+            mensagem_erro.innerHTML = "As senhas não são correspondentes";
+            setInterval(sumirMensagem, 4000);
+            return false;
         } else {
             fetch("/usuarios/cadastrar_Func", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 }, body: JSON.stringify({
-                    nomeServer  : nome,
+                    nomeServer: nome,
                     emailServer: email,
                     telefoneServer: telefone,
                     funçãoServer: função,
@@ -139,18 +153,21 @@
                         headers: {
                             "Content-Type": "application/json",
                         }, body: JSON.stringify({
-                        emailServer: email,
-                        telefoneServer: telefone,
-                        funçãoServer: função,
-                        matriculaServer: matricula,
-                        senhaServer: senha,
-                        fk_unidadeServer: sessionStorage.getItem("ID_UNIDADE"),
-                        fk_responsavelServer: sessionStorage.getItem("ID_USUARIO")
-                })})}
-            })
+                            emailServer: email,
+                            telefoneServer: telefone,
+                            funçãoServer: função,
+                            matriculaServer: matricula,
+                            senhaServer: senha,
+                            fk_unidadeServer: sessionStorage.getItem("ID_UNIDADE"),
+                            fk_responsavelServer: sessionStorage.getItem("ID_USUARIO")
+                        })
+                    })
                 }
-                window.location.href = "index.html";
-            }
-      
-    
+            })
+        }
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none";
+    }
 </script>
