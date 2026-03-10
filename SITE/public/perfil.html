@@ -44,6 +44,9 @@
                     <li onclick="info_servidor()">
                         <a><i class="fa fa-server" aria-hidden="true"></i></i>Informações do Servidor</a>
                     </li>
+                    <button id="btn-sair" class="botao-sair" onclick="logout()">
+                        <i class="fa fa-sign-out"></i> Sair
+                    </button>
                 </ul>
             </nav>
         </div>
@@ -84,9 +87,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="imgUser">
+                    <!-- <div class="imgUser">
                         <img src="./assets/user.png" alt="">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -127,9 +130,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="imgPredio">
+                    <!-- <div class="imgPredio">
                         <img src="./assets/office-building.png" alt="">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -156,12 +159,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="imgServer">
+                    <!-- <div class="imgServer">
                         <img src="./assets/server.png" alt="">
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
+
+        
     </div>
 </body>
 
@@ -265,4 +270,12 @@
         div_info_unidade.style.display = "none";
         div_info_pessoal.style.display = "none";
     }
+
+
+    function logout() {
+        if (confirm("Tem certeza que deseja sair da conta?")) {
+            sessionStorage.clear();
+            window.location.href = "login.html";}
+    }
+    
 </script>

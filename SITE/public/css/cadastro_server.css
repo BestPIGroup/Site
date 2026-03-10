@@ -128,17 +128,17 @@ h2 {
     display: flex;
     flex-direction: column;
     width: 50%;
-    height: 100%;
+    height: 80%;
     justify-content: space-around;
     align-items: center;
     padding: 10px;
 }
 
-.modal-form1,
-.modal-form2 {
+.modal-form1{
     display: flex;
     flex-direction: column;
     width: 80%;
+    margin: auto;
 }
 
 .modal-inputs button {
@@ -149,7 +149,7 @@ h2 {
     height: 50px;
     border-radius: 15px;
     background-color: #EAEAEA;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 500;
     font-family: 'Work Sans', sans-serif;
     cursor: pointer;
@@ -157,8 +157,10 @@ h2 {
 }
 
 .modal-inputs button:hover {
-    background-color: rgb(159, 159, 159);
-    transform: scale(1.05);
+    background-color: rgb(3, 0, 37);
+    color: #ffff;
+    transition: 0.3s;
+    box-shadow: 0 4px 6px rgba(175, 216, 218, 0.275);
 }
 
 input {
@@ -311,6 +313,10 @@ input {
     .modal-inputs{
         width: 100%;
         margin-bottom: 30px;
+    }
+
+    .modal-inputs button {
+        margin-top: 30px
     }
 
     .modal-form2{

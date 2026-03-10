@@ -56,8 +56,6 @@
                     <input type="text" id="modelo_input">
                     <p>Número de Série</p>
                     <input type="text" id="numero_input">
-                </div>
-                <div class="modal-form2">
                     <p>Status</p>
                     <input type="text" id="status_input">
                 </div>
@@ -124,9 +122,9 @@
                 if (resposta.ok) {
                     console.log("Cadastro_unidade realizado com sucesso! Redirecionando para tela de Login...")
 
-                    const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
+                    const mensagemSuporte = "Servidor Cadastrado com Sucesso!";
 
-                    mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
+                    mostrarModal("Atenção: Servidor Novo", mensagemSuporte);
 
                     setTimeout(() => {
                         window.location = "perfil.html";

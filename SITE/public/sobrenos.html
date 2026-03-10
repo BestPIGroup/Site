@@ -14,11 +14,33 @@
 <body>
 
   <!--header inicio-->
-  <header>
-    <div class="nav">
-      <a href="index.html" style="font-weight: bold;">Home</a>
-      <a href="index.html#pilares">Nossos Pilares</a>
+<header style="display: none;" id="navLogada">
+    <div class="nav-desktop">
+      <a href="./index.html" style="font-weight: bold;">Home</a>
+      <a href="./cadastro_func.html">Cadastro de Unidade</a>
+      <a href="./cadastro_servidor.html">Cadastro de Servidor</a>
+    </div>
+    <div class="nav-mobile">
+      <a href="./index.html" style="font-weight: bold;">Home</a>
+      <a href="./cadastro_func.html">Unidade</a>
+      <a href="./cadastro_servidor.html">Servidor</a>
+    </div>
+    <div class="nav2">
+      <p> Olá, <p id="nomeUsuario"></p></p>
+      <p>|</p>
+      <a href="perfil.html">Perfil</a>
+    </div>
+  </header>
+  <header style="display: flex;" id="navDeslogada">
+    <div class="nav-desktop">
+      <a href="./index.html" style="font-weight: bold;">Home</a>
+      <a href="./index.html">Nossos Pilares</a>
       <a href="./sobrenos.html">Conheça a Argos</a>
+    </div>
+    <div class="nav-mobile" style="display: none;">
+      <a href="./index.html" style="font-weight: bold;">Home</a>
+      <a href="./cadastro_func.html">Pilares</a>
+      <a href="./cadastro_servidor.html">Argos</a>
     </div>
     <div class="nav2">
       <a href="cadastro.html">Cadastro</a>
@@ -90,9 +112,7 @@
   <div id="imagem-div2">
     <h3>Gostou da proposta da Argos?</h3>
     <p>Venha descobrir como podemos transformar a gestão dos seus servidores. </p> <br>
-    <div class="banner-button" style="width: 20%;">
-      <a href="cadastro.html" style="text-decoration: none;"> Começar Agora </a>
-    </div>
+     <a href="cadastro.html" class="banner-button" style="width: 20%;"> Começar Agora </a>
   </div>
 
   <!--footer inicio-->

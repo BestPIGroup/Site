@@ -17,7 +17,7 @@
 
 <body>
   <header style="display: none;" id="navLogada">
-    <div class="nav">
+    <div class="nav-desktop">
       <a href="#home" style="font-weight: bold;">Home</a>
       <a href="./cadastro_unidade.html">Cadastro de Unidade</a>
     </div>
@@ -30,7 +30,7 @@
     </div>
   </header>
   <header style="display: flex;" id="navDeslogada">
-    <div class="nav">
+    <div class="nav-desktop">
       <a href="index.html" style="font-weight: bold;">Home</a>
       <a href="index.html#pilares">Nossos Pilares</a>
       <a href="./sobrenos.html">Conheça a Argos</a>
@@ -87,14 +87,16 @@
         <div id="cardErro" style="display: none; color: red; text-align: center;" class="campo">
           <span id="mensagem_erro"></span>
         </div>
-        <button class="botao" onclick="cadastrar()">REALIZAR CADASTRO</button>
+        <button class="botao" onclick="cadastrar()">Realizar Cadastro</button>
         <a href="./login.html">Já possui cadastro? Logue Aqui!</a>
       </div>
     </div>
 
     <div class="cadastroUni" id="div_telaUni">
+      <div class="container-unidade-indicador">
       <h2>UNIDADE</h2>
       <div class="imagem-indicador"><img src="./assets/Indicador2.png" alt=""></div>
+      </div>
       <div class="formulario">
         <!--
                          Para inserir mais um campo, copie uma das inputs abaixo.
@@ -127,7 +129,7 @@
         <div id="cardErroUni" style="display: none; color: red; text-align: center;" class="campo">
           <span id="mensagem_erroUni"></span>
         </div>
-        <button class="botao" onclick="cadastrarUnidade()">REALIZAR CADASTRO</button>
+        <button class="botao" onclick="cadastrarUnidade()">Realizar Cadastro</button>
       </div>
     </div>
 
@@ -135,7 +137,7 @@
       <h2>SEJA BEM-VINDO</h2>
 
       <div class="logo">
-        <img src="../public/assets/logo.png" alt="logo">
+        <img src="../assets/logo.png" alt="logo">
       </div>
 
       <p>Comece a proteger sua</p>

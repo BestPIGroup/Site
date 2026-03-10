@@ -22,18 +22,21 @@ body{
     align-items: center;
 }
 
-.imagem-indicador{
+
+.container-unidade-indicador {
     display: flex;
-    position: absolute;
-    width: 50%;
-    height: 90%;
-    justify-content: end;
-    align-items: flex-start;
-    z-index: -1;
+    flex-direction: column;
+    margin: auto;
 }
 
-.imagem-indicador img{
-    width: 30%;
+.imagem-indicador img {
+    width: 20%;
+    
+}
+.imagem-indicador {
+    display: flex;
+align-items: center;
+    justify-content: center;
 }
 
 .cadastroUni{
@@ -68,14 +71,15 @@ h2{
     align-self: center;
     font-weight: bold;
     font-family: 'poppins', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     margin: 0;
+    margin-top: 12px
 }
 
 .campo{
     display: flex;
-    font-weight: 700;
-    font-size: 20px;
+    font-weight: 500;
+    font-size: 18px;
     font-family: 'Manrope', sans-serif;
     white-space: pre-line;
     width: 80%;
@@ -114,15 +118,17 @@ input{
     height: 50px;
     border-radius: 15px;
     background-color: #EAEAEA;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 500;
     font-family: 'Work Sans', sans-serif;
     cursor: pointer;
-    transition: all 0.5s ease;
+    transition:0.3s ;
 }
 .formulario button:hover{
-    background-color: rgb(159, 159, 159);
-    transform: scale(1.05);
+    background-color: rgb(3, 0, 37);
+    color: #ffff;
+    transition: 0.3s;
+  box-shadow: 0 4px 6px rgba(175, 216, 218, 0.275);
 }
 .effect-text{
     display: flex;
