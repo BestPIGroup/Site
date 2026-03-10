@@ -26,7 +26,8 @@ function autenticar(req, res) {
                         email: resultadoAutenticar[0].email,
                         nome: resultadoAutenticar[0].nome,
                         senha: resultadoAutenticar[0].senha,
-                        matricula: resultadoAutenticar[0].matricula
+                        matricula: resultadoAutenticar[0].matricula,
+                        fk_unidade: resultadoAutenticar[0].fk_unidade
                     });
 
                 } else if (resultadoAutenticar.length == 0) {
@@ -137,8 +138,54 @@ function ver_usuario(req, res){
             });
     }
 }
+function cadastrar_Func(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var telefone = req.body.telefoneServer;
+    var função = req.body.funçãoServer;
+    var matricula = req.body.matriculaServer;
+    var senha = req.body.senhaServer;
+    var fk_unidade = req.body.fk_unidadeServer;
+    var fk_responsavel = req.body.fk_responsavelServer;
+    
+
+    /* var fkEmpresa = req.body.idEmpresaVincularServer; */
+
+    // Faça as validações dos valores
+    if (nome == undefined) {
+        res.status(400).send("O nome está undefined!");
+    } else if (email == undefined) {
+        res.status(400).send("O email está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("A está undefined!");
+    } else if (telefone == undefined) {
+        res.status(400).send("O telefone está undefined!");
+    } else if(função == undefined) {
+        res.status(400).send("A função está undefined!");
+    } else if (matricula == undefined){
+        res.status(400).send("A matrícula está undefined!");
+    }else {
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.cadastrar_Func(nome, email, senha, telefone, função, matricula, fk_unidade,fk_responsavel)
+            .then(function (resultado) {
+                  res.json(resultado);}
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
 module.exports = {
     autenticar,
     cadastrar,
-    ver_usuario
+    ver_usuario,
+    cadastrar_Func
 }

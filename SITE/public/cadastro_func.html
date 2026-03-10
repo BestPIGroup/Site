@@ -58,8 +58,6 @@
                 <input type="text" id="email_input">
                 <p>Telefone</p>
                 <input type="text" id="telefone_input">
-                <p>Unidade/Setor</p>
-                <input type="text" id="unidade_input">
                 <p>Função</p>
                 <input type="text" id="função_input">
                 <p>Matricula</p>
@@ -100,85 +98,59 @@
 
     function cadastrar() {
 
-        var codigo = codigo_input.value
-        var cep = cep_input.value
-        var cidade = cidade_input.value
-        var rua = rua_input.value
-        var bairro = bairro_input.value
-        var estado = estado_input.value
+        var nome = nome_input.value
+        var email = email_input.value
+        var telefone = telefone_input.value
+        var função = função_input.value
+        var matricula = matricula_input.value
+        var senha = senha_input.value
 
-        if (codigo == "" ||
-            cep == "" ||
-            cidade == "" ||
-            rua == "" ||
-            bairro == "" ||
-            estado == ""
+        if (nome == "" ||
+            email == "" ||
+            telefone == "" ||
+            função == "" ||
+            matricula == "" ||
+            senha == ""
         ) {
             console.log("Prencha todo o formulário")
         } else {
-            fetch("unidade/verificar_unidade", {
+            fetch("/usuarios/cadastrar_Func", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 }, body: JSON.stringify({
-                    codigoServer: codigo,
-                    cepServer: cep,
-                    cidadeServer: cidade,
-                    ruaServer: rua,
-                    bairroServer: bairro,
-                    estadoServer: estado
+                    nomeServer  : nome,
+                    emailServer: email,
+                    telefoneServer: telefone,
+                    funçãoServer: função,
+                    matriculaServer: matricula,
+                    senhaServer: senha,
+                    fk_unidadeServer: sessionStorage.getItem("ID_UNIDADE"),
+                    fk_responsavelServer: sessionStorage.getItem("ID_USUARIO")
                 })
             }).then(function (resposta) {
                 console.log("Resposta: ", resposta);
 
                 if (resposta.ok) {
-                    console.log("entrei no cadastro unidade")
+                    console.log("entrei no cadastro do funcionario")
 
-                    fetch("unidade/cadastrar_unidade", {
+                    fetch("/usuarios/cadastrar_Func", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
                         }, body: JSON.stringify({
-                            codigoServer: codigo,
-                            cepServer: cep,
-                            cidadeServer: cidade,
-                            ruaServer: rua,
-                            bairroServer: bairro,
-                            estadoServer: estado
-                        })
-                    }).then(function (resposta) {
-                        console.log("resposta: ", resposta);
-
-                        if (resposta.ok) {
-                            console.log("Cadastro_unidade realizado com sucesso! Redirecionando para tela de Login...")
-
-                            const mensagemSuporte = "Unidade Cadastrada com Sucesso!";
-
-                            mostrarModal("Atenção: Unidade Nova", mensagemSuporte);
-
-                            setTimeout(() => {
-                                window.location = "perfil.html";
-                            }, "2000");
-
-                        } else {
-                            throw "Houve um erro ao tentar realizar o cadastro!";
-                        }
-                    })
-                        .catch(function (resposta) {
-                            console.log(`#ERRO: ${resposta}`);
-                            finalizarAguardar();
-                        });
-
-                } else {
-                    console.log("Houve um erro ao tentar realizar o cadastro da unidade!");
-
-                    console.log("não entrei")
-                    resposta.text().then(texto => {
-                        console.error(texto);
-                    });
-                }
+                        emailServer: email,
+                        telefoneServer: telefone,
+                        funçãoServer: função,
+                        matriculaServer: matricula,
+                        senhaServer: senha,
+                        fk_unidadeServer: sessionStorage.getItem("ID_UNIDADE"),
+                        fk_responsavelServer: sessionStorage.getItem("ID_USUARIO")
+                })})}
             })
-
-        }
-    }
+                }
+                window.location.href = "index.html";
+            }
+      
+    
 </script>
