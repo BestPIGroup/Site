@@ -143,7 +143,7 @@ function cadastrar_Func(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var telefone = req.body.telefoneServer;
-    var função = req.body.funçãoServer;
+    var funcao = req.body.funcaoServer;
     var matricula = req.body.matriculaServer;
     var senha = req.body.senhaServer;
     var fk_unidade = req.body.fk_unidadeServer;
@@ -161,14 +161,14 @@ function cadastrar_Func(req, res) {
         res.status(400).send("A está undefined!");
     } else if (telefone == undefined) {
         res.status(400).send("O telefone está undefined!");
-    } else if(função == undefined) {
+    } else if(funcao == undefined) {
         res.status(400).send("A função está undefined!");
     } else if (matricula == undefined){
         res.status(400).send("A matrícula está undefined!");
     }else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar_Func(nome, email, senha, telefone, função, matricula, fk_unidade,fk_responsavel)
+        usuarioModel.cadastrar_Func(nome, email, senha, telefone, funcao, matricula, fk_unidade,fk_responsavel)
             .then(function (resultado) {
                   res.json(resultado);}
             ).catch(

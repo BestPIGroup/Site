@@ -350,7 +350,7 @@ summary {
   height: 50vh;
   justify-content: start;
   align-items: center;
-  background-image: linear-gradient(to right, rgba(2, 34, 70, 0.7) 70%, rgba(2, 34, 70, 0.7) 100%), url(../assets/img-Chamada2.jpg);
+  background-image: linear-gradient(to right, rgba(2, 34, 70, 0.7) 70%, rgba(2, 34, 70, 0.7) 100%), url(../assets/img-chamada2.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

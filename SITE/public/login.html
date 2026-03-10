@@ -155,6 +155,8 @@
                     sessionStorage.ID_USUARIO = json.id_usuario;
                     sessionStorage.ID_UNIDADE = json.fk_unidade;
 
+                    cardVazio.style.display = "flex";
+                    mensagem_erro.innerHTML = "Login realizado com sucesso! Redirecionando para tela de Perfil...";
 
                     setTimeout(function () {
                         window.location = "./index.html";
