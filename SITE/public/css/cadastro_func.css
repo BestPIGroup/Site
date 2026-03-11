@@ -20,13 +20,13 @@ background-color: #01163d;
 header{
   display: flex;
   width: 100%;
+  min-height: 80px;
   height: 1%;
   background-color: #00375D;
   justify-content: space-between;
   align-items: center;
   color: white;
   font-size: 18px;
-  padding: 20px;
   font-weight: lighter;
 }
 .nav-desktop {
@@ -39,14 +39,12 @@ header{
 .nav-mobile {
   display: none;
 }
-
 .nav2{
   display: flex;
   margin-right: 5%;
-  min-width: 20%;
+  width: 30%;
   justify-content: space-around;
   align-items: center;
-  font-weight: 600;
 }
 header a{
   color: white;
@@ -55,9 +53,16 @@ header a{
   font-weight: 500;
 }
 
+header a:hover{
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
 p, h2  {
   font-family: "Poppins", sans-serif;
   margin: 7px;
+  font-weight: 400;
 }
 
 .login{

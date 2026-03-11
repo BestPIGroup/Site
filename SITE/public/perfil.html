@@ -32,7 +32,7 @@
 
     <div class="perfil">
         <div class="container-nav">
-            <h2> Geral </h2>
+            <h2 style="font-weight: 600;"> Informações</h2>
             <nav id="menu-nav" class="menu-nav">
                 <ul>
                     <li onclick="info_pessoal()">
@@ -40,9 +40,6 @@
                     </li>
                     <li onclick="info_unidade()">
                         <a><i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade</a>
-                    </li>
-                    <li onclick="info_servidor()">
-                        <a><i class="fa fa-server" aria-hidden="true"></i></i>Informações do Servidor</a>
                     </li>
                     <button id="btn-sair" class="botao-sair" onclick="logout()">
                         <i class="fa fa-sign-out"></i> Sair
@@ -136,37 +133,6 @@
                 </div>
             </div>
         </section>
-
-        <section class="secao-perfil" style="display: none;" id="div_info_servidor">
-            <div class="container-informacao">
-                <h2> <i class="fa fa-building-o" aria-hidden="true"></i> Informações do Servidor </h2>
-                <hr>
-                <div class="informarcoes">
-                    <div class="pessoal_informacao" style="justify-content: center;">
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Servidores ativos -</p>
-                            </div>
-                        </div>
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Servidores sobre monitoramento -</p>
-                            </div>
-                        </div>
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Token -</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="imgServer">
-                        <img src="./assets/server.png" alt="">
-                    </div> -->
-                </div>
-            </div>
-        </section>
-
-        
     </div>
 </body>
 
@@ -218,7 +184,7 @@
             }
         })
 
-        fetch("/unidade/ver_unidade",{
+        fetch("/unidade/ver_unidade", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -275,7 +241,8 @@
     function logout() {
         if (confirm("Tem certeza que deseja sair da conta?")) {
             sessionStorage.clear();
-            window.location.href = "login.html";}
+            window.location.href = "login.html";
+        }
     }
-    
+
 </script>

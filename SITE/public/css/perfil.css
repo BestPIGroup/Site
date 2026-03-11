@@ -15,19 +15,18 @@ body {
   height: 100vh;
 }
 
-header {
+header{
   display: flex;
   width: 100%;
+  min-height: 80px;
   height: 1%;
   background-color: #00375D;
   justify-content: space-between;
   align-items: center;
   color: white;
   font-size: 18px;
-  padding: 20px;
   font-weight: lighter;
 }
-
 .nav-desktop {
   display: flex;
   margin-left: 3%;
@@ -38,29 +37,29 @@ header {
 .nav-mobile {
   display: none;
 }
-
-.nav2 {
+.nav2{
   display: flex;
   margin-right: 5%;
-  min-width: 15%;
+  width: 30%;
   justify-content: space-around;
   align-items: center;
 }
-
-header p {
-  margin: 7px;
-}
-
-header a {
+header a{
   color: white;
   text-decoration: none;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
 
+header a:hover{
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
 p {
   font-family: "Poppins", sans-serif;
-  font-weight: 600;
+  font-weight: 400;
 }
 
 .container-nav {
@@ -253,8 +252,6 @@ i {
   box-shadow: rgba(114, 88, 183, 0.616) 0px 1px 2px 0px, rgba(9, 1, 58, 0.374) 0px 2px 6px 2px;
   cursor: pointer;
 }
-
-
 
 @media (max-width: 768px) {
 
