@@ -192,6 +192,9 @@ input{
 .cadastro{
     width: 100%;
 }
+.cadastroUni{
+    width: 100%;
+}
 .cadastro a{
     display: flex;
 }
@@ -200,7 +203,10 @@ input{
     font-size: 16px;
 }
 .effect-text{
-    width: 100%;
     display: none;
 }
+.cadastro .botao{
+    height: 50px;
+}
+
 }
