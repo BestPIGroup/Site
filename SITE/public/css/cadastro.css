@@ -13,7 +13,7 @@ body{
     flex-direction: row;
     display: flex;
     height: 100%;
-}
+} 
 .cadastro{
     display: flex;
     width: 50%;
@@ -98,7 +98,11 @@ input{
     transition: all 0.5s ease;
 }
 
-.formulario .campo input:focus {
+.formulario .campo input:disabled {
+    background-color: #0b121d88;
+}
+
+.formulario .campo input:focus, .formulario .campo input:hover {
     outline: none;
     background-color: #34518188;
     transform: scale(1.02);

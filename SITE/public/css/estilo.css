@@ -96,6 +96,7 @@ hr{
 }
 .sociais img{
   width: 20%;
+  cursor: pointer;
 }
 
 p  {

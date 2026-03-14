@@ -113,7 +113,7 @@
         </div>
         <div class="campo">
           <span>CEP<span style="color: red;">*</span></span>
-          <input id="cep_input" type="number" />
+          <input id="cep_input" type="text" oninput="mascaraCEP(this)" maxlength="9" />
         </div>
         <div class="campo">
           <span>Rua<span style="color: red;">*</span></span>
@@ -172,6 +172,141 @@
 </html>
 <script>
   window.onload = verificarLogin();
+
+  // Máscara Global - Cep números (pra enviar pro Banco de Dados)
+  let valorCampoNumeros = "";
+
+  // ____________________________________________________
+  // ====================================================
+  // ----------------------------------------------------
+
+  // ============================
+  // Função de máscara para o CEP
+  function mascaraCEP(inputCEP) {
+    let valorCampo = inputCEP.value;
+    valorCampoNumeros = "";
+    let valorCampoMascarado = "";
+
+
+    // Aqui irá pegar apenas números e ignorar caracteres
+    for (let i = 0; i < valorCampo.length; i++) {
+      let letraAtual = valorCampo[i];
+
+      if (letraAtual >= '0' && letraAtual <= '9') {
+        valorCampoNumeros += letraAtual;
+      }
+    }
+
+    // Aqui irá tratar pra atualizar o valor no Input
+    for (let i = 0; i < valorCampoNumeros.length; i++) {
+      let letraAtual = valorCampoNumeros[i];
+
+      // Coloca o traço antes do 6º dígito (índice 5)
+      if (i === 5) {
+        valorCampoMascarado += "-";
+      }
+      valorCampoMascarado += letraAtual;
+    }
+
+    // Pega o valor tratado e atualiza no campo
+    inputCEP.value = valorCampoMascarado;
+
+    // Abaixo irá verificar se o CEP está completo para então, chamar a API
+    // e assim, preencher os campos automaticamente
+    // Se o CEP estiver completo (9 caracteres com o traço)
+    if (valorCampoMascarado.length === 9) {
+      console.log("Chamando a API do ViaCEP")
+      // Passnado apenas os números para a API (8 dígitos)
+      buscarEnderecoViaCEP(valorCampoNumeros);
+    } else {
+      // Se o usuário apagar um número, limpa e desbloqueia os Campos de:
+      // Rua, Bairro, Cidade e Estado
+      limparEDesbloquearCampos();
+    }
+  }
+
+  // ==========================================
+  // Integrando a API Pública - ViaCEP
+  // ==========================================
+  // =======================
+  // Função Assíncrona para buscar na API (Assincrona - só envia quando termina de recolher os dados da API)
+
+  async function buscarEnderecoViaCEP(cep) {
+
+    // URL da API do ViaCEP com a url + nosso CEP que enviamos ali encima
+    // O valor em parenteses nessa função coleta os dados do valor CEP Numeros sem tratamento
+
+
+    const url = `https://viacep.com.br/ws/${cep}/json/`;
+
+    // Vai mostrar no console a url que está indo pesquisar na API
+    // Ele vai ir tentar executar o código caso não de nenhum erro.
+    // No caso, ele vai tentar buscar os dados da API
+
+    console.log(url)
+
+    try {
+      // Faz a requisição na Internet/Web
+      const resposta = await fetch(url); // Essa é a respota, verificando se irá coletar (response)
+      const dadosCEP = await resposta.json(); // Transforma a resposta coletada em JSON, pegando os dadosCEP.json da resposta 
+
+      // O ViaCEP retorna "erro: true" se o CEP não existir
+      if (dadosCEP.erro) {
+        alert("CEP deu erro!");
+        limparEDesbloquearCampos(); // Função pra limpar os campos que estarão bloqueados
+        return; // Termina essa função
+      }
+
+      // Pega os inputs do HTML (rua, Bairro, Estado e Cidade)
+      let iptEstado = document.getElementById('estado_input');
+      let iptBairro = document.getElementById('bairro_input');
+      let iptRua = document.getElementById('rua_input');
+      let iptCidade = document.getElementById('cidade_input');
+
+      // Atualiza os valores dos Input de Endereço
+      iptEstado.value = dadosCEP.uf; // O ViaCEP chama estado de 'uf', colocando o valor do json viacep ali
+      iptBairro.value = dadosCEP.bairro;
+      iptRua.value = dadosCEP.logradouro; // O ViaCEP chama rua de 'logradouro'
+      iptCidade.value = dadosCEP.localidade // O ViaCEP chama cidade de 'localidade', colocando o valor do json viacep ali
+
+      // Bloqueia os inputs para o usuário não conseguir digitar
+      iptEstado.disabled = true;
+      iptBairro.disabled = true;
+      iptRua.disabled = true;
+      iptCidade.disabled = true
+
+      // Se der erro na busca de DadosCEP da API, ele manda pro erro
+    } catch (erro) {
+      // Se der erro de internet, cai aqui
+      console.log("Erro ao buscar o CEP: ", erro);
+      alert("Erro ao buscar o endereço. Verifique sua conexão.");
+    }
+  }
+
+  // =======================
+  // Função que irá resetar os campos caso CEP ficar incompleto
+  function limparEDesbloquearCampos() {
+    let iptEstado = document.getElementById('estado_input');
+    let iptBairro = document.getElementById('bairro_input');
+    let iptRua = document.getElementById('rua_input');
+    let iptCidade = document.getElementById('cidade_input');
+
+    // Aqui limpa os valores (só tirar de comentado pra limpar)
+    // iptEstado.value = "";
+    // iptBairro.value = "";
+    // iptRua.value = "";
+    // iptCidade.value = "";
+
+    // Desbloqueia os inputs
+    iptEstado.disabled = false;
+    iptBairro.disabled = false;
+    iptRua.disabled = false;
+    iptCidade.disabled = false;
+  }
+
+  // ____________________________________________________
+  // ====================================================
+  // ----------------------------------------------------
 
   function verificarLogin() {
     if (sessionStorage.NOME_USUARIO != null) {
@@ -321,7 +456,7 @@
 
   function cadastrarUnidade() {
     var codigo = codigo_input.value
-    var cep = cep_input.value
+    var cep = valorCampoNumeros
     var rua = rua_input.value
     var bairro = bairro_input.value
     var cidade = cidade_input.value
