@@ -15,6 +15,45 @@ body {
     display: flex;
 }
 
+/* ================================================ */
+
+#cardVazio {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: start; 
+    z-index: 30;
+    background-color: rgba(0, 0, 0, 0.563);
+    height: 120vh;
+    width: 100%;
+}
+
+#cardErroCaixa {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 0px 40px 40px; 
+    height: fit-content;
+    width: 600px;
+    background-color: white;
+}
+
+#cardErroCaixa h1 {
+    display: flex;
+    color: black;
+    font-family: 'Poppins';
+}
+
+#caixaErroHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
+/* ================================================ */
+
 .containers {
     display: flex;
     width: 100%;

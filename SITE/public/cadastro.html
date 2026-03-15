@@ -16,6 +16,20 @@
 </head>
 
 <body>
+
+  <!-- ================================================= -->
+   <!-- Card de Erro abaixo (Estilizado) -->
+  <div id="cardErroUni" style="display: none; text-align: center;" class="campo">
+    <div id="cardErroUniCaixa">
+      <div id="caixaErroHeader">
+        <h1>Erro no Cadastro</h1>
+        <p style="color: black; font-size: 26px; cursor: pointer;" onclick="sumirMensagem()">X</p>
+      </div>
+        <hr style="display: flex; flex-direction: row; width: 100%; min-height: 0px; margin-bottom: 20px;">
+        <span style="color: black; font-size: 22px;" id="mensagem_erroUni"></span>
+    </div>
+  </div>
+  <!-- ================================================= -->
   <header style="display: none;" id="navLogada">
     <div class="nav-desktop">
       <a href="#home" style="font-weight: bold;">Home</a>
@@ -130,9 +144,6 @@
         <div class="campo">
           <span>Estado<span style="color: red;">*</span></span>
           <input id="estado_input" type="text" />
-        </div>
-        <div id="cardErroUni" style="display: none; color: red; text-align: center;" class="campo">
-          <span id="mensagem_erroUni"></span>
         </div>
         <button class="botao" onclick="cadastrarUnidade()">Realizar Cadastro</button>
       </div>
@@ -451,7 +462,7 @@
   }
 
   function sumirMensagem() {
-    cardErro.style.display = "none";
+    cardErroUni.style.display = "none";
   }
 
   function cadastrarUnidade() {

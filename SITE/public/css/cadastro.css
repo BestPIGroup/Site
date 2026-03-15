@@ -86,6 +86,41 @@ h2{
     flex-direction: column;
 }
 
+#cardErroUni {
+    display: flex;
+    position: absolute;
+    justify-content: start;
+    align-items: center; 
+    z-index: 30;
+    background-color: rgba(0, 0, 0, 0.563);
+    height: 130vh;
+    width: 100%;
+}
+
+#cardErroUniCaixa {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    padding: 0px 40px 40px; 
+    height: fit-content;
+    width: 600px;
+    background-color: white;
+}
+
+#cardErroUniCaixa h1 {
+    display: flex;
+    color: black;
+    font-family: 'Poppins';
+}
+
+#caixaErroHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
 input{
     width: 100%;
     border-radius: 10px;
