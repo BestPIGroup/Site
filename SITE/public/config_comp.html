@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Argos | Página Inicial</title>
+    <title> Argos | Alteração Componente</title>
     <script src="./js/sessao.js"></script>
     <link rel="stylesheet" href="./css/dash_home.css">
     <link rel="icon" href="./assets/LogoArgosW.png">
@@ -45,31 +45,28 @@
         </ul>
     </header>
 
+    <div class="conteudo">
+        <div class="box">
+            <div class="retangulo">
+                <p>Altereação de Componentes</p>
+            </div>
+        </div>
+        <div class="campo">
+            <div class="card-componentes">
+                <p> Servidor 1</p>
+            </div>
+            <div class="card-componentes">
+                <p> Servidor 2</p>
+            </div>
+            <div class="card-componentes">
+                <p> Servidor 3</p>
+            </div>
+            <div class="card-componentes">
+                <p> Servidor 4</p>
+            </div>
+        </div>
+    </div>  
 
-    <div class="box">
-        <div class="rectangle">
-            <p>Servidores Disponíveis</p>
-        </div>
-    </div>
-    </div>
-    <div class="campo">
-        <div class="card-componentes-erro">
-            <p> Servidor 1</p>
-            <img src="./assets/eye.png" alt="">
-        </div>
-        <div class="card-componentes-estavel">
-            <p> Servidor 2</p>
-            <img src="./assets/eye.png" alt="">
-        </div>
-        <div class="card-componentes-erro">
-            <p> Servidor 3</p>
-            <img src="./assets/eye.png" alt="">
-        </div>
-        <div class="card-componentes-erro">
-            <p> Servidor 4</p>
-            <img src="./assets/eye.png" alt="">
-        </div>
-    </div>
 
     <!-- ESCOLHER COMPONENTES -->
     <div id="escolherComponentes" class="opcoes">
@@ -239,6 +236,14 @@ function esconderComponentes() {
 function toggleItem(elemento) {
     elemento.classList.toggle("inativo");
 }
+
+const cards = document.querySelectorAll(".card-componentes");
+
+cards.forEach(card => {
+    card.addEventListener("click", () => {
+         document.getElementById("escolherComponentes").style.display = "flex";
+    });
+});
 
 
 </script>
