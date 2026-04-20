@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Argos | Componentes</title>
+    <title> Argos | Componentes</title>
     <script src="./js/sessao.js"></script>
     <link rel="stylesheet" href="./css/dash_componentes.css">
     <link rel="icon" href="./assets/LogoArgosW.png">
@@ -46,40 +45,82 @@
         </ul>
     </header>
 
-
-    <div class="box">
-        <div class="rectangle">
-            <p>Servidor 1</p>
-            <button class="btn-mod-comp">Modificar Componentes</button>
-        </div>
-    </div>
-    </div>
-    <div class="campo">
-        <div class="card-componentes-erro">
-            <p> Servidor 1</p>
-            <img src="./assets/eye.png" alt=""> 
-        </div>
-        <div class="card-componentes-estavel">
-             <p> Servidor 2</p>
-            <img src="./assets/eye.png" alt=""> 
-        </div>
-        <div class="card-componentes-erro">
-             <p> Servidor 3</p>
-            <img src="./assets/eye.png" alt=""> 
-        </div>
-        <div class="card-componentes-erro">
-             <p> Servidor 4</p>
-            <img src="./assets/eye.png" alt=""> 
-        </div>
-                <div class="card-componentes-estavel">
-             <p> Servidor 2</p>
-            <img src="./assets/eye.png" alt=""> 
-        </div>
-                <div class="card-componentes-estavel">
-             <p> Servidor 2</p>
-            <img src="./assets/eye.png" alt=""> 
-        </div>
+    <div class="topo-esquerdo">
+        <img src="./assets/arrow 2.png" class="btn-voltar">
         
+        <div class="alerta-servidores">
+            <p>Servidores em Alerta : 2</p> 
+        </div>
+    </div>
+
+
+
+    <div class="conteudo">
+        <div class="box">
+            <div class="retangulo">
+                <p>Componentes</p>
+            </div>
+        </div>
+        <div class="campo">
+            <div class="card-componentes-erro">
+
+                <div class="topo">
+                    <img src="./assets/server2.png" alt="">
+                    <p> RAM</p>
+                </div>
+                <div class="valor">82%</div>
+                <div class="status">
+                    <p>Status: <span>Alerta</span></p>
+                    <p>Última Verificação: 20:00:01</p>
+                </div>
+            </div>
+            <div class="card-componentes-erro">
+                                <div class="topo">
+                    <img src="./assets/server2.png" alt="">
+                    <p> CPU</p>
+                </div>
+                <div class="valor">88%</div>
+                <div class="status">
+                    <p>Status: <span>Alerta</span></p>
+                    <p>Última Verificação: 20:00:01</p>
+                </div>
+            </div>
+            <div class="card-componentes-estavel">
+                                <div class="topo">
+                    <img src="./assets/server2.png" alt="">
+                    <p> Memória</p>
+                </div>
+                <div class="valor">12%</div>
+                <div class="status">
+                    <p>Status: <span>Alerta</span></p>
+                    <p>Última Verificação: 20:00:01</p>
+                </div>
+            </div>
+            <div class="card-componentes-estavel">
+                                <div class="topo">
+                    <img src="./assets/server2.png" alt="">
+                    <p> Rede</p>
+                </div>
+                <div class="valor">19%</div>
+                <div class="status">
+                    <p>Status: <span><span>Alerta</span></span></p>
+                    <p>Última Verificação: 20:00:01</p>
+                </div>
+                
+            </div>
+            <div class="card-componentes-estavel">
+                                <div class="topo">
+                    <img src="./assets/server2.png" alt="">
+                    <p> Processos</p>
+                </div>
+                <div class="valor">51%</div>
+                <div class="status">
+                    <p>Status: <span>Alerta</span></p>
+                    <p>Última Verificação: 20:00:01</p>
+                </div>
+                
+            </div>
+        </div>
     </div>
 
 
@@ -104,5 +145,24 @@
 
 </html>
 <script>
+
+    // Esconder opções de componentes
+    function esconderComponentes() {
+        document.getElementById("escolherComponentes").style.display = "none";
+    }
+
+    // Componente ativo-inativo
+    function toggleItem(elemento) {
+        elemento.classList.toggle("inativo");
+    }
+
+    const cards = document.querySelectorAll(".card-componentes");
+
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            document.getElementById("escolherComponentes").style.display = "flex";
+        });
+    });
+
 
 </script>

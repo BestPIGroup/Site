@@ -1,0 +1,218 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    margin: 0;
+    background-color: #0f1b2d;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.sidebar{
+    background-color: #162447;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 70px;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.logo{
+    display: flex;
+    padding-top: 2vw;
+    padding-bottom: 5vw;
+}
+
+.logo img {
+    width: 40px;
+}
+
+
+.listaOpcoes{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    list-style: none;
+    gap: 5vh;
+}
+
+.listaOpcoes li {
+    width: 100%;
+    height: 80px;
+}
+
+.saida {
+  margin-top: auto;
+}
+.listaOpcoes li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  transition: background-color 1.0s;
+}
+
+
+.listaOpcoes li a:hover {
+  background-color: #0f1b2d;
+  width: 100%;
+  height: 100%;
+}
+
+
+.listaOpcoes img {
+  width: 2vw;
+  height: 2vw;
+}
+
+
+.conteudo{
+
+    padding: 4vw 4vw 4vw 8vw;
+    display: flex;
+    flex-direction: column;
+    gap: 6vw;
+}
+
+.box .retangulo {
+    position: fixed;
+    width: 86.5vw;
+    height: 7vh;
+    background-color: #0b2553;
+    border-radius: 10px;
+    box-shadow: 0px 0px 11.1px -22px #00000040;
+    z-index: 1;
+}
+
+.box .retangulo p{
+    margin-top: 1vh;
+    margin-left: 2vw;
+    color: white;
+    font-weight:bolder;
+    font-size: 2vw;
+}
+
+.campo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15vh;
+    
+}
+
+.card-componentes {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.card-componentes:hover {
+    transform: scale(1.03);
+}
+
+.campo .card-componentes {
+    display: flex;
+    width: 24vw;
+    height: 12vw;
+    border-radius: 10px;
+    background: 
+    url(../assets/business.png),
+        #102244;
+
+    background-repeat: no-repeat;
+    background-position: 90% center;    
+
+}
+
+.card-componentes {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-componentes p {
+    margin-left: 2vw;
+    margin-top: 2vh;
+    color: white;
+    font-weight: bolder;
+    font-size: 1vw;
+}
+
+.card-componentes img{
+    margin-left: 2vw;
+    margin-bottom: 1vh;
+    width: 5vw;
+    height: 5vw;
+
+}
+
+
+@media (max-width: 768px) {
+
+    /* SIDEBAR vira barra inferior */
+    .sidebar {
+        width: 100%;
+        height: 60px;
+        flex-direction: row;
+        justify-content: space-around;
+        bottom: 0;
+        top: auto;
+    }
+
+    .box .retangulo p{
+        font-size: 3vh;
+        margin-top: 15px;
+    }
+
+    .listaOpcoes {
+        flex-direction: row;
+        height: auto;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    /* CONTEÚDO */
+    .conteudo {
+        margin-left: 0;
+        padding: 15px;
+        padding-bottom: 80px;
+    }
+
+    .campo {
+        margin-top: 30px; /* mais espaço no mobile */
+        gap: 4vh;
+        
+    }
+
+    .campo .card-componentes {
+        width: 90%;
+        height: 80px;
+        background-size: 50px; /* imagem menor no celular */
+        background-position: 90% center;
+    
+    }
+
+    /* CARDS */
+    .card-componentes {
+        height: 120px;
+    }
+
+    /* TEXTO */
+    .card-componentes p {
+        font-size: 14px;
+    }
+
+}
