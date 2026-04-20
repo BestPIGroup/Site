@@ -55,24 +55,160 @@
     <div class="campo">
         <div class="card-componentes-erro">
             <p> Servidor 1</p>
-            <img src="./assets/eye.png" alt=""> 
+            <img src="./assets/eye.png" alt="">
         </div>
         <div class="card-componentes-estavel">
-             <p> Servidor 2</p>
-            <img src="./assets/eye.png" alt=""> 
+            <p> Servidor 2</p>
+            <img src="./assets/eye.png" alt="">
         </div>
         <div class="card-componentes-erro">
-             <p> Servidor 3</p>
-            <img src="./assets/eye.png" alt=""> 
+            <p> Servidor 3</p>
+            <img src="./assets/eye.png" alt="">
         </div>
         <div class="card-componentes-erro">
-             <p> Servidor 4</p>
-            <img src="./assets/eye.png" alt=""> 
+            <p> Servidor 4</p>
+            <img src="./assets/eye.png" alt="">
         </div>
     </div>
 
+    <!-- ESCOLHER COMPONENTES -->
+    <div id="escolherComponentes" class="opcoes">
+        <div class="container">
+            <div class="titulo">
+                <h2>Componentes selecionados</h2>
+                <img src="./assets/cross 2.png" alt="" onclick="esconderComponentes()" style="cursor:pointer;">
+            </div>
 
+            <!-- CPU -->
+            <div id="cpu" class="componente">
+                <h3>CPU</h3>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Porcentagem de uso</p>
+                    </div>
+                    <div class="limite">
+                        <p>Limite:</p>
+                        <input type="number" placeholder="90" onclick="event.stopPropagation()">
+                        <p> %</p>
+                    </div>
+                </div>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Porcentagem máxima de uso</p>
+                    </div>
+                    <div class="limite">
+                        <p>Limite:</p>
+                        <input type="number" placeholder="90" onclick="event.stopPropagation()">
+                        <p> %</p>
+                    </div>
+                </div>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Trocas de contexto</p>
+                    </div>
+                    <div class="limite">
+                        <p>quantidade</p>
+                    </div>
+                </div>
+            </div>
 
+            <!-- RAM -->
+            <div id="ram" class="componente">
+                <h3> Memória RAM</h3>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Porcentagem de uso</p>
+                    </div>
+                    <div class="limite">
+                        <p>Limite:</p>
+                        <input type="number" placeholder="90" onclick="event.stopPropagation()">
+                        <p>%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disco -->
+            <div id="disco" class="componente">
+                <h3> Disco </h3>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Porcentagem de uso</p>
+                    </div>
+                    <div class="limite">
+                        <p>Limite:</p>
+                        <input type="number" placeholder="90" onclick="event.stopPropagation()">
+                        <p>%</p>
+                    </div>            
+                </div>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Escrita em disco</p>
+                    </div>
+                    <div class="limite">
+                        <p>kbps</p>
+                    </div>            
+                </div>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Leitura em disco</p>
+                    </div>
+                    <div class="limite">
+                        <p>kbps</p>
+                    </div>            
+                </div>
+            </div>
+
+            <!-- Processos -->
+            <div id="processos" class="componente">
+                <h3> Processos </h3>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Quantidade total</p>
+                    </div>
+                    <div class="limite">
+                        <p>quantidade</p>
+                    </div>            
+                </div>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Uso máx de CPU (PID)</p>
+                    </div>
+                    <div class="limite">
+                        
+                        <p> pid</p>
+                    </div>            
+                </div>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Uso máx de CPU (Nome)</p>
+                    </div>
+                    <div class="limite">
+                        
+                        <p> processo</p>
+                    </div>            
+                </div>
+                <div class="item" onclick="toggleItem(this)">
+                    <div class="unidade">
+                        <img class="check" src="./assets/check 3.png" alt="">
+                        <p>Uso máx de CPU (%)</p>
+                    </div>
+                    <div class="limite">
+                        <p>%</p>
+                    </div>            
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- <footer>
 <div class="footer">
@@ -93,5 +229,16 @@
 
 </html>
 <script>
+
+// Esconder opções de componentes
+function esconderComponentes() {
+  document.getElementById("escolherComponentes").style.display = "none";
+}
+
+// Componente ativo-inativo
+function toggleItem(elemento) {
+    elemento.classList.toggle("inativo");
+}
+
 
 </script>
