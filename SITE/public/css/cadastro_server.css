@@ -83,10 +83,10 @@ h2 {
 
 .effect-text {
     display: flex;
-    background-image: url(../assets/servidores.jpg);
+    background-image: url(../assets/LogoArgosW.png);
     background-size: cover;
     background-repeat: no-repeat;
-    width: 50%;
+    width: 100%;
     height: 100%;
     opacity: 0.3;
     z-index: -1;
