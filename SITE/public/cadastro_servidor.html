@@ -10,23 +10,6 @@
 </head>
 
 <body>
-    <header>
-        <div class="nav-desktop">
-            <a href="./index.html" style="font-weight: bold;">Home</a>
-            <a href="./cadastro_func.html">Cadastro de Funcionário</a>
-            <a href="./cadastro_servidor.html">Cadastro de Servidor</a>
-        </div>
-        <div class="nav-mobile">
-            <a href="./index.html" style="font-weight: bold;">Home</a>
-            <a href="./cadastro_func.html">Funcionário</a>
-            <a href="./cadastro_servidor.html">Servidor</a>
-        </div>
-        <div class="nav2">
-            <p> Olá, <span id="nome_usuario"></span>!</p>
-            <p>|</p>
-            <a href="perfil.html">Perfil</a>
-        </div>
-    </header>
 
     <div class="login">
         <div class="modal">
@@ -50,12 +33,8 @@
             </div>
             <div class="modal-inputs">
                 <div class="modal-form1">
-                    <p>Fornecedor</p>
-                    <input type="text" id="fornecedor_input">
-                    <p>Modelo</p>
-                    <input type="text" id="modelo_input">
-                    <p>Número de Série</p>
-                    <input type="text" id="numero_input" style="margin-bottom: 10px;">
+                    <p>Codigo Mac</p>
+                    <input type="text" id="Mac_input">
                     <p>Selecione uma opção:</p>
                     <select id="status_select">
                         <option value="a">Ativo</option>
@@ -63,7 +42,7 @@
                         <option value="m">Manutenção</option>
                     </select>
                 </div>
-                <div id="cardErro" style="display: none; color: red; text-align: center;" class="campo-erro">
+                <div id="cardErro" style="display: none; color: white; text-align: center;" class="campo-erro">
                     <span id="mensagem_erro"></span>
                 </div>
                 <button onclick="cadastrar()">Realizar Cadastro</button>
@@ -85,15 +64,21 @@
         modal_container.style.display = "flex";
     }
 
+    function verificarMac(mac) {
+
+    const regex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/;
+    return regex.test(mac);
+    
+    }
+
+
     function fecharModal() {
         modal_container.style.display = "none";
     }
 
     function cadastrar() {
 
-        var fornecedor = fornecedor_input.value;
-        var modelo = modelo_input.value;
-        var numero = numero_input.value;
+        var Mac = Mac_input.value;
         var status = status_select.value;
 
         if(status == "a"){
@@ -104,15 +89,20 @@
             status = "Manutenção"
         }
 
-        if (fornecedor == "" ||
-            modelo == "" ||
-            numero == "" ||
-            status == ""
+        if (Mac == "" ||
+            status == "" 
         ) {
             cardErro.style.display = "flex";
             mensagem_erro.innerHTML = "Preencha todos os campos!";
             setInterval(sumirMensagem, 4000);
             return false;
+        }else if(!verificarMac(Mac)){
+
+            cardErro.style.display = "flex";
+            mensagem_erro.innerHTML = "Codigo Mac inválido";
+            setInterval(sumirMensagem, 4000);
+            return false;
+
         } else {
 
             fetch("servidores/cadastrar_servidor", {
@@ -120,9 +110,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 }, body: JSON.stringify({
-                    fornecedorServer: fornecedor,
-                    modeloServer: modelo,
-                    numeroServer: numero,
+                    MacServer: Mac,
                     statusServer: status,
                     fk_unidadeServer: sessionStorage.getItem("ID_UNIDADE")
                 })
@@ -131,21 +119,24 @@
 
                 if (resposta.ok) {
                     cardErro.style.display = "flex";
-                    mensagem_erro.innerHTML = "Cadastro do Servidor realizado com sucesso! Redirecionando para tela de Perfil...";
+                    mensagem_erro.innerHTML = '<p>Cadastro do Servidor realizado com sucesso! Redirecionando para tela de Perfil...</p><img src="/assets/tube-spinner.svg" alt="" style = "height: 40px; width: 40px">';
                     console.log("Cadastro de Servidor realizado com sucesso! Redirecionando para tela de Perfil...")
 
                     const mensagemSuporte = "Servidor Cadastrado com Sucesso!";
 
                     setTimeout(() => {
                         window.location = "perfil.html";
-                    }, "2000");
+                    }, "4000");
 
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
             })
                 .catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
+
+                    cardErro.style.display = "flex";
+                    mensagem_erro.innerHTML = "Um Servidor com essas informações já existe";
+                    setInterval(sumirMensagem, 4000);
                     finalizarAguardar();
                 });
         }
