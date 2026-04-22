@@ -1,0 +1,96 @@
+.titulo{
+
+    background-color: #132c5c;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+
+}
+
+.lista{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    background-color: #132c5c;
+    border-radius: 10px;
+    
+
+}
+
+.item{
+
+    background-color: #0f1b2d;
+    padding: 10px 15px;
+    border-radius: 10px;
+    height: 10vh;
+    margin : 20px;
+    width: 70%;
+    color: white;
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    
+}
+
+.item-funcionario{
+
+    background-color: #0f1b2d;
+    padding: 10px 15px;
+    border-radius: 10px;
+    height: 15vh;
+    margin : 20px;
+    width: 70%;
+    color: white;
+    font-weight: bold;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    
+}
+
+.btnDownload{
+
+    height: 5vh;
+    width: 5vw;
+    margin-left: 20vw;
+    background-color: #0f1b2d;
+    border-style: none;
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.btnCadastro{
+
+    height: 10vh;
+    width: 10vw;
+    margin-left: 60vw;
+    background-color: #0f1b2d;
+    border-style: none;
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+
+}
+
+.bloco-texto{
+
+    margin-left: 5vw;
+    font-size: 14px;
+    gap: 1vh;
+
+}
