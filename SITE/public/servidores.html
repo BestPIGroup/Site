@@ -25,18 +25,6 @@
                 </a>
             </li>
 
-            <li>
-                <a href="funcionarios.html">
-                    <img src="./assets/team.png" alt="Funcionários">
-                </a>
-            </li>
-
-            <li>
-                <a href="perfil.html">
-                    <img src="./assets/user3.png" alt="Perfil">
-                </a>
-            </li>
-
             <li class="saida">
                 <a href="index.html">
                     <img src="./assets/saida.png" alt="Sair">
@@ -49,38 +37,32 @@
         <div class="box">
             <div class="retangulo">
                 <p>Servidores</p>
-                <button class="btn-adicionar" onclick="window.location.href='cadastro_servidor.html'">
-                    Adicionar Servidor
-                </button>
             </div>
         </div>
         <div class="campo">
-            <div class="card-componentes">
+            <div class="card-componentes" id="abc">
                 <a href="./dash_componentes.html">
                     <p> Servidor 1</p>
                 </a>
             </div>
-            <div class="card-componentes">
+            <div class="card-componentes"id="abcd">
                 <a href="./dash_componentes.html">
-                    <p> Servidor 1</p>
+                    <p> Servidor 2</p>
                 </a>
             </div>
-            <div class="card-componentes">
+            <div class="card-componentes"id="abcde">
                 <a href="./dash_componentes.html">
-                    <p> Servidor 1</p>
+                    <p> Servidor 3</p>
                 </a>
             </div>
-            <div class="card-componentes">
+            <div class="card-componentes"id="abc">
                 <a href="./dash_componentes.html">
-                    <p> Servidor 1</p>
+                    <p> Servidor </p>
                 </a>
             </div>
             
         </div>
     </div>  
-
-
-   
 
     <!-- <footer>
 <div class="footer">
@@ -107,18 +89,8 @@ function esconderComponentes() {
   document.getElementById("escolherComponentes").style.display = "none";
 }
 
-// Componente ativo-inativo
-function toggleItem(elemento) {
-    elemento.classList.toggle("inativo");
-}
 
-const cards = document.querySelectorAll(".card-componentes");
 
-cards.forEach(card => {
-    card.addEventListener("click", () => {
-         document.getElementById("escolherComponentes").style.display = "flex";
-    });
-});
 
 
 </script>

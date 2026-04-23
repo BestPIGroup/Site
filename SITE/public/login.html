@@ -22,7 +22,7 @@
   <div id="cardVazio" style="display: none; text-align: center;" class="campo">
     <div id="cardErroCaixa">
       <div id="caixaErroHeader">
-        <h1>Erro no Login</h1>
+        <h1></h1>
         <p style="color: black; font-size: 26px; cursor: pointer;" onclick="sumirMensagem()">X</p>
       </div>
         <hr style="display: flex; flex-direction: row; width: 100%; min-height: 0px; margin-bottom: 20px;">
@@ -173,7 +173,8 @@
                     mensagem_erro.innerHTML = "Login realizado com sucesso! Redirecionando para tela de Perfil...";
 
                     setTimeout(function () {
-                        window.location = "./servidores.html";
+                        // window.location = "./servidores.html";
+                        window.location = "./config_comp.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
