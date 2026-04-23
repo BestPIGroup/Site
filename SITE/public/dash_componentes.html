@@ -8,31 +8,33 @@
     <title> Argos | Componentes</title>
     <script src="./js/sessao.js"></script>
     <link rel="stylesheet" href="./css/dash_componentes.css">
-    <link rel="icon" href="./assets/LogoArgosW.png">
+    <link rel="icon" href="./assets/LogoArgos.png">
 </head>
 
 <body>
     <header class="sidebar">
 
         <div class="logo">
-            <img src="./assets/LogoArgosIcon.png">
+            <a href="index.html">
+                <img src="./assets/LogoArgosIcon.png">
+            </a>
         </div>
 
         <ul class="listaOpcoes">
             <li>
-                <a href="index.html">
+                <a href="servidores.html">
                     <img src="./assets/server2.png" alt="Servidores">
                 </a>
             </li>
 
             <li>
-                <a href="index.html">
+                <a href="funcionarios.html">
                     <img src="./assets/team.png" alt="Funcionários">
                 </a>
             </li>
 
             <li>
-                <a href="index.html">
+                <a href="perfil.html">
                     <img src="./assets/user3.png" alt="Perfil">
                 </a>
             </li>
@@ -46,14 +48,39 @@
     </header>
 
     <div class="topo-esquerdo">
-        <img src="./assets/arrow 2.png" class="btn-voltar">
-        
+        <a href="servidores.html">
+            <img href="servidores.html" src="./assets/arrow 2.png" class="btn-voltar">
+        </a>
         <div class="alerta-servidores">
-            <p>Servidores em Alerta : 2</p> 
+            <p>Servidores em Alerta : 2</p>
         </div>
     </div>
 
-
+    <div id="modalGrafico" class="modal-overlay" style="display: none;">
+        <div class="modal-conteudo">
+            <span class="btn-fechar" onclick="fecharModal()">X</span>
+            <div class="modal-header">
+                <h2 id="tituloComponente">Nome do Componente</h2>
+            </div>
+            <div class="modal-grid">
+                <div class="grafico-container"><canvas id="grafico1"></canvas></div>
+                <div class="grafico-container"><canvas id="grafico2"></canvas></div>
+                <div class="grafico-container"><canvas id="grafico3"></canvas></div>
+                <div class="grafico-container">
+                    <div class="display-porcentagem">
+                        <p class="titulo-porcentagem">Porcentagem Utilizada Atualmente</p>
+                        <h1 id="valorPorcentagem" style="color: brown;">82%</h1>
+                        <div class="limite-box">
+                            <span>Limite Ideal</span>
+                            <h2 id="limiteIdeal">80%</h2>
+                        </div>
+                    </div>
+                    <canvas id="grafico4" style="display: none;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
 
     <div class="conteudo">
         <div class="box">
@@ -62,9 +89,9 @@
             </div>
         </div>
         <div class="campo">
-            <div class="card-componentes-erro">
+            <div class="card-componentes-erro" onclick="abrirModalComponente('RAM')">
 
-                <div class="topo">
+                <div class="topo" onclick="abrirModal('RAM')">
                     <img src="./assets/server2.png" alt="">
                     <p> RAM</p>
                 </div>
@@ -75,7 +102,7 @@
                 </div>
             </div>
             <div class="card-componentes-erro">
-                                <div class="topo">
+                <div class="topo">
                     <img src="./assets/server2.png" alt="">
                     <p> CPU</p>
                 </div>
@@ -86,7 +113,7 @@
                 </div>
             </div>
             <div class="card-componentes-estavel">
-                                <div class="topo">
+                <div class="topo">
                     <img src="./assets/server2.png" alt="">
                     <p> Memória</p>
                 </div>
@@ -97,7 +124,7 @@
                 </div>
             </div>
             <div class="card-componentes-estavel">
-                                <div class="topo">
+                <div class="topo">
                     <img src="./assets/server2.png" alt="">
                     <p> Rede</p>
                 </div>
@@ -106,10 +133,10 @@
                     <p>Status: <span><span>Alerta</span></span></p>
                     <p>Última Verificação: 20:00:01</p>
                 </div>
-                
+
             </div>
             <div class="card-componentes-estavel">
-                                <div class="topo">
+                <div class="topo">
                     <img src="./assets/server2.png" alt="">
                     <p> Processos</p>
                 </div>
@@ -118,51 +145,96 @@
                     <p>Status: <span>Alerta</span></p>
                     <p>Última Verificação: 20:00:01</p>
                 </div>
-                
+
             </div>
         </div>
     </div>
-
-
-
-
-    <!-- <footer>
-<div class="footer">
-<img src="./assets/LogoArgosW.png" alt="Logo">
-<p>2026 Argos. Todos os direitos reservados.</p>
-</div>
-<hr>
-<div class="sociais">
-<p>Entre em contato conosco: <br>argos@argos.com.br</p>
-<div class="sociais-img">
-<img src="./assets/instagram.png" onclick="window.location.href='https://www.instagram.com/'" alt="Instagram">
-<img src="./assets/whatsapp.png" onclick="window.location.href='https://wa.me/5511942456563'" alt="WhatsApp">
-<img src="./assets/linkedin.png" alt="Linkedin">
-</div>
-</div>
-</footer> -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>
 <script>
 
-    // Esconder opções de componentes
-    function esconderComponentes() {
-        document.getElementById("escolherComponentes").style.display = "none";
+    let instanciasGraficos = [];
+
+    function abrirModal(nome) {
+        const modal = document.getElementById("modalGrafico");
+        document.getElementById("tituloComponente").innerText = nome;
+        modal.style.display = "flex";
+        gerarGraficos();
     }
 
-    // Componente ativo-inativo
-    function toggleItem(elemento) {
-        elemento.classList.toggle("inativo");
+    function fecharModal() {
+        document.getElementById("modalGrafico").style.display = "none";
     }
 
-    const cards = document.querySelectorAll(".card-componentes");
+    function gerarGraficos() {
+        const ids = ['grafico1', 'grafico2', 'grafico3', 'grafico4'];
+        const labels = ['Uso em Tempo Real', 'Médias da semana', 'Percentual de swap', 'Distribuição de Carga'];
+        const tipos = ['line', 'bar', 'line', 'radar'];
 
-    cards.forEach(card => {
-        card.addEventListener("click", () => {
-            document.getElementById("escolherComponentes").style.display = "flex";
+        instanciasGraficos.forEach(i => i.destroy());
+        instanciasGraficos = [];
+
+        ids.forEach((id, i) => {
+            const ctx = document.getElementById(id).getContext('2d');
+            const config = {
+                type: tipos[i],
+                data: {
+                    labels: tipos[i] === 'radar' ? ['Núcleo 1', 'Núcleo 2', 'Núcleo 3', 'Núcleo 4', 'Núcleo 5'] : ['10:00', '10:05', '10:10', '10:15', '10:20'],
+                    datasets: [{
+                        label: labels[i],
+                        data: Array.from({ length: 5 }, () => Math.floor(Math.random() * 100)),
+                        borderColor: '#101F4A',
+                        backgroundColor: tipos[i] === 'bar' ? '#1E43B0' : 'rgba(30, 67, 176, 0.3)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        title: {
+                            display: true,
+                            text: labels[i],
+                            color: '#1c2e5a',
+                            font: { size: 14, weight: 'bold' }
+                        },
+                        customCanvasBackgroundColor: { color: '#e0e0e0' }
+                    },
+                    scales: tipos[i] === 'radar' ? {
+                        r: {
+                            grid: { color: 'rgba(0, 0, 0, 0.15)' },
+                            angleLines: { color: 'rgba(0, 0, 0, 0.15)' },
+                            pointLabels: { color: '#444' }
+                        }
+                    } : {
+                        y: { grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { color: '#444' } },
+                        x: { grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { color: '#444' } }
+                    }
+                },
+                plugins: [{
+                    id: 'customCanvasBackgroundColor',
+                    beforeDraw: (chart, args, options) => {
+                        const { ctx } = chart;
+                        ctx.save();
+                        ctx.globalCompositeOperation = 'destination-over';
+                        ctx.fillStyle = options.color;
+                        ctx.fillRect(0, 0, chart.width, chart.height);
+                        ctx.restore();
+                    }
+                }]
+            };
+            instanciasGraficos.push(new Chart(ctx, config));
         });
-    });
+    }
+
+    window.onclick = function (event) {
+        const modal = document.getElementById("modalGrafico");
+        if (event.target == modal) fecharModal();
+    }
 
 
 </script>

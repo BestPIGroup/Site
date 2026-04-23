@@ -1,248 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Argos | Perfil</title>
+    <title>Argos | Configurações de Conta</title>
     <link rel="stylesheet" href="./css/perfil.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="icon" href="./assets/favicon.png">
+    <link rel="icon" href="./assets/LogoArgos.png">
 </head>
 
-
 <body onload="exibir()">
-    <header>
-        <div class="nav-desktop">
-            <a href="./index.html" style="font-weight: bold;">Home</a>
-            <a href="./cadastro_func.html">Cadastro de Funcionário</a>
-            <a href="./cadastro_servidor.html">Cadastro de Servidor</a>
+    <header class="sidebar">
+        <div class="logo">
+            <img src="./assets/LogoArgosIcon.png" alt="Logo Argos">
         </div>
-        <div class="nav-mobile">
-            <a href="./index.html" style="font-weight: bold;">Home</a>
-            <a href="./cadastro_func.html">Funcionário</a>
-            <a href="./cadastro_servidor.html">Servidor</a>
-        </div>
-        <div class="nav2">
-            <p> Olá, <span id="nome_usuario"></span>!</p>
-            <p>|</p>
-            <a href="perfil.html">Perfil</a>
-        </div>
+        <ul class="listaOpcoes">
+            <li><a href="servidores.html"><img src="./assets/server2.png" alt="Servidores"></a></li>
+            <li><a href="#"><img src="./assets/team.png" alt="Funcionários"></a></li>
+            <li style="background-color: #0f1b2d;"><a href="perfil.html"><img src="./assets/user3.png" alt="Perfil"></a></li>
+            <li class="saida"><a href="index.html" onclick="logout()"><img src="./assets/saida.png" alt="Sair"></a></li>
+        </ul>
     </header>
 
-    <div class="perfil">
-        <div class="container-nav">
-            <h2 style="font-weight: 600;"> Informações</h2>
-            <nav id="menu-nav" class="menu-nav">
-                <ul>
-                    <li onclick="info_pessoal()">
-                        <a><i class="fa fa-user" aria-hidden="true"></i> Informações Pessoais</a>
-                    </li>
-                    <li onclick="info_unidade()">
-                        <a><i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade</a>
-                    </li>
-                    <button id="btn-sair" class="botao-sair" onclick="logout()">
-                        <i class="fa fa-sign-out"></i> Sair
-                    </button>
-                </ul>
-            </nav>
+    <div class="conteudo">
+        <div class="box">
+            <div class="retangulo">
+                <p>Configurações de conta</p>
+            </div>
         </div>
 
-        <section class="secao-perfil" id="div_info_pessoal" style="display: block;">
-            <div class="container-informacao">
-                <h2><i class="fa fa-user" aria-hidden="true"></i> Informações Pessoais </h2>
-                <hr>
-                <div class="informarcoes">
-                    <div class="pessoal_informacao">
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Nome Completo - <span id="nome_completo_usuario"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> E-mail - <span id="email_usuario"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Telefone - <span id="telefone_usuario"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Função - <span id="funcao_usuario"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Matrícula - <span id="matricula_usuario"></span></p>
-                            </div>
-                        </div>
+        <div class="container-config">
+            <section class="card-config">
+                <h3>Configurações de acesso</h3>
+                <div class="formulario">
+                    <div class="item-input">
+                        <label>Email:</label>
+                        <input type="text" id="email_usuario_input" placeholder="email@dominio.com">
                     </div>
-                    <!-- <div class="imgUser">
-                        <img src="./assets/user.png" alt="">
-                    </div> -->
-                </div>
-            </div>
-        </section>
-
-        <section class="secao-perfil" style="display: none;" id="div_info_unidade">
-            <div class="container-informacao">
-                <h2> <i class="fa fa-building-o" aria-hidden="true"></i> Informações da Unidade </h2>
-                <hr>
-                <div class="informarcoes">
-                    <div class="pessoal_informacao">
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Código da Unidade - <span id="cod_unidade"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> CEP - <span id="cep_unidade"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Cidade - <span id="cidade_unidade"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Rua - <span id="rua_unidade"></span></p>
-                            </div>
-                        </div>
-
-                        <div class="container-botao-alinhar">
-                            <div class="campo">
-                                <p class="titulo"> Bairro - <span id="bairro_unidade"></span></p>
-                            </div>
-                        </div>
+                    <div class="item-input">
+                        <label>Senha:</label>
+                        <input type="password" id="senha_usuario_input" placeholder="********">
                     </div>
-                    <!-- <div class="imgPredio">
-                        <img src="./assets/office-building.png" alt="">
-                    </div> -->
+                    <div class="item-input">
+                        <label>Código de unidade:</label>
+                        <input type="text" id="cod_unidade_input" placeholder="A2ds/24*">
+                    </div>
+                    <button class="btn-confirmar">Confirmar mudanças</button>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="card-config">
+                <h3>Configurações pessoais</h3>
+                <div class="formulario-grid">
+                    <div class="item-input">
+                        <label>CPF:</label>
+                        <input type="text" id="cpf_usuario_input" placeholder="xxx.xxx.xxx-xx">
+                    </div>
+                    <div class="item-input">
+                        <label>RG:</label>
+                        <input type="text" id="rg_usuario_input" placeholder="Jonas Ramalho">
+                    </div>
+                    <div class="item-input">
+                        <label>Telefone:</label>
+                        <input type="text" id="tel_usuario_input" placeholder="(11) 99999-9999">
+                    </div>
+                    <div class="item-confirmar-grid">
+                        <label>Confirmar mudanças</label>
+                        <button class="btn-confirmar">Confirmar mudanças</button>
+                    </div>
+                    <div class="item-input">
+                        <label>Código de unidade:</label>
+                        <input type="text" id="cod_unidade_pessoal" placeholder="A2ds/24*">
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 </body>
-
 </html>
-
-<script>
-    nome_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
-
-
-    function exibir() {
-
-        var emailVar = sessionStorage.EMAIL_USUARIO;
-        var idVar = sessionStorage.ID_USUARIO;
-        var idUnidade = sessionStorage.ID_UNIDADE;
-
-
-        fetch("/usuarios/ver_usuario", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // Defini no server as variáveis email e senha
-                emailServer: emailVar,
-                idServer: idVar
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-            console.log("Status:", resposta.status);
-            // Se estiver tudo bem, executa no console.log a resposta
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    nome_completo_usuario.innerHTML = json.nome;
-                    email_usuario.innerHTML = json.email;
-                    telefone_usuario.innerHTML = json.telefone;
-                    funcao_usuario.innerHTML = json.funcao;
-                    matricula_usuario.innerHTML = json.matricula;
-                });
-            } else {
-                console.log("Houve um erro ao tentar coletar as informações!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-        })
-
-        fetch("/unidade/ver_unidade", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // Defini no server as variáveis email e senha
-                idUnidadeServer: idUnidade
-            })
-        }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
-            console.log("Status:", resposta.status);
-            // Se estiver tudo bem, executa no console.log a resposta
-            if (resposta.ok) {
-                console.log(resposta);
-
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    cod_unidade.innerHTML = json.cod_unidade;
-                    cep_unidade.innerHTML = json.cep;
-                    cidade_unidade.innerHTML = json.cidade;
-                    rua_unidade.innerHTML = json.rua;
-                    bairro_unidade.innerHTML = json.bairro;
-                });
-            } else {
-                console.log("Houve um erro ao tentar coletar as informações!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-        })
-    }
-
-    function info_unidade() {
-        div_info_pessoal.style.display = "none";
-        div_info_unidade.style.display = "block";
-        div_info_servidor.style.display = "none";
-    }
-
-    function info_pessoal() {
-        div_info_pessoal.style.display = "block";
-        div_info_unidade.style.display = "none";
-        div_info_servidor.style.display = "none";
-    }
-
-    function info_servidor() {
-        div_info_servidor.style.display = "block";
-        div_info_unidade.style.display = "none";
-        div_info_pessoal.style.display = "none";
-    }
-
-
-    function logout() {
-        if (confirm("Tem certeza que deseja sair da conta?")) {
-            sessionStorage.clear();
-            window.location.href = "login.html";
-        }
-    }
-
-</script>

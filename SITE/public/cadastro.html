@@ -11,14 +11,12 @@
   <script src="./js/sessao.js"></script>
   <link rel="stylesheet" href="./css/estilo.css" />
   <link rel="stylesheet" href="./css/cadastro.css" />
-  <link rel="icon" href="./assets/favicon.png">
+  <link rel="icon" href="./assets/LogoArgos.png">
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
 <body>
 
-  <!-- ================================================= -->
-   <!-- Card de Erro abaixo (Estilizado) -->
   <div id="cardErroUni" style="display: none; text-align: center;" class="campo">
     <div id="cardErroUniCaixa">
       <div id="caixaErroHeader">
@@ -29,7 +27,7 @@
         <span style="color: black; font-size: 22px;" id="mensagem_erroUni"></span>
     </div>
   </div>
-  <!-- ================================================= -->
+
   <header style="display: none;" id="navLogada">
     <div class="nav-desktop">
       <a href="#home" style="font-weight: bold;">Home</a>
@@ -62,19 +60,12 @@
   </header>
 
   <div class="login">
-    <!--     <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div> -->
+
     <div class="cadastro" id="div_cadastro" style="display: none;">
       <h2>CADASTRO</h2>
       <div class="imagem-indicador"><img src="./assets/Indicador2.png" alt=""></div>
       <div class="formulario">
-        <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
+
         <div class="campo">
           <span>Nome Completo <span style="color: red;">*</span></span>
           <input id="nome_input" type="text" />
@@ -92,7 +83,7 @@
           <input id="funcao_input" type="text" />
         </div>
         <div class="campo">
-          <span>Matrícula<span style="color: red;">*</span></span>
+          <span>Identificador<span style="color: red;">*</span></span>
           <input id="matricula_input" type="text" />
         </div>
         <div class="campo">
@@ -117,10 +108,7 @@
         <div class="imagem-indicador"><img src="./assets/indicador1.png" alt=""></div>
       </div>
       <div class="formulario">
-        <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
+
         <div class="campo">
           <span>Código da Unidade <span style="color: red;">*</span></span>
           <input id="codigo_input" type="number" />
