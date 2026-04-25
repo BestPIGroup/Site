@@ -11,40 +11,40 @@
     <link rel="icon" href="./assets/LogoArgos.png">
 </head>
 
-<body>
+<body onload="carregarGraficos()">
     <header class="sidebar">
 
-        <div class="logo">
-            <a href="index.html">
-                <img src="./assets/LogoArgosIcon.png">
-            </a>
+        <div class="logo" href="index.html">
+            <img src="./assets/LogoArgosIcon.png">
         </div>
 
         <ul class="listaOpcoes">
             <li>
                 <a href="servidores.html">
-                    <img src="./assets/server2.png" alt="Servidores">
-                </a>
-            </li>
-
-            <li class="saida">
-                <a href="index.html">
-                    <img src="./assets/saida.png" alt="Sair">
+                    <div class="item">
+                        <img src="./assets/server2.png" alt="Servidores">
+                        <p>Servidores</p>
+                    </div>
                 </a>
             </li>
         </ul>
+
+        <div class="saida">
+            <div class="item">
+                <img src="./assets/user3.png" alt="Perfil">
+                <p>Analista</p>
+                <p>Perfil</p>
+            </div>
+            <a href="index.html">
+                <div class="item">
+                    <img src="./assets/saida.png" alt="Sair">
+                    <p>Sair</p>
+                </div>
+            </a>
+        </div>
     </header>
 
-    <div class="topo-esquerdo">
-        <a href="servidores.html">
-            <img href="servidores.html" src="./assets/arrow 2.png" class="btn-voltar">
-        </a>
-        <div class="alerta-servidores">
-            <p>Servidores em Alerta : 2</p>
-        </div>
-    </div>
-
-    <div id="modalGrafico" class="modal-overlay" style="display: none;">
+    <!-- <div id="modalGrafico" class="modal-overlay" style="display: none;">
         <div class="modal-conteudo">
             <span class="btn-fechar" onclick="fecharModal()">X</span>
             <div class="modal-header">
@@ -67,162 +67,261 @@
                 </div>
             </div>
         </div>
-    </div>
-    </div>
+    </div> -->
+
+    
 
     <div class="conteudo">
         <div class="box">
+            <div class="kpis">
+                <div class="kpi">
+                    <img src="./assets/warningRed.png" alt="">
+                    Estado Crítico<h2 id="kpi-crit">3</h2>
+                </div>
+                <div class="kpi">
+                    <img src="./assets/warningOrange.png" alt="">
+                    Estado de Alerta<h2 id="kpi-alerta"></h2>
+                </div>
+                <div class="kpi">
+                    <img src="./assets/hardwareWhite.png" alt="">
+                    Maior Uso<h2 id="kpi-maior">88%</h2>
+                </div>
+                <div class="kpi">
+                    <img src="./assets/server2.png" alt="">
+                    Servidor<h2 id="kpi-servidor">—</h2>
+                </div>
+            </div>
             <div class="retangulo">
+                <a href="servidores.html">
+                    <img src="./assets/arrow 2.png" class="btn-voltar" alt="Voltar">
+                </a>
                 <p>Componentes</p>
             </div>
         </div>
+
         <div class="campo">
-            <div class="card-componentes-erro" onclick="abrirModalComponente('RAM')">
 
-                <div class="topo" onclick="abrirModal('RAM')">
-                    <img src="./assets/server2.png" alt="">
-                    <p> RAM</p>
-                </div>
-                <div class="valor">82%</div>
-                <div class="status">
-                    <p>Status: <span>Alerta</span></p>
-                    <p>Última Verificação: 20:00:01</p>
-                </div>
-            </div>
-            <div class="card-componentes-erro">
-                <div class="topo">
-                    <img src="./assets/server2.png" alt="">
-                    <p> CPU</p>
-                </div>
-                <div class="valor">88%</div>
-                <div class="status">
-                    <p>Status: <span>Alerta</span></p>
-                    <p>Última Verificação: 20:00:01</p>
-                </div>
-            </div>
-            <div class="card-componentes-estavel">
-                <div class="topo">
-                    <img src="./assets/server2.png" alt="">
-                    <p> Memória</p>
-                </div>
-                <div class="valor">12%</div>
-                <div class="status">
-                    <p>Status: <span>Alerta</span></p>
-                    <p>Última Verificação: 20:00:01</p>
-                </div>
-            </div>
-            <div class="card-componentes-estavel">
-                <div class="topo">
-                    <img src="./assets/server2.png" alt="">
-                    <p> Rede</p>
-                </div>
-                <div class="valor">19%</div>
-                <div class="status">
-                    <p>Status: <span><span>Alerta</span></span></p>
-                    <p>Última Verificação: 20:00:01</p>
-                </div>
-
-            </div>
-            <div class="card-componentes-estavel">
-                <div class="topo">
-                    <img src="./assets/server2.png" alt="">
-                    <p> Processos</p>
-                </div>
-                <div class="valor">51%</div>
-                <div class="status">
-                    <p>Status: <span>Alerta</span></p>
-                    <p>Última Verificação: 20:00:01</p>
-                </div>
-
-            </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 
 </html>
 <script>
 
-    let instanciasGraficos = [];
 
-    function abrirModal(nome) {
-        const modal = document.getElementById("modalGrafico");
-        document.getElementById("tituloComponente").innerText = nome;
-        modal.style.display = "flex";
-        gerarGraficos();
-    }
+function carregarGraficos() {
+    const data = [
+        { nome: "Memória", valor: 12, status: "ok" },
+        { nome: "CPU", valor: 88, status: "crit" },
+        { nome: "Disco", valor: 55, status: "atencao" },
+        { nome: "Rede", valor: 19, status: "ok" }
+    ];
 
-    function fecharModal() {
-        document.getElementById("modalGrafico").style.display = "none";
-    }
+    const containerCampo = document.querySelector(".campo");
+    containerCampo.innerHTML = ""; 
 
-    function gerarGraficos() {
-        const ids = ['grafico1', 'grafico2', 'grafico3', 'grafico4'];
-        const labels = ['Uso em Tempo Real', 'Médias da semana', 'Percentual de swap', 'Distribuição de Carga'];
-        const tipos = ['line', 'bar', 'line', 'radar'];
+    data.forEach((c, index) => {
+        const divGrafico = document.createElement("div");
+        divGrafico.className = "grafico-container";
+        
+        divGrafico.style.width = "400px";
+        divGrafico.style.height = "250px";
+        divGrafico.style.backgroundColor = "#1c2e5a";
+        divGrafico.style.borderRadius = "8px";
+        divGrafico.style.padding = "10px";
+        
+        const canvasId = `canvas-${index}`;
+        divGrafico.innerHTML = `<canvas id="${canvasId}"></canvas>`;
+        containerCampo.appendChild(divGrafico);
 
-        instanciasGraficos.forEach(i => i.destroy());
-        instanciasGraficos = [];
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        
+        const corLinha = c.status === 'crit' ? '#ff3b3b' : c.status === 'atencao' ? '#927012' : '#12921C';
 
-        ids.forEach((id, i) => {
-            const ctx = document.getElementById(id).getContext('2d');
-            const config = {
-                type: tipos[i],
-                data: {
-                    labels: tipos[i] === 'radar' ? ['Núcleo 1', 'Núcleo 2', 'Núcleo 3', 'Núcleo 4', 'Núcleo 5'] : ['10:00', '10:05', '10:10', '10:15', '10:20'],
-                    datasets: [{
-                        label: labels[i],
-                        data: Array.from({ length: 5 }, () => Math.floor(Math.random() * 100)),
-                        borderColor: '#101F4A',
-                        backgroundColor: tipos[i] === 'bar' ? '#1E43B0' : 'rgba(30, 67, 176, 0.3)',
-                        fill: true,
-                        tension: 0.4
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        title: {
-                            display: true,
-                            text: labels[i],
-                            color: '#1c2e5a',
-                            font: { size: 14, weight: 'bold' }
-                        },
-                        customCanvasBackgroundColor: { color: '#e0e0e0' }
-                    },
-                    scales: tipos[i] === 'radar' ? {
-                        r: {
-                            grid: { color: 'rgba(0, 0, 0, 0.15)' },
-                            angleLines: { color: 'rgba(0, 0, 0, 0.15)' },
-                            pointLabels: { color: '#444' }
-                        }
-                    } : {
-                        y: { grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { color: '#444' } },
-                        x: { grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { color: '#444' } }
-                    }
-                },
-                plugins: [{
-                    id: 'customCanvasBackgroundColor',
-                    beforeDraw: (chart, args, options) => {
-                        const { ctx } = chart;
-                        ctx.save();
-                        ctx.globalCompositeOperation = 'destination-over';
-                        ctx.fillStyle = options.color;
-                        ctx.fillRect(0, 0, chart.width, chart.height);
-                        ctx.restore();
-                    }
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['10:00', '10:05', '10:10', '10:15', '10:20'],
+                datasets: [{
+                    label: `Uso de ${c.nome} (%)`,
+                    data: [c.valor - 8, c.valor + 4, c.valor - 2, c.valor - 5, c.valor],
+                    borderColor: corLinha,
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    fill: true,
+                    tension: 0.4
                 }]
-            };
-            instanciasGraficos.push(new Chart(ctx, config));
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: `Histórico: ${c.nome}`,
+                        color: '#fff'
+                    }
+                },
+                scales: {
+                    y: { 
+                        min: 0, 
+                        max: 100, 
+                        ticks: { color: '#fff' },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    x: { 
+                        ticks: { color: '#fff' },
+                        grid: { display: false }
+                    }
+                }
+            }
         });
-    }
+    });
+}
 
-    window.onclick = function (event) {
-        const modal = document.getElementById("modalGrafico");
-        if (event.target == modal) fecharModal();
-    }
 
+    // componentesAlerta = 0;
+    // componentesCriticos = 0;
+
+    // function atualizarKPIs(){
+    //     document.getElementById("kpi-alerta").innerHTML = componentesAlerta;
+    //     document.getElementById("kpi-crit").innerHTML = componentesCriticos;
+    // }
+
+    // const servidor = JSON.parse(sessionStorage.getItem("servidor"));
+    // if (servidor) {
+    //     document.getElementById("kpi-servidor").innerText = servidor.nome;
+    // }
+
+    // let instanciasGraficos = [];
+
+    // function abrirModal(nome) {
+    //     const modal = document.getElementById("modalGrafico");
+    //     document.getElementById("tituloComponente").innerText = nome;
+    //     modal.style.display = "flex";
+    //     gerarGraficos();
+    // }
+
+    // function fecharModal() {
+    //     document.getElementById("modalGrafico").style.display = "none";
+    // }
+
+    // function gerarGraficos() {
+    //     const ids = ['grafico1', 'grafico2', 'grafico3', 'grafico4'];
+    //     const labels = ['Uso em Tempo Real', 'Médias da semana', 'Percentual de swap', 'Distribuição de Carga'];
+    //     const tipos = ['line', 'bar', 'line', 'radar'];
+
+    //     instanciasGraficos.forEach(i => i.destroy());
+    //     instanciasGraficos = [];
+
+    //     ids.forEach((id, i) => {
+    //         const ctx = document.getElementById(id).getContext('2d');
+    //         const config = {
+    //             type: tipos[i],
+    //             data: {
+    //                 labels: tipos[i] === 'radar' ? ['Núcleo 1', 'Núcleo 2', 'Núcleo 3', 'Núcleo 4', 'Núcleo 5'] : ['10:00', '10:05', '10:10', '10:15', '10:20'],
+    //                 datasets: [{
+    //                     label: labels[i],
+    //                     data: Array.from({ length: 5 }, () => Math.floor(Math.random() * 100)),
+    //                     borderColor: '#101F4A',
+    //                     backgroundColor: tipos[i] === 'bar' ? '#1E43B0' : 'rgba(30, 67, 176, 0.3)',
+    //                     fill: true,
+    //                     tension: 0.4
+    //                 }]
+    //             },
+    //             options: {
+    //                 responsive: true,
+    //                 maintainAspectRatio: false,
+    //                 plugins: {
+    //                     legend: { display: false },
+    //                     title: {
+    //                         display: true,
+    //                         text: labels[i],
+    //                         color: '#1c2e5a',
+    //                         font: { size: 14, weight: 'bold' }
+    //                     },
+    //                     customCanvasBackgroundColor: { color: '#e0e0e0' }
+    //                 },
+    //                 scales: tipos[i] === 'radar' ? {
+    //                     r: {
+    //                         grid: { color: 'rgba(0, 0, 0, 0.15)' },
+    //                         angleLines: { color: 'rgba(0, 0, 0, 0.15)' },
+    //                         pointLabels: { color: '#444' }
+    //                     }
+    //                 } : {
+    //                     y: { grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { color: '#444' } },
+    //                     x: { grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { color: '#444' } }
+    //                 }
+    //             },
+    //             plugins: [{
+    //                 id: 'customCanvasBackgroundColor',
+    //                 beforeDraw: (chart, args, options) => {
+    //                     const { ctx } = chart;
+    //                     ctx.save();
+    //                     ctx.globalCompositeOperation = 'destination-over';
+    //                     ctx.fillStyle = options.color;
+    //                     ctx.fillRect(0, 0, chart.width, chart.height);
+    //                     ctx.restore();
+    //                 }
+    //             }]
+    //         };
+    //         instanciasGraficos.push(new Chart(ctx, config));
+    //     });
+    // }
+
+    // window.onclick = function (event) {
+    //     const modal = document.getElementById("modalGrafico");
+    //     if (event.target == modal) fecharModal();
+    // }
+
+    
+
+    // function carregarCards() {
+    //     const data = [
+    //         { nome: "Memória", tipo: "RAM", valor: "12%", status: "ok", ultimaVerificacao: "20:00:01" },
+    //         { nome: "CPU", tipo: "CPU", valor: "88%", status: "crit", ultimaVerificacao: "20:00:01" },
+    //         { nome: "Disco", tipo: "DISK", valor: "55%", status: "atencao", ultimaVerificacao: "20:00:01" },
+    //         { nome: "Rede", tipo: "REDE", valor: "19%", status: "ok", ultimaVerificacao: "20:00:01" }
+    //     ];
+
+    //     const ordem = { crit: 0, atencao: 1, ok: 2 };
+    //     data.sort((a, b) => ordem[a.status] - ordem[b.status]);
+
+    //     const containerCampo = document.querySelector(".campo");
+    //     containerCampo.innerHTML = "";
+
+    //     data.forEach(c => {
+    //         const card = document.createElement("div");
+
+    //         if (c.status === "crit") {
+    //             componentesCriticos++
+    //             card.className = "card-componentes-erro card-erro";
+    //         } else if (c.status === "atencao") {
+    //             componentesAlerta++
+    //             card.className = "card-componentes-erro card-atencao";
+    //         } else {
+    //             card.className = "card-componentes-estavel card-estavel";
+    //         }
+
+
+    //         card.onclick = () => { abrirModal(c.nome); };
+
+    //         card.innerHTML = `
+    //         <div class="topo">
+    //             <img src="./assets/server2.png" alt="">
+    //             <p>${c.nome}</p>
+    //         </div>
+    //         <div class="valor">${c.valor}</div>
+    //         <div class="status">
+    //             <p>Status: <span>${c.status === 'ok' ? 'Estável' : c.status === 'crit' ? 'Crítico' : 'Atenção'}</span></p>
+    //             <p>Última Verificação: ${c.ultimaVerificacao}</p>
+    //         </div>
+    //     `;
+
+    //         containerCampo.appendChild(card);
+    //     });
+    // }
 
 </script>
