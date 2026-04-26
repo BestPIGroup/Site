@@ -168,13 +168,17 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id_usuario;
                     sessionStorage.ID_UNIDADE = json.fk_unidade;
+                    sessionStorage.FK_RESPONSAVEL = json.fk_responsavel;
+                    redirect = json.fk_responsavel;
+                    console.log(redirect)
 
                     cardVazio.style.display = "flex";
                     mensagem_erro.innerHTML = "Login realizado com sucesso! Redirecionando para tela de Perfil...";
 
                     setTimeout(function () {
-                        // window.location = "./servidores.html";
-                        window.location = "./config_comp.html";
+                        
+                        redirecionar(redirect);
+
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -198,6 +202,22 @@
 
     function sumirMensagem() {
         cardVazio.style.display = "none"
+    }
+
+    function redirecionar(funcao){
+
+        if(redirect === "Gestor"){
+
+            window.location = "./config_comp.html";
+            console.log("indo pra tela do gestor")
+                        
+        }else if (redirect === "Analista"){
+
+            window.location = "./servidores.html"
+            console.log("indo pra tela do analista")
+
+            }
+
     }
 
 </script>
