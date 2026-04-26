@@ -105,6 +105,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.0.1/dist/chartjs-plugin-annotation.min.js"></script>
 </body>
 
 </html>
@@ -113,10 +114,66 @@
 
 function carregarGraficos() {
     const data = [
-        { nome: "Memória", valor: 12, status: "ok" },
-        { nome: "CPU", valor: 88, status: "crit" },
-        { nome: "Disco", valor: 55, status: "atencao" },
-        { nome: "Rede", valor: 19, status: "ok" }
+        { nome: "CPU", 
+          status: "crit",
+          max_eixo_y: 100,
+          label_y: "Uso de CPU (%)" ,
+          valor_atencao: 85,
+          valor_critico: 95,
+          min_madrugada: 20, 
+          max_madrugada: 40, 
+          min_manha: 40, 
+          max_manha: 60, 
+          min_tarde_noite: 70, 
+          max_tarde_noite: 98 },
+        { nome: "RAM", 
+          status: "ok",
+          max_eixo_y: 100,
+          label_y: "Uso de RAM (%)" ,
+          valor_atencao: 90,
+          valor_critico: 98, 
+          min_madrugada: 55, 
+          max_madrugada: 65, 
+          min_manha: 65, 
+          max_manha: 75, 
+          min_tarde_noite: 70, 
+          max_tarde_noite: 85 },
+        { nome: "Disco", 
+          status: "atencao",
+          max_eixo_y: 100,
+          label_y: "Uso de disco (%)" ,
+          valor_atencao: 85,
+          valor_critico: 92,
+          min_madrugada:70, 
+          max_madrugada: 65, 
+          min_manha: 65, 
+          max_manha: 68, 
+          min_tarde_noite: 68, 
+          max_tarde_noite: 90 },
+        { nome: "Rede", 
+          status: "ok",
+          max_eixo_y: 2000,
+          label_y: "Tráfego de rede (Mbps)" ,
+          valor_atencao: 1200,
+          valor_critico: 1800, 
+          min_madrugada: 300, 
+          max_madrugada: 600, 
+          min_manha: 100, 
+          max_manha: 250, 
+          min_tarde_noite: 500, 
+          max_tarde_noite: 900 },
+        { nome: "Processos", 
+          status: "ok",
+          max_eixo_y: 2100,
+          label_y: "Quantidade de processos" ,
+          valor_atencao: 1500,
+          valor_critico: 2000, 
+          min_madrugada: 250, 
+          max_madrugada: 350, 
+          min_manha: 500, 
+          max_manha: 700, 
+          min_tarde_noite: 800, 
+          max_tarde_noite: 1200 },
     ];
 
     const containerCampo = document.querySelector(".campo");
@@ -133,20 +190,41 @@ function carregarGraficos() {
         divGrafico.style.padding = "10px";
         
         const canvasId = `canvas-${index}`;
-        divGrafico.innerHTML = `<canvas id="${canvasId}"></canvas>`;
+        divGrafico.innerHTML = `
+           
+            <canvas id="${canvasId}"></canvas>
+        
+        `;
         containerCampo.appendChild(divGrafico);
 
         const ctx = document.getElementById(canvasId).getContext('2d');
         
         const corLinha = c.status === 'crit' ? '#ff3b3b' : c.status === 'atencao' ? '#927012' : '#12921C';
 
+        var labelHoras = ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"];
+        var valores = [];
+
+        for(var h = 0; h < 24; h++) {
+
+            var valorBase;
+
+            if (h <= 6) {
+                valorBase = Math.floor(Math.random() * (c.max_madrugada - c.    min_madrugada + 1)) + c.min_madrugada;
+            } else if (h <= 12) {
+                valorBase = Math.floor(Math.random() * (c.max_manha -     c.    min_manha + 1)) + c.min_manha;
+            } else {
+                valorBase = Math.floor(Math.random() * (c.max_tarde_noite -     c.    min_tarde_noite + 1)) + c.min_tarde_noite;
+            }
+                valores.push(valorBase);
+        }
+
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['10:00', '10:05', '10:10', '10:15', '10:20'],
+                labels: labelHoras,
                 datasets: [{
                     label: `Uso de ${c.nome} (%)`,
-                    data: [c.valor - 8, c.valor + 4, c.valor - 2, c.valor - 5, c.valor],
+                    data: valores,
                     borderColor: corLinha,
                     backgroundColor: 'rgba(255, 255, 255, 0.05)',
                     fill: true,
@@ -162,12 +240,53 @@ function carregarGraficos() {
                         display: true,
                         text: `Histórico: ${c.nome}`,
                         color: '#fff'
-                    }
+                    },
+                    annotation: {
+        annotations: {
+            linhaAtencao: {
+                type: 'line',
+                yMin: c.valor_atencao,
+                yMax: c.valor_atencao,
+                borderColor: '#927012',
+                borderWidth: 2,
+                borderDash: [5, 5],
+                label: {
+                    display: true,
+                    content: 'Atenção',
+                    padding: 4,
+                    position: 'start',
+                    xAdjust: 50,
+                    backgroundColor: 'rgba(146, 112, 18, 0.8)',
+                    color: '#fff'
+                }
+            },
+            linhaCritico: {
+                type: 'line',
+                yMin: c.valor_critico,
+                yMax: c.valor_critico,
+                borderColor: '#ff3b3b',
+                borderWidth: 2,
+                borderDash: [5, 5], 
+                label: {
+                    display: true,
+                    content: 'Crítico',
+                    padding: 4,
+                    position: 'start',
+                    backgroundColor: 'rgba(255, 59, 59, 0.8)',
+                    color: '#fff'
+                }
+            }
+        }
+    }
                 },
                 scales: {
                     y: { 
+                        title: {
+                            display: true,
+                            text: c.label_y
+                        },
                         min: 0, 
-                        max: 100, 
+                        max: c.max_eixo_y, 
                         ticks: { color: '#fff' },
                         grid: { color: 'rgba(255, 255, 255, 0.1)' }
                     },
@@ -181,6 +300,8 @@ function carregarGraficos() {
     });
 }
 
+//valor_atencao
+//valor_critico
 
     // componentesAlerta = 0;
     // componentesCriticos = 0;
