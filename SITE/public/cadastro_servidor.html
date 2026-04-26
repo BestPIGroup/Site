@@ -47,6 +47,8 @@
             </div>
             <div class="modal-inputs">
                 <div class="modal-form1">
+                    <p>Alias</p>
+                    <input type="text" id="Alias_input">
                     <p>Codigo Mac</p>
                     <input type="text" id="Mac_input">
                     <p>Selecione uma opção:</p>
@@ -94,6 +96,7 @@
 
         var Mac = Mac_input.value;
         var status = status_select.value;
+        var alias = Alias_input.value;
 
         if(status == "a"){
             status = "Ativo"
@@ -104,7 +107,8 @@
         }
 
         if (Mac == "" ||
-            status == "" 
+            status == "" ||
+            alias == ""
         ) {
             cardErro.style.display = "flex";
             mensagem_erro.innerHTML = "Preencha todos os campos!";
@@ -126,6 +130,7 @@
                 }, body: JSON.stringify({
                     MacServer: Mac,
                     statusServer: status,
+                    aliasServer: alias,
                     fk_unidadeServer: sessionStorage.getItem("ID_UNIDADE")
                 })
             }).then(function (resposta) {

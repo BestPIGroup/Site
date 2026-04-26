@@ -27,7 +27,8 @@ function autenticar(req, res) {
                         nome: resultadoAutenticar[0].nome,
                         senha: resultadoAutenticar[0].senha,
                         matricula: resultadoAutenticar[0].matricula,
-                        fk_unidade: resultadoAutenticar[0].fk_unidade
+                        fk_unidade: resultadoAutenticar[0].fk_unidade,
+                        fk_responsavel: resultadoAutenticar[0].fk_responsavel
                     });
 
                 } else if (resultadoAutenticar.length == 0) {
