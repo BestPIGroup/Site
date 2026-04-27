@@ -33,15 +33,14 @@ a {
     transition: 300ms;
 }
 
-@media (hover: hover) {
-    .sidebar:hover {
-        width: 90px;
-        transition: 300ms;
+.sidebar:hover {
+    width: 120px;
+    transition: 300ms;
+    box-shadow: 0px 0px 25px 9px rgba(0, 0, 0, 0.25);
 
-        .item p {
-            opacity: 1 !important;
-            transition: opacity 1200ms, 250ms;
-        }
+    .item p {
+        opacity: 1 !important;
+        transition: opacity 1200ms, 250ms;
     }
 }
 
@@ -52,11 +51,16 @@ a {
     padding: 10px;
     border-radius: 12px;
     cursor: pointer;
+    height: fit-content;
     gap: 10px;
     color: rgb(247, 250, 255);
     transition: 100ms;
+    img{
+        margin-top: 20px;
+    }
     p {
         opacity: 0 !important;
+        margin-bottom: 20px;
         transition: opacity 700ms, 250ms;
     }
 }
@@ -125,6 +129,7 @@ a {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    backdrop-filter: blur(18px);
 }
 
 .box .retangulo {
@@ -177,12 +182,46 @@ a {
     white-space: nowrap;
     flex: 1 1 auto;
     height: max-content;
-    max-width: 134px;
+    max-width: 162px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
     img {
         width: 33px;
         height: 33px;
     }
+}
+
+
+.btn-fechar-alerta {
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    background: none;
+    border: none;
+    color: rgba(255, 180, 180, 0.7);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.15s, transform 0.15s;
+}
+
+.btn-fechar-alerta:hover {
+    color: #ff6b6b;
+    transform: scale(1.2);
+}
+
+.kpi-alerta-sino {
+    position: relative;
+    margin-left: auto;
+    background: linear-gradient(135deg, rgba(0, 91, 156, 0.27) 25%, rgba(255, 36, 36, 0.485));
+    border: px solid rgba(255, 120, 120, 0.35);
+    color: rgba(255, 220, 220, 0.85);
+    box-shadow: 0 0 16px rgba(255, 80, 80, 0.18);
+}
+
+.kpi-alerta-sino h2 {
+    color: #ffdddd;
 }
 
 .kpi h2 {
@@ -216,7 +255,7 @@ a {
 .card-componente {
     display: flex;
     flex-direction: row;
-    width: 470px;
+    width: 450px;
     height: 270px;
     background-color: #1c2e5a;
     border-radius: 10px;
@@ -235,7 +274,7 @@ a {
     min-width: 0;
     padding: 8px;
     position: relative;
-    background-color: #0d2855;
+    background-color: #0d2853;
 }
 
 .card-grafico canvas {
@@ -287,7 +326,7 @@ a {
 }
 
 .correlacoes-painel {
-    width: 340px;
+    width: 400px;
     flex-shrink: 0;
     background-color: #0b2553;
     border-radius: 10px;
@@ -314,7 +353,7 @@ a {
 }
 
 .corr-item {
-    background-color: #1c2e5a;
+    background-color: rgb(21 34 66);
     border-radius: 8px;
     padding: 8px 10px;
     display: flex;

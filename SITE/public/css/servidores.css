@@ -225,13 +225,45 @@ a {
     white-space: nowrap;
     flex: 1 1 auto;
     height: max-content;
-    max-width: fit-content;
+    max-width: 162px;
     box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
     img {
         width: 33px;
         height: 33px;
     }
 }
+
+.kpi-alerta-sino {
+    margin-left: auto;
+    background: linear-gradient(135deg, rgba(0, 91, 156, 0.27) 25%, rgba(255, 36, 36, 0.485));
+    color: rgba(255, 220, 220, 0.85);
+    box-shadow: 0 0 16px rgba(255, 80, 80, 0.18);
+}
+
+.kpi-alerta-sino h2 {
+    color: #ffdddd;
+}
+
+.btn-fechar-alerta {
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    background: none;
+    border: none;
+    color: rgba(255, 180, 180, 0.7);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.15s, transform 0.15s;
+}
+
+.btn-fechar-alerta:hover {
+    color: #ff6b6b;
+    transform: scale(1.2);
+}
+
 
 .kpi h2 {
     font-size: 17px;
