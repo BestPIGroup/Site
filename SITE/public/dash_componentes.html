@@ -76,19 +76,19 @@
             <div class="kpis">
                 <div class="kpi">
                     <img src="./assets/warningRed.png" alt="">
-                    Estado Crítico<h2 id="kpi-crit">3</h2>
+                    Estado Crítico<h2 id="kpi-crit">1</h2>
                 </div>
                 <div class="kpi">
                     <img src="./assets/warningOrange.png" alt="">
-                    Estado de Alerta<h2 id="kpi-alerta"></h2>
+                    Estado de Alerta<h2 id="kpi-alerta">1</h2>
                 </div>
                 <div class="kpi">
                     <img src="./assets/hardwareWhite.png" alt="">
-                    Maior Uso<h2 id="kpi-maior">88%</h2>
+                    Maior Uso<h2 id="kpi-maior">98%</h2>
                 </div>
                 <div class="kpi">
                     <img src="./assets/server2.png" alt="">
-                    Servidor<h2 id="kpi-servidor">—</h2>
+                    <span id="titulo-kpi-servidor">Servidor</span><h2 id="kpi-servidor">—</h2>
                 </div>
             </div>
             <div class="retangulo">
@@ -98,9 +98,12 @@
                 <p>Componentes</p>
             </div>
         </div>
-
-        <div class="campo">
-
+        <div class="dashboard-layout">
+            <div class="campo"></div>
+            <div class="correlacoes-painel">
+                <div class="correlacoes-titulo">Diagnóstico de Correlação de Componentes</div>
+                <div class="correlacoes-lista" id="correlacoes-lista"></div>
+            </div>
         </div>
     </div>
 
@@ -111,124 +114,108 @@
 </html>
 <script>
 
+var todosDados = {};
 
 function carregarGraficos() {
-    const data = [
-        { nome: "CPU", 
+    const componentes = [
+        { nome: "CPU",
           status: "crit",
-          max_eixo_y: 100,
-          label_y: "Uso de CPU (%)" ,
-          valor_atencao: 85,
-          valor_critico: 95,
-          min_madrugada: 20, 
-          max_madrugada: 40, 
-          min_manha: 40, 
-          max_manha: 60, 
-          min_tarde_noite: 70, 
-          max_tarde_noite: 98 },
-        { nome: "RAM", 
+          maxEixoY: 100, rotuloY: "Uso de CPU (%)",
+          valorAtencao: 85, valorCritico: 95,
+          minMadrugada: 20, maxMadrugada: 40,
+          minManha: 40,     maxManha: 60,
+          minTardeNoite: 70, maxTardeNoite: 98 },
+        { nome: "RAM",
           status: "ok",
-          max_eixo_y: 100,
-          label_y: "Uso de RAM (%)" ,
-          valor_atencao: 90,
-          valor_critico: 98, 
-          min_madrugada: 55, 
-          max_madrugada: 65, 
-          min_manha: 65, 
-          max_manha: 75, 
-          min_tarde_noite: 70, 
-          max_tarde_noite: 85 },
-        { nome: "Disco", 
+          maxEixoY: 100, rotuloY: "Uso de RAM (%)",
+          valorAtencao: 90, valorCritico: 98,
+          minMadrugada: 55, maxMadrugada: 65,
+          minManha: 65,     maxManha: 75,
+          minTardeNoite: 70, maxTardeNoite: 85 },
+        { nome: "Disco",
           status: "atencao",
-          max_eixo_y: 100,
-          label_y: "Uso de disco (%)" ,
-          valor_atencao: 85,
-          valor_critico: 92,
-          min_madrugada:70, 
-          max_madrugada: 65, 
-          min_manha: 65, 
-          max_manha: 68, 
-          min_tarde_noite: 68, 
-          max_tarde_noite: 90 },
-        { nome: "Rede", 
+          maxEixoY: 100, rotuloY: "Uso de disco (%)",
+          valorAtencao: 85, valorCritico: 92,
+          minMadrugada: 70, maxMadrugada: 65,
+          minManha: 65,     maxManha: 68,
+          minTardeNoite: 68, maxTardeNoite: 90 },
+        { nome: "Rede",
           status: "ok",
-          max_eixo_y: 2000,
-          label_y: "Tráfego de rede (Mbps)" ,
-          valor_atencao: 1200,
-          valor_critico: 1800, 
-          min_madrugada: 300, 
-          max_madrugada: 600, 
-          min_manha: 100, 
-          max_manha: 250, 
-          min_tarde_noite: 500, 
-          max_tarde_noite: 900 },
-        { nome: "Processos", 
+          maxEixoY: 2000, rotuloY: "Tráfego de rede (Mbps)",
+          valorAtencao: 1200, valorCritico: 1800,
+          minMadrugada: 300, maxMadrugada: 600,
+          minManha: 100,     maxManha: 250,
+          minTardeNoite: 500, maxTardeNoite: 900 },
+        { nome: "Processos",
           status: "ok",
-          max_eixo_y: 2100,
-          label_y: "Quantidade de processos" ,
-          valor_atencao: 1500,
-          valor_critico: 2000, 
-          min_madrugada: 250, 
-          max_madrugada: 350, 
-          min_manha: 500, 
-          max_manha: 700, 
-          min_tarde_noite: 800, 
-          max_tarde_noite: 1200 },
+          maxEixoY: 2100, rotuloY: "Quantidade de processos",
+          valorAtencao: 1500, valorCritico: 2000,
+          minMadrugada: 250, maxMadrugada: 350,
+          minManha: 500,     maxManha: 700,
+          minTardeNoite: 800, maxTardeNoite: 1200 },
     ];
 
     const containerCampo = document.querySelector(".campo");
-    containerCampo.innerHTML = ""; 
+    containerCampo.innerHTML = "";
+    todosDados = {};
 
-    data.forEach((c, index) => {
-        const divGrafico = document.createElement("div");
-        divGrafico.className = "grafico-container";
-        
-        divGrafico.style.width = "400px";
-        divGrafico.style.height = "250px";
-        divGrafico.style.backgroundColor = "#1c2e5a";
-        divGrafico.style.borderRadius = "8px";
-        divGrafico.style.padding = "10px";
-        
-        const canvasId = `canvas-${index}`;
-        divGrafico.innerHTML = `
-           
-            <canvas id="${canvasId}"></canvas>
-        
-        `;
-        containerCampo.appendChild(divGrafico);
+    const rotuloDeHoras = ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"];
 
-        const ctx = document.getElementById(canvasId).getContext('2d');
-        
-        const corLinha = c.status === 'crit' ? '#ff3b3b' : c.status === 'atencao' ? '#927012' : '#12921C';
-
-        var labelHoras = ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"];
-        var valores = [];
-
-        for(var h = 0; h < 24; h++) {
-
-            var valorBase;
-
-            if (h <= 6) {
-                valorBase = Math.floor(Math.random() * (c.max_madrugada - c.    min_madrugada + 1)) + c.min_madrugada;
-            } else if (h <= 12) {
-                valorBase = Math.floor(Math.random() * (c.max_manha -     c.    min_manha + 1)) + c.min_manha;
-            } else {
-                valorBase = Math.floor(Math.random() * (c.max_tarde_noite -     c.    min_tarde_noite + 1)) + c.min_tarde_noite;
-            }
-                valores.push(valorBase);
+    componentes.forEach((componente, indice) => {
+        // Gera os dados do componente
+        const medicoes = [];
+        for (var hora = 0; hora < 24; hora++) {
+            var minimo, maximo;
+            if (hora <= 6)       { minimo = componente.minMadrugada;  maximo = componente.maxMadrugada; }
+            else if (hora <= 12) { minimo = componente.minManha;       maximo = componente.maxManha; }
+            else                 { minimo = componente.minTardeNoite;  maximo = componente.maxTardeNoite; }
+            medicoes.push(Math.floor(Math.random() * (Math.max(minimo, maximo) - Math.min(minimo, maximo) + 1)) + Math.min(minimo, maximo));
         }
+        todosDados[componente.nome] = medicoes;
 
-        new Chart(ctx, {
+        const valorAtual  = medicoes[medicoes.length - 1];
+        const picoDoDia   = Math.max(...medicoes);
+        const horaDoPico  = rotuloDeHoras[medicoes.indexOf(picoDoDia)];
+
+        const formatar = valor => componente.maxEixoY === 100
+            ? valor + '%'
+            : Math.round((valor / componente.maxEixoY) * 100) + '%';
+
+        const classeStatus = componente.status === 'crit'    ? 'status-crit'
+                           : componente.status === 'atencao' ? 'status-atencao'
+                           : 'status-ok';
+
+        const idCanvas = 'canvas-' + indice;
+        const cartao = document.createElement("div");
+        cartao.className = "card-componente";
+        cartao.innerHTML =
+            '<div class="card-grafico"><canvas id="' + idCanvas + '"></canvas></div>' +
+            '<div class="card-painel">' +
+                '<div class="pct-valor ' + classeStatus + '">' + formatar(valorAtual) + '</div>' +
+                '<div class="pico-bloco">' +
+                    '<div class="pico-label">PICO DO DIA:</div>' +
+                    '<div class="pico-valor">' + horaDoPico + ' | ' + formatar(picoDoDia) + '</div>' +
+                '</div>' +
+            '</div>';
+        containerCampo.appendChild(cartao);
+
+        const corDaLinha = componente.status === 'crit'    ? '#ff3b3b'
+                         : componente.status === 'atencao' ? '#f5a623'
+                         : '#12921C';
+
+        const contexto = document.getElementById(idCanvas).getContext('2d');
+        new Chart(contexto, {
             type: 'line',
             data: {
-                labels: labelHoras,
+                labels: rotuloDeHoras,
                 datasets: [{
-                    label: `Uso de ${c.nome} (%)`,
-                    data: valores,
-                    borderColor: corLinha,
-                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    data: medicoes,
+                    borderColor: corDaLinha,
+                    backgroundColor: 'rgba(255,255,255,0.05)',
                     fill: true,
-                    tension: 0.4
+                    tension: 0.4,
+                    pointRadius: 0,
+                    borderWidth: 2
                 }]
             },
             options: {
@@ -238,61 +225,118 @@ function carregarGraficos() {
                     legend: { display: false },
                     title: {
                         display: true,
-                        text: `Histórico: ${c.nome}`,
-                        color: '#fff'
+                        text: 'Histórico: ' + componente.nome,
+                        color: '#fff',
+                        font: { size: 11, weight: '600' }
                     },
                     annotation: {
-        annotations: {
-            linhaAtencao: {
-                type: 'line',
-                yMin: c.valor_atencao,
-                yMax: c.valor_atencao,
-                borderColor: '#927012',
-                borderWidth: 2,
-                borderDash: [5, 5],
-                label: {
-                    display: true,
-                    content: 'Atenção',
-                    padding: 4,
-                    position: 'start',
-                    xAdjust: 50,
-                    backgroundColor: 'rgba(146, 112, 18, 0.8)',
-                    color: '#fff'
-                }
-            },
-            linhaCritico: {
-                type: 'line',
-                yMin: c.valor_critico,
-                yMax: c.valor_critico,
-                borderColor: '#ff3b3b',
-                borderWidth: 2,
-                borderDash: [5, 5], 
-                label: {
-                    display: true,
-                    content: 'Crítico',
-                    padding: 4,
-                    position: 'start',
-                    backgroundColor: 'rgba(255, 59, 59, 0.8)',
-                    color: '#fff'
-                }
-            }
-        }
-    }
+                        annotations: {
+                            linhaAtencao: {
+                                type: 'line',
+                                yMin: componente.valorAtencao, yMax: componente.valorAtencao,
+                                borderColor: '#f5a623', borderWidth: 1.5, borderDash: [5,5],
+                                label: { display: true, content: 'Atenção', padding: 3, position: 'start', xAdjust: 50, backgroundColor: 'rgba(146,112,18,0.85)', color: '#fff', font: { size: 9 } }
+                            },
+                            linhaCritico: {
+                                type: 'line',
+                                yMin: componente.valorCritico, yMax: componente.valorCritico,
+                                borderColor: '#ff3b3b', borderWidth: 1.5, borderDash: [5,5],
+                                label: { display: true, content: 'Crítico', padding: 3, position: 'start', backgroundColor: 'rgba(255,59,59,0.85)', color: '#fff', font: { size: 9 } }
+                            }
+                        }
+                    }
                 },
                 scales: {
-                    y: { 
-                        title: {
-                            display: true,
-                            text: c.label_y
-                        },
-                        min: 0, 
-                        max: c.max_eixo_y, 
-                        ticks: { color: '#fff' },
-                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    y: {
+                        min: 0, max: componente.maxEixoY,
+                        title: { display: true, text: componente.rotuloY, color: 'rgba(255,255,255,0.4)', font: { size: 8 } },
+                        ticks: { color: '#aaa', font: { size: 9 } },
+                        grid: { color: 'rgba(255,255,255,0.07)' }
                     },
-                    x: { 
-                        ticks: { color: '#fff' },
+                    x: {
+                        ticks: { color: '#aaa', font: { size: 9 }, maxTicksLimit: 8 },
                         grid: { display: false }
+                    }
+                }
+            }
+        });
+    });
+
+    gerarCorrelacoes(todosDados);
+}
+
+function gerarCorrelacoes(dadosComponentes) {
+    const paresCorrelacao = [
+        { eixoX: 'CPU', eixoY: 'Processos', rotuloX: 'CPU Uso (%)', rotuloY: 'Nº Processos',       corPonto: '#7ab8f5' },
+        { eixoX: 'CPU', eixoY: 'RAM',       rotuloX: 'RAM Uso (%)', rotuloY: 'CPU Uso (%)',          corPonto: '#7ab8f5' },
+        { eixoX: 'CPU', eixoY: 'Rede',      rotuloX: 'CPU Uso (%)', rotuloY: 'Tráfego Rede (Mbps)', corPonto: '#f5c842' },
+    ];
+
+    const container = document.getElementById('correlacoes-lista');
+    if (!container) return;
+    container.innerHTML = '';
+
+    paresCorrelacao.forEach(function(par, indice) {
+        const valoresX = dadosComponentes[par.eixoX];
+        const valoresY = dadosComponentes[par.eixoY];
+        if (!valoresX || !valoresY) return;
+
+        const maximoY    = Math.max.apply(null, valoresY);
+        const valoresYNorm = valoresY.map(function(v) { return Math.round((v / maximoY) * 100); });
+
+        const quantidade = valoresX.length;
+        const mediaX  = valoresX.reduce(function(a,b){return a+b;},0) / quantidade;
+        const mediaY  = valoresYNorm.reduce(function(a,b){return a+b;},0) / quantidade;
+        const numerador  = valoresX.reduce(function(soma,x,i){return soma+(x-mediaX)*(valoresYNorm[i]-mediaY);}, 0);
+        const denominadorX = Math.sqrt(valoresX.reduce(function(soma,x){return soma+(x-mediaX)*(x-mediaX);}, 0));
+        const denominadorY = Math.sqrt(valoresYNorm.reduce(function(soma,y){return soma+(y-mediaY)*(y-mediaY);}, 0));
+        const correlacao   = (denominadorX && denominadorY) ? +(numerador / (denominadorX * denominadorY)).toFixed(2) : 0;
+
+        const inclinacao   = numerador / (denominadorX * denominadorX || 1);
+        const intercepto   = mediaY - inclinacao * mediaX;
+        const xMinimo = Math.min.apply(null, valoresX), xMaximo = Math.max.apply(null, valoresX);
+
+        const idCanvas = 'corr-' + indice;
+        const tituloPar = par.eixoY + ' vs. ' + par.eixoX + ' (Correlação: ' + (correlacao > 0 ? '+' : '') + correlacao + ')';
+
+        const bloco = document.createElement('div');
+        bloco.className = 'corr-item';
+        bloco.innerHTML =
+            '<div class="corr-titulo">' + tituloPar + '</div>' +
+            '<div class="corr-canvas-wrap"><canvas id="' + idCanvas + '"></canvas></div>';
+        container.appendChild(bloco);
+
+        const pontos    = valoresX.map(function(x,i){ return { x: x, y: valoresYNorm[i] }; });
+        const tendencia = [
+            { x: xMinimo, y: +(inclinacao * xMinimo + intercepto).toFixed(1) },
+            { x: xMaximo, y: +(inclinacao * xMaximo + intercepto).toFixed(1) }
+        ];
+
+        const contexto = document.getElementById(idCanvas).getContext('2d');
+        new Chart(contexto, {
+            type: 'scatter',
+            data: {
+                datasets: [
+                    { label: 'Dados',     data: pontos,    backgroundColor: par.corPonto + 'cc', pointRadius: 4, pointHoverRadius: 6 },
+                    { label: 'Tendência', data: tendencia, type: 'line', borderColor: par.corPonto, borderWidth: 2, pointRadius: 0, fill: false, tension: 0 }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false }, title: { display: false } },
+                scales: {
+                    x: {
+                        title: { display: true, text: par.rotuloX, color: 'rgba(255,255,255,0.5)', font: { size: 9 } },
+                        ticks: { color: '#aaa', font: { size: 9 } },
+                        grid: { color: 'rgba(255,255,255,0.07)' },
+                        min: 0, max: 100
+                    },
+                    y: {
+                        title: { display: true, text: par.rotuloY, color: 'rgba(255,255,255,0.5)', font: { size: 9 } },
+                        ticks: { color: '#aaa', font: { size: 9 } },
+                        grid: { color: 'rgba(255,255,255,0.07)' },
+                        min: 0, max: 100
                     }
                 }
             }
@@ -300,149 +344,10 @@ function carregarGraficos() {
     });
 }
 
-//valor_atencao
-//valor_critico
-
-    // componentesAlerta = 0;
-    // componentesCriticos = 0;
-
-    // function atualizarKPIs(){
-    //     document.getElementById("kpi-alerta").innerHTML = componentesAlerta;
-    //     document.getElementById("kpi-crit").innerHTML = componentesCriticos;
-    // }
-
-    // const servidor = JSON.parse(sessionStorage.getItem("servidor"));
-    // if (servidor) {
-    //     document.getElementById("kpi-servidor").innerText = servidor.nome;
-    // }
-
-    // let instanciasGraficos = [];
-
-    // function abrirModal(nome) {
-    //     const modal = document.getElementById("modalGrafico");
-    //     document.getElementById("tituloComponente").innerText = nome;
-    //     modal.style.display = "flex";
-    //     gerarGraficos();
-    // }
-
-    // function fecharModal() {
-    //     document.getElementById("modalGrafico").style.display = "none";
-    // }
-
-    // function gerarGraficos() {
-    //     const ids = ['grafico1', 'grafico2', 'grafico3', 'grafico4'];
-    //     const labels = ['Uso em Tempo Real', 'Médias da semana', 'Percentual de swap', 'Distribuição de Carga'];
-    //     const tipos = ['line', 'bar', 'line', 'radar'];
-
-    //     instanciasGraficos.forEach(i => i.destroy());
-    //     instanciasGraficos = [];
-
-    //     ids.forEach((id, i) => {
-    //         const ctx = document.getElementById(id).getContext('2d');
-    //         const config = {
-    //             type: tipos[i],
-    //             data: {
-    //                 labels: tipos[i] === 'radar' ? ['Núcleo 1', 'Núcleo 2', 'Núcleo 3', 'Núcleo 4', 'Núcleo 5'] : ['10:00', '10:05', '10:10', '10:15', '10:20'],
-    //                 datasets: [{
-    //                     label: labels[i],
-    //                     data: Array.from({ length: 5 }, () => Math.floor(Math.random() * 100)),
-    //                     borderColor: '#101F4A',
-    //                     backgroundColor: tipos[i] === 'bar' ? '#1E43B0' : 'rgba(30, 67, 176, 0.3)',
-    //                     fill: true,
-    //                     tension: 0.4
-    //                 }]
-    //             },
-    //             options: {
-    //                 responsive: true,
-    //                 maintainAspectRatio: false,
-    //                 plugins: {
-    //                     legend: { display: false },
-    //                     title: {
-    //                         display: true,
-    //                         text: labels[i],
-    //                         color: '#1c2e5a',
-    //                         font: { size: 14, weight: 'bold' }
-    //                     },
-    //                     customCanvasBackgroundColor: { color: '#e0e0e0' }
-    //                 },
-    //                 scales: tipos[i] === 'radar' ? {
-    //                     r: {
-    //                         grid: { color: 'rgba(0, 0, 0, 0.15)' },
-    //                         angleLines: { color: 'rgba(0, 0, 0, 0.15)' },
-    //                         pointLabels: { color: '#444' }
-    //                     }
-    //                 } : {
-    //                     y: { grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { color: '#444' } },
-    //                     x: { grid: { color: 'rgba(0, 0, 0, 0.1)' }, ticks: { color: '#444' } }
-    //                 }
-    //             },
-    //             plugins: [{
-    //                 id: 'customCanvasBackgroundColor',
-    //                 beforeDraw: (chart, args, options) => {
-    //                     const { ctx } = chart;
-    //                     ctx.save();
-    //                     ctx.globalCompositeOperation = 'destination-over';
-    //                     ctx.fillStyle = options.color;
-    //                     ctx.fillRect(0, 0, chart.width, chart.height);
-    //                     ctx.restore();
-    //                 }
-    //             }]
-    //         };
-    //         instanciasGraficos.push(new Chart(ctx, config));
-    //     });
-    // }
-
-    // window.onclick = function (event) {
-    //     const modal = document.getElementById("modalGrafico");
-    //     if (event.target == modal) fecharModal();
-    // }
-
-    
-
-    // function carregarCards() {
-    //     const data = [
-    //         { nome: "Memória", tipo: "RAM", valor: "12%", status: "ok", ultimaVerificacao: "20:00:01" },
-    //         { nome: "CPU", tipo: "CPU", valor: "88%", status: "crit", ultimaVerificacao: "20:00:01" },
-    //         { nome: "Disco", tipo: "DISK", valor: "55%", status: "atencao", ultimaVerificacao: "20:00:01" },
-    //         { nome: "Rede", tipo: "REDE", valor: "19%", status: "ok", ultimaVerificacao: "20:00:01" }
-    //     ];
-
-    //     const ordem = { crit: 0, atencao: 1, ok: 2 };
-    //     data.sort((a, b) => ordem[a.status] - ordem[b.status]);
-
-    //     const containerCampo = document.querySelector(".campo");
-    //     containerCampo.innerHTML = "";
-
-    //     data.forEach(c => {
-    //         const card = document.createElement("div");
-
-    //         if (c.status === "crit") {
-    //             componentesCriticos++
-    //             card.className = "card-componentes-erro card-erro";
-    //         } else if (c.status === "atencao") {
-    //             componentesAlerta++
-    //             card.className = "card-componentes-erro card-atencao";
-    //         } else {
-    //             card.className = "card-componentes-estavel card-estavel";
-    //         }
-
-
-    //         card.onclick = () => { abrirModal(c.nome); };
-
-    //         card.innerHTML = `
-    //         <div class="topo">
-    //             <img src="./assets/server2.png" alt="">
-    //             <p>${c.nome}</p>
-    //         </div>
-    //         <div class="valor">${c.valor}</div>
-    //         <div class="status">
-    //             <p>Status: <span>${c.status === 'ok' ? 'Estável' : c.status === 'crit' ? 'Crítico' : 'Atenção'}</span></p>
-    //             <p>Última Verificação: ${c.ultimaVerificacao}</p>
-    //         </div>
-    //     `;
-
-    //         containerCampo.appendChild(card);
-    //     });
-    // }
+const servidor = JSON.parse(sessionStorage.getItem("servidor"));
+if (servidor) {
+    document.getElementById("titulo-kpi-servidor").innerText = servidor.nome;
+    document.getElementById("kpi-servidor").innerText = servidor.status;
+}
 
 </script>

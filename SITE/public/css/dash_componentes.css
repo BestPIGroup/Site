@@ -177,7 +177,7 @@ a {
     white-space: nowrap;
     flex: 1 1 auto;
     height: max-content;
-    max-width: fit-content;
+    max-width: 134px;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
     img {
         width: 33px;
@@ -197,11 +197,141 @@ a {
     flex-direction: column;
 }
 
+.dashboard-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+}
+
 .campo {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
     justify-content: flex-start;
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.card-componente {
+    display: flex;
+    flex-direction: row;
+    width: 470px;
+    height: 270px;
+    background-color: #1c2e5a;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,.35);
+    transition: transform 0.2s;
+}
+
+.card-componente:hover {
+    transform: scale(1.02);
+}
+
+.card-grafico {
+    flex: 1;
+    min-width: 0;
+    padding: 8px;
+    position: relative;
+    background-color: #0d2855;
+}
+
+.card-grafico canvas {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: calc(100% - 16px) !important;
+    height: calc(100% - 16px) !important;
+}
+
+.card-painel {
+    width: 140px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 10px;
+    background: rgba(0, 0, 0, 0.264);
+}
+
+/* Porcentagem — cores por status */
+.pct-valor {
+    font-size: 46px;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.pct-valor.status-ok      { color: #3ed64b; }
+.pct-valor.status-atencao { color: #f5a623; }
+.pct-valor.status-crit    { color: #ff3b3b; }
+
+.pico-bloco { text-align: center; }
+
+.pico-label {
+    font-size: 10px;
+    color: rgba(255,255,255,.45);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 3px;
+}
+
+.pico-valor {
+    font-size: 12px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.correlacoes-painel {
+    width: 340px;
+    flex-shrink: 0;
+    background-color: #0b2553;
+    border-radius: 10px;
+    padding: 14px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.35);
+}
+
+.correlacoes-titulo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 22px;
+    text-align: center;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.correlacoes-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.corr-item {
+    background-color: #1c2e5a;
+    border-radius: 8px;
+    padding: 8px 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.corr-titulo {
+    color: rgba(255,255,255,.85);
+    font-size: 10px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.corr-canvas-wrap {
+    height: 130px;
+    position: relative;
 }
 
 .card-componentes-erro,
