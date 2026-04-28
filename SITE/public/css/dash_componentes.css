@@ -34,9 +34,9 @@ a {
 }
 
 .sidebar:hover {
-    width: 120px;
+    width: 130px;
     transition: 300ms;
-    box-shadow: 0px 0px 25px 9px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 25px 9px rgba(0, 0, 0, 0.429);
 
     .item p {
         opacity: 1 !important;
@@ -122,19 +122,22 @@ a {
 
 .box {
     position: fixed;
-    top: 15px;
-    left: 90px;
-    width: calc(100% - 110px);
+    top: 0px;
+    padding-top: 15px;
+    left: 0px;
+    padding-left: 90px;
+    width: 100%;
     z-index: 10;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    backdrop-filter: blur(18px);
+    backdrop-filter: blur(12px);
 }
 
 .box .retangulo {
-    width: 100%;
+    width: calc(100% - 20px);
     height: 48px;
+    transform: translateY(5px);
     background-color: #0b2553;
     border-radius: 10px;
     box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.25);
@@ -153,12 +156,13 @@ a {
 .btn-voltar {
     width: 28px;
     cursor: pointer;
+    margin-top: 6px;
     transition: 100ms;
-    flex-shrink: 0;
 }
 
 .btn-voltar:hover {
-    scale: 1.22;
+    scale: 1.02;
+    transform: translateX(-5px);
 }
 
 .kpis {
@@ -214,6 +218,7 @@ a {
 .kpi-alerta-sino {
     position: relative;
     margin-left: auto;
+    margin-right: 20px;
     background: linear-gradient(135deg, rgba(0, 91, 156, 0.27) 25%, rgba(255, 36, 36, 0.485));
     border: px solid rgba(255, 120, 120, 0.35);
     color: rgba(255, 220, 220, 0.85);
@@ -230,7 +235,7 @@ a {
 }
 
 .conteudo {
-    padding: 200px 20px 40px 90px;
+    padding: 210px 20px 40px 90px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -297,19 +302,42 @@ a {
     background: rgba(0, 0, 0, 0.264);
 }
 
+
+
 /* Porcentagem — cores por status */
 .pct-valor {
     font-size: 46px;
     font-weight: 900;
     line-height: 1;
     letter-spacing: -1px;
+    transition: 300ms;
 }
 
 .pct-valor.status-ok      { color: #3ed64b; }
 .pct-valor.status-atencao { color: #f5a623; }
 .pct-valor.status-crit    { color: #ff3b3b; }
 
-.pico-bloco { text-align: center; }
+.pct-valor.status-ok:hover{
+    transition: 200ms;
+    color: #3ed64b;
+    text-shadow: 0 4px 20px #3ed64b81;
+}
+
+.pct-valor.status-atencao:hover{
+    transition: 200ms;
+    color: #f5a623;
+    text-shadow: 0 4px 20px #f5a52374;
+}
+
+.pct-valor.status-crit:hover{
+    transition: 200ms;
+    color: #ff3b3b;
+    text-shadow: 0 4px 20px rgba(255, 59, 59, 0.486);
+}
+
+.pico-bloco { 
+    text-align: center; 
+}
 
 .pico-label {
     font-size: 10px;

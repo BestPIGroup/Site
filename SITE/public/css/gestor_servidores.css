@@ -29,7 +29,18 @@ a {
     left: 0;
     z-index: 1000;
     box-shadow: 0px 0px 25px 9px rgba(0, 0, 0, 0.139);
-    transition: 300ms
+    transition: 300ms;
+}
+
+.sidebar:hover {
+    width: 130px;
+    transition: 300ms;
+    box-shadow: 0px 0px 25px 9px rgba(0, 0, 0, 0.429);
+
+    .item p {
+        opacity: 1 !important;
+        transition: opacity 1200ms, 250ms;
+    }
 }
 
 .logo {
@@ -38,14 +49,8 @@ a {
     padding-bottom: 5vw;
 }
 
-.sidebar:hover{
-    width: 110px;
-    transition: 300ms;
-
-    .item p{
-        opacity: 1 !important;
-        transition: opacity 1200ms, 250ms;
-    }
+.logo img {
+    width: 55px;
 }
 
 .item {
@@ -62,6 +67,12 @@ a {
         opacity: 0 !important;
         transition: opacity 700ms, 250ms;
     }
+}
+
+.item #perfil_botao{
+    text-decoration: none; 
+    color: rgb(255, 255, 255); 
+    text-align: center;
 }
 
 .logo img {
@@ -113,6 +124,38 @@ a {
     height: 2vw;
 }
 
+.box {
+    position: fixed;
+    top: 0px;
+    padding-top: 15px;
+    left: 0px;
+    padding-left: 90px;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    backdrop-filter: blur(12px);
+}
+
+.box .retangulo {
+    width: calc(100% - 20px);
+    height: 48px;
+    transform: translateY(5px);
+    background-color: #0b2553;
+    border-radius: 10px;
+    box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    gap: 16px;
+}
+
+.box .retangulo p {
+    color: white;
+    font-weight: bolder;
+    font-size: 24px;
+}
 
 .topo-cards {
     display: flex;
@@ -121,7 +164,6 @@ a {
     padding: 0px 0px 0px 5px
 }
 
-/* CARD */
 .card-info {
     background-color: #0b2553;
     padding: 15px 20px;
@@ -134,8 +176,6 @@ a {
     gap: 10px;
 }
 
-
-/* topo do card */
 .titulo-info {
     display: flex;
     justify-content: space-between;

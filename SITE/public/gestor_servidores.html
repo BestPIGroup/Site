@@ -58,9 +58,11 @@
         </ul>
         <div class="saida">
             <div class="item">
-                <img src="./assets/user3.png" alt="Perfil">
-                <p>Gestor</p>
-                <p>Perfil</p>
+                <a href="./perfil.html" id="perfil_botao">
+                    <img src="./assets/user3.png" alt="Perfil">
+                    <p>Gestor</p>
+                    <p>Perfil</p>
+                </a>
             </div>
             <a href="index.html">
                 <div class="item">
@@ -70,89 +72,32 @@
             </a>
         </div>
     </header>
-    
-
-    <!-- MAIN -->
-
-
-        <div class="topo-cards">
-
-            <div class="card-info">
-                <div class="imagem-info">
-                    <img src="./assets/server.png">
-                </div>
-                <div class="titulo-info">
-                    <p>Total de Servidores</p>
-                </div>
-
-                <div class="numero-info">4</div>
-
-            </div>
-
-            <div class="card-info">
-                <div class="imagem-info">
-                    <img src="./assets/green_check.png">
-                </div>
-                <div class="titulo-info">
-                    <p>Servidores Normais</p>
-                </div>
-
-                <div class="numero-info">2</div>
-
-            </div>
-            <div class="card-info">
-                <div class="imagem-info">
-                    <img src="./assets/yellow_exclamation.png">
-                </div>
-                <div class="titulo-info">
-                    <p>Servidores em Atenção</p>
-                </div>
-
-                <div class="numero-info">1</div>
-
-            </div>
-
-             <div class="card-info">
-                <div class="imagem-info">
-                    <img src="./assets/warning2.png">
-                </div>
-                <div class="titulo-info">
-                    <p>Servidores Críticos</p>
-                </div>
-
-                <div class="numero-info">1</div>
-
-            </div>
-
-             <div class="card-info">
-                <div class="imagem-info">
-                    <img src="./assets/hardware.png">
-                </div>
-                <div class="titulo-info">
-                    <p>Alertas de Hardware</p>
-                </div>
-
-                <div class="numero-info">4</div>
-
-            </div>
-
-             <div class="card-info">
-                <div class="imagem-info">
-                    <img src="./assets/bug-catcher.png">
-                </div>
-                <div class="titulo-info">
-                    <p>Ciberameaças Detectadas</p>
-                </div>
-
-                <div class="numero-info">7</div>
-
-            </div>
-
-        </div>
-
 
         <div class="conteudo">
             <div class="box">
+                <div class="kpis">
+                    <div class="kpi card-erro">
+                        <img src="./assets/warningRed.png" alt="">
+                        Servidores Críticos<h2 id="crit">1</h2>
+                    </div>
+                    <div class="kpi card-atencao">
+                        <img src="./assets/warningOrange.png" alt="">
+                        Servidores em Atenção<h2 id="atencao">1</h2>
+                    </div>
+                    <div class="kpi">
+                        <img src="./assets/hardwareWhite.png" alt="">
+                        Alertas de Hardware<h2 id="alert">3</h2>
+                    </div>
+                    <div class="kpi">
+                        <img src="./assets/unlockWhite.png" alt="">
+                        Ciberameaças<h2 id="threats">0</h2>
+                    </div>
+                    <div class="kpi kpi-alerta-sino" id="card-alerta-sino">
+                        <button class="btn-fechar-alerta" onclick="document.getElementById('card-alerta-sino').style.display='none'">✕</button>
+                        <img src="./assets/bellWhite.png" alt="">
+                        Alerta novo!<h2 id="kpi-sino">CPU</h2>
+                    </div>
+                </div>
                 <div class="retangulo">
                     <p>Servidores</p>
                     <button class="btn-adicionar" onclick="window.location.href='cadastro_servidor.html'">
