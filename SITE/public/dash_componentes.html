@@ -49,7 +49,7 @@
             <div class="item">
                 <img src="./assets/user3.png" alt="Perfil">
                 <p>Analista</p>
-                <p>Perfil</p>
+                <p id="nomeUser">Perfil</p>
             </div>
             <a href="index.html">
                 <div class="item">
@@ -135,9 +135,10 @@
 </html>
 <script>
 
-var todosDados = {};
+    var todosDados = {};
+    
+    function carregarGraficos() {
 
-function carregarGraficos() {
     const componentes = [
         { nome: "CPU",
           status: "crit",
@@ -403,6 +404,8 @@ if (servidor) {
         document.getElementById("kpi-servidor").style.color = "#12921C";
         document.getElementById("kpi-servidor").innerHTML = "Normal";
     }
+
 }
+document.getElementById("nomeUser").innerHTML = sessionStorage.NOME_USUARIO
 
 </script>

@@ -28,14 +28,14 @@ a {
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0px 0px 25px 9px rgba(0, 0, 0, 0.139);
+    box-shadow: 0px 0px 25px 9px rgba(0, 0, 0, 0.239);
     transition: 300ms;
 }
 
 .sidebar:hover {
     width: 130px;
     transition: 300ms;
-    box-shadow: 0px 0px 25px 9px rgba(0, 0, 0, 0.429);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 
     .item p {
         opacity: 1 !important;
@@ -144,7 +144,8 @@ a {
     transform: translateY(5px);
     background-color: #0b2553;
     border-radius: 10px;
-    box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    justify-content: space-between;
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -155,6 +156,13 @@ a {
     color: white;
     font-weight: bolder;
     font-size: 24px;
+}
+.kpis {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 15px;
+    width: auto;
 }
 
 .topo-cards {
@@ -194,53 +202,93 @@ a {
 }
 
 .conteudo {
-    padding: 160px 20px 0px 70px;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-}
-
-
-.box .retangulo {
-    position: fixed;
-    top: 10vw;
-    left: 90px;
-    width: calc(96.5% - 110px);
-    height: 60px;
-    background-color: #0b2553;
-    border-radius: 10px;
-    box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.25);
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.box .retangulo p {
-    margin-left: 20px;
+    padding: 210px 20px 40px 90px;
     color: white;
-    font-weight: bolder;
-    font-size: 24px;
+    display: flex;
+    flex-direction: column;
 }
 
 .btn-adicionar {
-    background-color: #0d800d;
+    background-color: #0b2553;
     color: white;
-    border: none;
-    padding: 12px 24px;
+    border: 2px solid white;
+    padding: 8px 20px;
     border-radius: 10px;
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
-    margin-right: 10px;
+    margin-right: -14px;
 }
 
 .btn-adicionar:hover {
     background-color: #12921c;
-    transform: scale(1.05);
+    border: 2px solid #12921c;
+    transform: translateY(-6px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
+.kpi {
+    background: #0b2553;
+    padding: 8px 14px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.664);
+    white-space: nowrap;
+    flex: 1 1 auto;
+    max-height: 96px;
+    max-width: 162px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    img {
+        width: 33px;
+        height: 33px;
+    }
+}
+
+.btn-fechar-alerta {
+    position: absolute;
+    top: 5px;
+    right: 7px;
+    background: none;
+    border: none;
+    color: rgba(255, 180, 180, 0.7);
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    transition: color 0.15s, transform 0.15s;
+}
+
+.btn-fechar-alerta:hover {
+    color: #ff6b6b;
+    transform: scale(1.2);
+}
+
+.kpi-alerta-sino {
+    position: relative;
+    margin-left: auto;
+    margin-right: 20px;
+    background: linear-gradient(135deg, rgba(0, 91, 156, 0.27) 25%, rgba(255, 36, 36, 0.485));
+    border: px solid rgba(255, 120, 120, 0.35);
+    color: rgba(255, 220, 220, 0.85);
+    box-shadow: 0 0 16px rgba(255, 80, 80, 0.18);
+}
+
+.kpi-alerta-sino h2 {
+    color: #ffdddd;
+}
+
+
+.kpi h2 {
+    font-size: 17px;
+    margin-left: 5px;
+    color: #ffffff;
+}
 
 .campo {
     display: flex;
@@ -250,9 +298,7 @@ a {
     
 }
 
-:root {         /* fundo geral */
-    --card-bg: #1e293b;           /* card */
-    --card-hover: #243249;        /* hover */
+:root {
     --border-color: #334155;
     --text-color: #e2e8f0;
 
@@ -263,9 +309,8 @@ a {
 }
 
 
-/* CARD */
 .card {
-    background: linear-gradient(145deg, #0d1f3d, #122b55);
+    background: #0b2553;
     border-radius: 12px;
     width: 420px;
     color: var(--text-color);
@@ -273,24 +318,20 @@ a {
     display: flex;
     flex-direction: column;
 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     transition: all 0.25s ease;
 }
 
-/* HOVER */
 .card:hover {
     transform: translateY(-6px);
-    background: var(--card-hover);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
-/* TOPO */
 .card-top {
     display: flex;
     padding: 20px;
 }
 
-/* ESQUERDA */
 .div-esquerda {
     flex: 0 0 90px;
     display: flex;
@@ -298,21 +339,17 @@ a {
     justify-content: center;
 }
 
-/* IMAGEM */
 .img-main-server {
     width: 65px;
     opacity: 0.7;
     transition: 0.3s;
 }
 
-
-/* DIREITA */
 .div-direita {
     flex: 1;
     padding-left: 20px;
 }
 
-/* HEADER */
 .header-row {
     display: flex;
     justify-content: space-between;
@@ -325,7 +362,6 @@ a {
     font-weight: 600;
 }
 
-/* bolinha */
 .dot {
     color: var(--accent-yellow);
     margin-right: 6px;
@@ -341,7 +377,6 @@ a {
     margin-right: 6px;
 }
 
-/* BADGE */
 .badge{
     background: rgba(250, 204, 21, 0.15);
     color: var(--accent-yellow);
@@ -372,8 +407,6 @@ a {
     border: 1px solid rgba(226, 56, 33, 0.15);
 }
 
-
-/* LISTA */
 .info-list {
     list-style: none;
     padding: 0;
@@ -388,7 +421,6 @@ a {
     color: #cbd5e1;
 }
 
-/* MINI ICON */
 .mini-icon {
     width: 18px;
     height: 18px;
@@ -396,7 +428,6 @@ a {
     opacity: 0.8;
 }
 
-/* STATUS */
 .status-alert {
     color: var(--accent-red);
     font-weight: bold;
@@ -409,13 +440,11 @@ a {
     margin-left: 5px;
 }
 
-/* BOTÕES */
 .div-inferior {
     display: flex;
     border-top: 1px solid var(--border-color);
 }
 
-/* BOTÃO */
 .btn {
     flex: 1;
     background: transparent;
@@ -433,17 +462,10 @@ a {
     transition: all 0.2s;
 }
 
-/* HOVER BOTÃO */
-.btn:hover {
-    background: rgba(255,255,255,0.05);
-}
-
-/* BOTÃO ESQUERDA */
 .btn-left {
-    border-right: 1px solid var(--border-color);
+    border-right: 0px solid ;
 }
 
-/* ICONES */
 .btn-icon {
     width: 16px;
     height: 16px;

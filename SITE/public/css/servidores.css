@@ -35,7 +35,7 @@ a {
 .sidebar:hover{
     width: 130px;
     transition: 300ms;
-    box-shadow: 0px 0px 25px 9px rgba(0, 0, 0, 0.429);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 
     .item p{
         opacity: 1 !important;
@@ -141,7 +141,7 @@ a {
     transform: translateY(5px);
     background-color: #0b2553;
     border-radius: 10px;
-    box-shadow: 0px 0px 11px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -185,6 +185,7 @@ a {
     background-repeat: no-repeat;
     background-position: right 20px center;
     background-size: 160px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .card-erro {
@@ -209,7 +210,7 @@ a {
 }
 
 .card-componentes:hover {
-    transform: scale(1.03);
+    transform: translateY(-6px);
 }
 
 .card-componentes p {
@@ -232,7 +233,7 @@ a {
     flex: 1 1 auto;
     height: max-content;
     max-width: 162px;
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     img {
         width: 33px;
         height: 33px;
@@ -297,6 +298,7 @@ a {
     padding: 20px;
     border-radius: 12px;
     transition: 500ms;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 
     img{
         width: 33px;
@@ -306,7 +308,7 @@ a {
 }
 
 .card:hover{
-    scale: 1.09;
+    transform: translateY(-6px);
     transition: 500ms;
     
 }
