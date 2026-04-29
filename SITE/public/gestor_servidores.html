@@ -27,7 +27,7 @@
                     </div>
                 </a>
             </li>
-            
+
             <li>
                 <a href="#">
                     <div class="item">
@@ -46,7 +46,7 @@
                 </a>
             </li>
 
-              <li>
+            <li>
                 <a href="./config_comp.html">
                     <div class="item">
                         <img src="./assets/engineering.png" alt="Servidores">
@@ -72,173 +72,226 @@
             </a>
         </div>
     </header>
-
-        <div class="conteudo">
-            <div class="box">
-                <div class="kpis">
-                    <div class="kpi card-erro">
-                        <img src="./assets/warningRed.png" alt="">
-                        Servidores Críticos<h2 id="crit">1</h2>
+    
+    <div class="conteudo">
+        <div class="box">
+            <div class="kpis">
+                <div class="kpi card-erro">
+                    <img src="./assets/warningRed.png" alt="">
+                    Servidores Críticos<h2 id="crit">1</h2>
+                </div>
+                <div class="kpi card-atencao">
+                    <img src="./assets/warningOrange.png" alt="">
+                    Servidores em Atenção<h2 id="atencao">1</h2>
+                </div>
+                <div class="kpi">
+                    <img src="./assets/hardwareWhite.png" alt="">
+                    Alertas de Hardware<h2 id="alert">3</h2>
+                </div>
+                <div class="kpi">
+                    <img src="./assets/unlockWhite.png" alt="">
+                    Ciberameaças<h2 id="threats">0</h2>
+                </div>
+                
+                <div class="kpi kpi-alerta-sino" id="card-alerta-sino">
+                    <button class="btn-fechar-alerta"
+                    onclick="document.getElementById('card-alerta-sino').style.display='none'">✕</button>
+                    <img src="./assets/bellWhite.png" alt="">
+                    Alerta novo!<h2 id="kpi-sino">Servidor 2</h2>
+                </div>
+            </div>
+            <div class="retangulo">
+                <p>Servidores</p>
+                <button class="btn-adicionar" onclick="window.location.href='cadastro_servidor.html'">
+                    Adicionar Servidor
+                </button>
+            </div>
+        </div>
+        <div class="campo">
+            <div class="card">
+                <div class="card-top">
+        
+                    <div class="div-esquerda">
+                        <img src="./assets/server2.png" class="img-main-server" alt="Server">
                     </div>
-                    <div class="kpi card-atencao">
-                        <img src="./assets/warningOrange.png" alt="">
-                        Servidores em Atenção<h2 id="atencao">1</h2>
-                    </div>
-                    <div class="kpi">
-                        <img src="./assets/hardwareWhite.png" alt="">
-                        Alertas de Hardware<h2 id="alert">3</h2>
-                    </div>
-                    <div class="kpi">
-                        <img src="./assets/unlockWhite.png" alt="">
-                        Ciberameaças<h2 id="threats">0</h2>
-                    </div>
-                    <div class="kpi kpi-alerta-sino" id="card-alerta-sino">
-                        <button class="btn-fechar-alerta" onclick="document.getElementById('card-alerta-sino').style.display='none'">✕</button>
-                        <img src="./assets/bellWhite.png" alt="">
-                        Alerta novo!<h2 id="kpi-sino">CPU</h2>
+        
+                    <div class="div-direita">
+                        <div class="header-row">
+                            <span class="server-title"><span class="dot-critico">●</span> Servidor 1</span>
+                            <span class="badge-critico">CRÍTICO</span>
+                        </div>
+        
+                        <ul class="info-list">
+                            <li>
+                                <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
+                                Alertas de Hardware: 4
+                            </li>
+                            <li>
+                                <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
+                                Ciberataques Detectados: 5
+                            </li>
+                            <li>
+                                <img src="./assets/lock.png" class="mini-icon" alt="Security">
+                                Segurança: <span class="status-alert">Comprometida</span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <div class="retangulo">
-                    <p>Servidores</p>
-                    <button class="btn-adicionar" onclick="window.location.href='cadastro_servidor.html'">
-                        Adicionar Servidor
+        
+                <div class="div-inferior">
+                    
+                    <a href="./assets/relatorio_hardware.pdf" target="_blank">
+                        <button class="btn btn-left">
+                            <img src="./assets/pdf.png" class="btn-icon" alt="Download">
+                            Download de Relatório
+                        </button>
+                    </a>
+                    <button class="btn btn-right">
+                        <img src="./assets/edit.png" class="btn-icon" alt="Edit">
+                        Editar Servidor
                     </button>
                 </div>
             </div>
-            <div class="campo">
-                <div class="card">
-                    <div class="card-top">
+            <div class="card">
+                <div class="card-top">
 
-                        <div class="div-esquerda">
-                            <img src="./assets/server2.png" class="img-main-server" alt="Server">
-                        </div>
-
-                        <div class="div-direita">
-                            <div class="header-row">
-                                <span class="server-title"><span class="dot">●</span> Servidor 1</span>
-                                <span class="badge">ATENÇÃO</span>
-                            </div>
-
-                            <ul class="info-list">
-                                <li>
-                                    <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
-                                    Alertas de Hardware: 0
-                                </li>
-                                <li>
-                                    <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
-                                    Ciberataques Detectados: 2
-                                </li>
-                                <li>
-                                    <img src="./assets/lock.png" class="mini-icon" alt="Security">
-                                    Segurança: <span class="status-alert">Comprometida</span>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="div-esquerda">
+                        <img src="./assets/server2.png" class="img-main-server" alt="Server">
                     </div>
 
-                    <div class="div-inferior">
+                    <div class="div-direita">
+                        <div class="header-row">
+                            <span class="server-title"><span class="dot">●</span> Servidor 3</span>
+                            <span class="badge">ATENÇÃO</span>
+                        </div>
+
+                        <ul class="info-list">
+                            <li>
+                                <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
+                                Alertas de Hardware: 0
+                            </li>
+                            <li>
+                                <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
+                                Ciberataques Detectados: 2
+                            </li>
+                            <li>
+                                <img src="./assets/lock.png" class="mini-icon" alt="Security">
+                                Segurança: <span class="status-alert">Comprometida</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="div-inferior">
+                    <a href="./assets/relatorio_hardware.pdf" target="_blank">    
                         <button class="btn btn-left">
                             <img src="./assets/pdf.png" class="btn-icon" alt="Download">
                             Download de Relatório
                         </button>
-                        <button class="btn btn-right">
-                            <img src="./assets/edit.png" class="btn-icon" alt="Edit">
-                            Editar Servidor
-                        </button>
-                    </div>
+                    </a>
+                    <button class="btn btn-right">
+                        <img src="./assets/edit.png" class="btn-icon" alt="Edit">
+                        Editar Servidor
+                    </button>
                 </div>
-
-                <div class="card">
-                    <div class="card-top">
-
-                        <div class="div-esquerda">
-                            <img src="./assets/server2.png" class="img-main-server" alt="Server">
-                        </div>
-
-                        <div class="div-direita">
-                            <div class="header-row">
-                                <span class="server-title"><span class="dot-normal">●</span> Servidor 2</span>
-                                <span class="badge-normal">NORMAL</span>
-                            </div>
-
-                            <ul class="info-list">
-                                <li>
-                                    <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
-                                    Alertas de Hardware: 0
-                                </li>
-                                <li>
-                                    <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
-                                    Ciberataques Detectados: 0
-                                </li>
-                                <li>
-                                    <img src="./assets/lock.png" class="mini-icon" alt="Security">
-                                    Segurança: <span class="status-normal">Íntegro</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="div-inferior">
-                        <button class="btn btn-left">
-                            <img src="./assets/pdf.png" class="btn-icon" alt="Download">
-                            Download de Relatório
-                        </button>
-                        <button class="btn btn-right">
-                            <img src="./assets/edit.png" class="btn-icon" alt="Edit">
-                            Editar Servidor
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="card-top">
-
-                        <div class="div-esquerda">
-                            <img src="./assets/server2.png" class="img-main-server" alt="Server">
-                        </div>
-
-                        <div class="div-direita">
-                            <div class="header-row">
-                                <span class="server-title"><span class="dot-critico">●</span> Servidor 3</span>
-                                <span class="badge-critico">CRÍTICO</span>
-                            </div>
-
-                            <ul class="info-list">
-                                <li>
-                                    <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
-                                    Alertas de Hardware: 4
-                                </li>
-                                <li>
-                                    <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
-                                    Ciberataques Detectados: 5
-                                </li>
-                                <li>
-                                    <img src="./assets/lock.png" class="mini-icon" alt="Security">
-                                    Segurança: <span class="status-alert">Comprometida</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="div-inferior">
-                        <button class="btn btn-left">
-                            <img src="./assets/pdf.png" class="btn-icon" alt="Download">
-                            Download de Relatório
-                        </button>
-                        <button class="btn btn-right">
-                            <img src="./assets/edit.png" class="btn-icon" alt="Edit">
-                            Editar Servidor
-                        </button>
-                    </div>
-                </div>
-
-                
             </div>
+
+            <div class="card">
+                <div class="card-top">
+
+                    <div class="div-esquerda">
+                        <img src="./assets/server2.png" class="img-main-server" alt="Server">
+                    </div>
+
+                    <div class="div-direita">
+                        <div class="header-row">
+                            <span class="server-title"><span class="dot-normal">●</span> Servidor 1</span>
+                            <span class="badge-normal">NORMAL</span>
+                        </div>
+
+                        <ul class="info-list">
+                            <li>
+                                <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
+                                Alertas de Hardware: 0
+                            </li>
+                            <li>
+                                <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
+                                Ciberataques Detectados: 0
+                            </li>
+                            <li>
+                                <img src="./assets/lock.png" class="mini-icon" alt="Security">
+                                Segurança: <span class="status-normal">Íntegro</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="div-inferior">
+                    <a href="./assets/relatorio_hardware.pdf" target="_blank">
+                        <button class="btn btn-left">
+                            <img src="./assets/pdf.png" class="btn-icon" alt="Download">
+                            Download de Relatório
+                        </button>
+                    </a> 
+                    <button class="btn btn-right">
+                        <img src="./assets/edit.png" class="btn-icon" alt="Edit">
+                        Editar Servidor
+                    </button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-top">
+
+                    <div class="div-esquerda">
+                        <img src="./assets/server2.png" class="img-main-server" alt="Server">
+                    </div>
+
+                    <div class="div-direita">
+                        <div class="header-row">
+                            <span class="server-title"><span class="dot-normal">●</span> Servidor 4</span>
+                            <span class="badge-normal">NORMAL</span>
+                        </div>
+
+                        <ul class="info-list">
+                            <li>
+                                <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
+                                Alertas de Hardware: 0
+                            </li>
+                            <li>
+                                <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
+                                Ciberataques Detectados: 0
+                            </li>
+                            <li>
+                                <img src="./assets/lock.png" class="mini-icon" alt="Security">
+                                Segurança: <span class="status-normal">Íntegro</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="div-inferior">
+                    <a href="./assets/relatorio_hardware.pdf" target="_blank">
+                        <button class="btn btn-left">
+                            <img src="./assets/pdf.png" class="btn-icon" alt="Download">
+                            Download de Relatório
+                        </button>
+                    </a> 
+                    <button class="btn btn-right">
+                        <img src="./assets/edit.png" class="btn-icon" alt="Edit">
+                        Editar Servidor
+                    </button>
+                </div>
+            </div>
+
+            
 
 
         </div>
 
-  
+
+    </div>
+
+
 
 
 

@@ -11,7 +11,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 header {
@@ -57,61 +57,132 @@ header a:hover {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    gap: 5vw;
+    overflow-y: auto;
 }
 
-.fundo {
+.modal {
     background-color: #102244;
     width: 100%;
-    max-width: 500px;
+    max-width: 900px;
     padding: 40px;
     border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
     box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+}
+
+.modal-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-shrink: 0;
 }
 
 .modal-info h2 {
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 25px;
+    font-size: 20px;
     color: white;
     font-weight: bold;
+    margin-bottom: 10px;
+    text-transform: uppercase;
 }
 
-.modal-inputs {
+.modal-card {
+    background-color: #132b56;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #3ed64b;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 5px;
 }
 
-.item-campo {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.modal-card img {
+    width: 30px;
+    margin-bottom: 5px;
 }
 
-.item-campo span {
+.modal-card h2 {
+    font-size: 15px;
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.modal-card p {
     font-size: 13px;
-    font-weight: bold;
     color: #86929b;
 }
 
-.modal-inputs input {
-    background-color: #132b56;
-    border: 0px solid #132657;
+.modal-inputs {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-form1 {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.modal-form1 p {
+    font-size: 13px;
+    font-weight: bold;
+    color: #86929b;
+    margin-top: 8px;
+}
+
+.modal-form1 p:first-child {
+    margin-top: 0;
+}
+
+input {
+    background-color: #0b1a35;
+    border: 0px solid #1c2e5a;
     padding: 14px;
     border-radius: 5px;
     color: white;
     font-size: 15px;
     outline: none;
-    margin-bottom: 10px;
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.283);
+    width: 100%;
 }
 
-.modal-inputs input:focus {
+input:focus {
     border-color: #3ed64b;
 }
 
-.modal-inputs button {
+select {
+    background-color: #0b1a35;
+    border: 0px solid #1c2e5a;
+    padding: 14px;
+    border-radius: 5px;
+    color: white;
+    font-size: 15px;
+    outline: none;
+    width: 100%;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+}
+
+select:focus {
+    border-color: #3ed64b;
+}
+
+select option {
+    background-color: #102244;
+    color: white;
+}
+
+button {
     background-color: #0d800d;
     color: white;
     border: none;
@@ -120,27 +191,32 @@ header a:hover {
     font-weight: bold;
     font-size: 16px;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 8px;
     transition: 0.2s;
+    width: 100%;
 }
 
-.modal-inputs button:hover {
+button:hover {
     background-color: #12921c;
 }
 
-.card_erro {
-    display: none;
+.campo-erro {
     background-color: rgba(255, 59, 59, 0.1);
-    border: 1px solid #ff3b3b;
     color: white;
     padding: 12px;
     border-radius: 5px;
-    margin-bottom: 20px;
     text-align: center;
     font-size: 14px;
 }
 
 @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px 5%;
+        height: auto;
+        gap: 15px;
+    }
+
     .nav-desktop {
         display: none;
     }
@@ -150,10 +226,21 @@ header a:hover {
         width: 100%;
         justify-content: center;
     }
-    .fundo {
-        padding: 25px;
+
+    .nav2 {
+        width: 100%;
+        justify-content: center;
+        border-top: 1px solid #1c2e5a;
+        padding-top: 10px;
     }
-    .modal-inputs {
-        gap: 15px;
+
+    .modal {
+        flex-direction: column;
+        padding: 25px;
+        max-height: none;
+    }
+
+    .modal-info {
+        display: none;
     }
 }
