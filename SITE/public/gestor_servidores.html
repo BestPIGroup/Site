@@ -52,7 +52,7 @@
                 <a href="./perfil.html" id="perfil_botao">
                     <img src="./assets/user3.png" alt="Perfil">
                     <p>Gestor</p>
-                    <p>Perfil</p>
+                    <p id="nome_usuario">Perfil</p>
                 </a>
             </div>
             <a href="index.html">
@@ -81,7 +81,7 @@
                 </div>
                 <div class="kpi">
                     <img src="./assets/unlockWhite.png" alt="">
-                    Ciberameaças<h2 id="threats">0</h2>
+                    Ciberameaças<h2 id="threats">7</h2>
                 </div>
                 
                 <div class="kpi kpi-alerta-sino" id="card-alerta-sino">
@@ -108,14 +108,14 @@
         
                     <div class="div-direita">
                         <div class="header-row">
-                            <span class="server-title"><span class="dot-critico">●</span> Servidor 1</span>
+                            <span class="server-title"><span class="dot-critico">●</span> Servidor 2</span>
                             <span class="badge-critico">CRÍTICO</span>
                         </div>
         
                         <ul class="info-list">
                             <li>
                                 <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
-                                Alertas de Hardware: 4
+                                Alertas de Hardware: 3  
                             </li>
                             <li>
                                 <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
@@ -137,7 +137,7 @@
                             Download de Relatório
                         </button>
                     </a>
-                    <button class="btn btn-right" onclick="abrirModalEditar('Servidor 1', 'CRÍTICO')">
+                    <button class="btn btn-right" onclick="abrirModalEditar('Servidor 2', 'CRÍTICO')">
                         <img src="./assets/edit.png" class="btn-icon" alt="Edit">
                         Editar Servidor
                     </button>
@@ -203,11 +203,11 @@
                         <ul class="info-list">
                             <li>
                                 <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
-                                Alertas de Hardware: 4
+                                Alertas de Hardware: 0
                             </li>
                             <li>
                                 <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
-                                Ciberataques Detectados: 7
+                                Ciberataques Detectados: 0
                             </li>
                             <li>
                                 <img src="./assets/lock.png" class="mini-icon" alt="Security">
@@ -246,11 +246,11 @@
                         <ul class="info-list">
                             <li>
                                 <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
-                                Alertas de Hardware: 4
+                                Alertas de Hardware: 0
                             </li>
                             <li>
                                 <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
-                                Ciberataques Detectados: 7
+                                Ciberataques Detectados: 0
                             </li>
                             <li>
                                 <img src="./assets/lock.png" class="mini-icon" alt="Security">
@@ -409,6 +409,9 @@
 
 </html>
 <script>
+
+    nome_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
+
     function abrirModalEditar(nome, badge) {
         document.getElementById('modal-server-nome').textContent = nome;
         var badgeEl = document.getElementById('modal-server-badge');

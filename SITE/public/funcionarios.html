@@ -55,8 +55,8 @@
             <div class="item">
                 <a href="./perfil.html" id="perfil_botao">
                     <img src="./assets/user3.png" alt="Perfil">
-                    <p>Gestor</p>
-                    <p>Perfil</p>
+                    <p >Gestor</p>
+                    <p id="nome_usuario">Perfil</p>
                 </a>
             </div>
             <a href="index.html">
@@ -145,3 +145,9 @@
 </body>
 
 </html>
+
+<script>
+
+    nome_usuario.innerHTML = `${sessionStorage.NOME_USUARIO}`
+
+</script>
