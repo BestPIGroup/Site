@@ -19,6 +19,7 @@ body {
 a {
     text-decoration: none;
     outline: none;
+    position: inherit;
 }
 
 .sidebar {
@@ -152,6 +153,7 @@ a {
     flex-direction: column;
     gap: 15px;
     backdrop-filter: blur(12px);
+
 }
 
 .box .retangulo {
@@ -258,6 +260,8 @@ a {
         height: 33px;
     }
 }
+
+    
 
 .btn-fechar-alerta {
     position: absolute;
@@ -433,6 +437,8 @@ a {
         align-items: center;
         justify-content: center;
         padding: 0 10px;
+        width: fit-content;
+        flex-direction: row;
     }
 
     .item {
@@ -447,7 +453,7 @@ a {
     .box {
         left: 10px;
         width: calc(100% - 20px);
-        top: 10px;
+        padding-left: 0px;
         backdrop-filter: blur(10px);
     }
 
@@ -471,7 +477,7 @@ a {
 
     .kpis {
         overflow-y: auto;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         justify-content: center;
         align-items: stretch;
     }

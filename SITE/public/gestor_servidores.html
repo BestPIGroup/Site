@@ -20,7 +20,7 @@
 
         <ul class="listaOpcoes">
             <li>
-                <a href="./servidores.html">
+                <a href="./gestor_servidores.html">
                     <div class="item">
                         <img src="./assets/server2.png" alt="Servidores">
                         <p>Servidores</p>
@@ -29,7 +29,7 @@
             </li>
 
             <li>
-                <a href="#">
+                <a href="./relatorios.html">
                     <div class="item">
                         <img src="./assets/file.png" alt="Servidores">
                         <p>Relatórios</p>
@@ -42,15 +42,6 @@
                     <div class="item">
                         <img src="./assets/team.png" alt="Servidores">
                         <p>Funcionários</p>
-                    </div>
-                </a>
-            </li>
-
-            <li>
-                <a href="./config_comp.html">
-                    <div class="item">
-                        <img src="./assets/engineering.png" alt="Servidores">
-                        <p>Configurações</p>
                     </div>
                 </a>
             </li>
@@ -146,7 +137,7 @@
                             Download de Relatório
                         </button>
                     </a>
-                    <button class="btn btn-right">
+                    <button class="btn btn-right" onclick="abrirModalEditar('Servidor 1', 'CRÍTICO')">
                         <img src="./assets/edit.png" class="btn-icon" alt="Edit">
                         Editar Servidor
                     </button>
@@ -189,7 +180,7 @@
                             Download de Relatório
                         </button>
                     </a>
-                    <button class="btn btn-right">
+                    <button class="btn btn-right" onclick="abrirModalEditar('Servidor 3', 'ATENÇÃO')">
                         <img src="./assets/edit.png" class="btn-icon" alt="Edit">
                         Editar Servidor
                     </button>
@@ -212,11 +203,11 @@
                         <ul class="info-list">
                             <li>
                                 <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
-                                Alertas de Hardware: 0
+                                Alertas de Hardware: 4
                             </li>
                             <li>
                                 <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
-                                Ciberataques Detectados: 0
+                                Ciberataques Detectados: 7
                             </li>
                             <li>
                                 <img src="./assets/lock.png" class="mini-icon" alt="Security">
@@ -233,7 +224,7 @@
                             Download de Relatório
                         </button>
                     </a> 
-                    <button class="btn btn-right">
+                    <button class="btn btn-right" onclick="abrirModalEditar('Servidor 1', 'NORMAL')">
                         <img src="./assets/edit.png" class="btn-icon" alt="Edit">
                         Editar Servidor
                     </button>
@@ -255,11 +246,11 @@
                         <ul class="info-list">
                             <li>
                                 <img src="./assets/hardwareWhite.png" class="mini-icon" alt="Hardware">
-                                Alertas de Hardware: 0
+                                Alertas de Hardware: 4
                             </li>
                             <li>
                                 <img src="./assets/shield.png" class="mini-icon" alt="Cyber">
-                                Ciberataques Detectados: 0
+                                Ciberataques Detectados: 7
                             </li>
                             <li>
                                 <img src="./assets/lock.png" class="mini-icon" alt="Security">
@@ -276,7 +267,7 @@
                             Download de Relatório
                         </button>
                     </a> 
-                    <button class="btn btn-right">
+                    <button class="btn btn-right" onclick="abrirModalEditar('Servidor 4', 'NORMAL')">
                         <img src="./assets/edit.png" class="btn-icon" alt="Edit">
                         Editar Servidor
                     </button>
@@ -291,14 +282,160 @@
 
     </div>
 
+    <div class="modal-overlay" id="modal-editar" onclick="fecharModalEditar(event)">
+        <div class="modal-editar-conteudo">
 
+            <div class="modal-editar-header">
+                <div class="modal-editar-titulo-grupo">
+                    <img src="./assets/server2.png" class="modal-server-icon" alt="Server">
+                    <div>
+                        <h2 id="modal-server-nome">Servidor</h2>
+                        <span class="modal-server-badge" id="modal-server-badge"></span>
+                    </div>
+                </div>
+                <button class="modal-fechar-btn" onclick="fecharModalEditar()">✕</button>
+            </div>
 
+            <div class="modal-editar-body">
 
+                <p class="modal-secao-titulo">Componentes Monitorados</p>
+                <p class="modal-secao-sub">Ative ou desative os componentes que serão monitorados neste servidor.</p>
 
+                <div class="modal-componentes">
+                    <div class="comp-item">
+                        <div class="comp-info">
+                            <img src="./assets/hardwareWhite.png" class="comp-icon" alt="">
+                            <div>
+                                <p class="comp-nome">CPU</p>
+                                <p class="comp-desc">Porcentagem de uso</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="comp-item">
+                        <div class="comp-info">
+                            <img src="./assets/hardwareWhite.png" class="comp-icon" alt="">
+                            <div>
+                                <p class="comp-nome">Processos</p>
+                                <p class="comp-desc">Número de processos em execução</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="comp-item">
+                        <div class="comp-info">
+                            <img src="./assets/hardwareWhite.png" class="comp-icon" alt="">
+                            <div>
+                                <p class="comp-nome">Memória RAM</p>
+                                <p class="comp-desc">Porcentagem de uso</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="comp-item">
+                        <div class="comp-info">
+                            <img src="./assets/hardwareWhite.png" class="comp-icon" alt="">
+                            <div>
+                                <p class="comp-nome">Disco</p>
+                                <p class="comp-desc">Uso de armazenamento em porcentagem</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+                    <div class="comp-item">
+                        <div class="comp-info">
+                            <img src="./assets/hardwareWhite.png" class="comp-icon" alt="">
+                            <div>
+                                <p class="comp-nome">Rede</p>
+                                <p class="comp-desc">Tráfego de entrada e saída</p>
+                            </div>
+                        </div>
+                        <label class="toggle">
+                            <input type="checkbox">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                <div class="modal-limiar-secao">
+                    <p class="modal-secao-titulo">Limiar de Alerta</p>
+                    <p class="modal-secao-sub">Defina a partir de qual percentual cada componente dispara um alerta.</p>
+                    <div class="modal-limiares">
+                        <div class="limiar-item">
+                            <label>CPU <span class="limiar-valor" id="val-cpu">70%</span></label>
+                            <input type="range" min="10" max="100" value="70" class="limiar-range" oninput="document.getElementById('val-cpu').textContent=this.value+'%'">
+                        </div>
+                        <div class="limiar-item">
+                            <label>Processos <span class="limiar-valor" id="val-processos">1000</span></label>
+                            <input type="range" min="10" max="3000" value="1000" class="limiar-range" oninput="document.getElementById('val-processos').textContent=this.value">
+                        </div>
+                        <div class="limiar-item">
+                            <label>RAM <span class="limiar-valor" id="val-ram">70%</span></label>
+                            <input type="range" min="10" max="100" value="70" class="limiar-range" oninput="document.getElementById('val-ram').textContent=this.value+'%'">
+                        </div>
+                        <div class="limiar-item">
+                            <label>Disco <span class="limiar-valor" id="val-disco">80%</span></label>
+                            <input type="range" min="10" max="100" value="80" class="limiar-range" oninput="document.getElementById('val-disco').textContent=this.value+'%'">
+                        </div>
+                        <div class="limiar-item">
+                            <label>Rede <span class="limiar-valor" id="val-rede">300Mbps</span></label>
+                            <input type="range" min="10" max="4000" value="300" class="limiar-range" oninput="document.getElementById('val-rede').textContent=this.value+'Mbps'">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-editar-footer">
+                <button class="btn-modal-cancelar" onclick="fecharModalEditar()">Cancelar</button>
+                <button class="btn-modal-salvar" onclick="salvarConfiguracoes()">Salvar Configurações</button>
+            </div>
+
+        </div>
+    </div>
 
 </body>
 
 </html>
 <script>
+    function abrirModalEditar(nome, badge) {
+        document.getElementById('modal-server-nome').textContent = nome;
+        var badgeEl = document.getElementById('modal-server-badge');
+        badgeEl.textContent = badge;
+        badgeEl.className = 'modal-server-badge';
+        if (badge === 'CRÍTICO') badgeEl.classList.add('modal-badge-critico');
+        else if (badge === 'ATENÇÃO') badgeEl.classList.add('modal-badge-atencao');
+        else badgeEl.classList.add('modal-badge-normal');
+        document.getElementById('modal-editar').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
 
+    function fecharModalEditar(event) {
+        if (event && event.target !== document.getElementById('modal-editar')) return;
+        document.getElementById('modal-editar').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    function salvarConfiguracoes() {
+        var btn = document.querySelector('.btn-modal-salvar');
+        btn.textContent = '✓ Salvo!';
+        btn.style.backgroundColor = '#12921c';
+        setTimeout(function() {
+            btn.textContent = 'Salvar Configurações';
+            btn.style.backgroundColor = '';
+            document.getElementById('modal-editar').style.display = 'none';
+            document.body.style.overflow = '';
+        }, 1500);
+    }
 </script>

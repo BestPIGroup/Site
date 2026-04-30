@@ -284,7 +284,7 @@ a {
 .card-componente {
     display: flex;
     flex-direction: row;
-    width: 450px;
+    width: 440px;
     max-width: 100%;
     height: 270px;
     background-color: #1c2e5a;
@@ -541,35 +541,38 @@ a {
 @media (max-width: 768px) {
 
     .sidebar {
-        width: 100% !important;
-        height: var(--mobile-bar-h);
+        width: 100%;
+        height: var(--mobile-bar-height);
         flex-direction: row;
         top: auto;
         bottom: 0;
-        justify-content: stretch;
-        align-items: stretch;
-        padding: 0;
-        overflow: hidden;
+        left: 0;
+        justify-content: space-around;
+        padding: 0 8px;
+        pointer-events: auto;
     }
 
     .sidebar:hover {
-        width: 100% !important;
+        width: 100%;
     }
 
-    .sidebar:hover .item p {
-        opacity: 1;
+    .sidebar:hover .item p,
+    .sidebar:hover .item a#perfil_botao p {
+        opacity: 0;
     }
 
-    .logo { display: none; }
+    .logo {
+        display: none;
+    }
 
     .listaOpcoes {
         flex-direction: row;
         height: 100%;
         width: auto;
-        flex: 1;
         gap: 0;
-        justify-content: stretch;
+        justify-content: space-around;
         transform: none;
+        flex: 1;
     }
 
     .listaOpcoes li {
@@ -579,81 +582,43 @@ a {
     }
 
     .listaOpcoes li a {
-        display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 4px;
-        padding: 0;
-        height: 100%;
-        width: 100%;
-    }
-
-    .listaOpcoes li a:hover {
-        background-color: rgba(255, 255, 255, 0.06);
-    }
-
-    .listaOpcoes .item {
-        flex-direction: column;
-        gap: 4px;
-        padding: 0;
-        width: 100%;
-        height: 100%;
-        justify-content: center;
-        border-radius: 0;
+        gap: 2px;
+        padding: 6px 4px;
     }
 
     .listaOpcoes img {
-        width: 22px !important;
-        height: 22px !important;
-    }
-
-    .listaOpcoes .item p {
-        opacity: 1;
-        font-size: 10px;
-        color: rgba(255, 255, 255, 0.55);
+        width: 28px;
+        height: 28px;
     }
 
     .saida {
         flex-direction: row;
-        height: 100%;
         margin: 0;
         padding: 0;
         gap: 0;
+        height: 100%;
+        width: fit-content;
         align-items: stretch;
-    }
-
-    .saida a,
-    .saida > div {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .saida a:hover {
-        background-color: rgba(255, 255, 255, 0.06);
     }
 
     .saida .item {
         flex-direction: column;
-        gap: 4px;
-        padding: 0;
         height: 100%;
-        width: 100%;
+        padding: 6px 8px;
+        gap: 2px;
         justify-content: center;
-        border-radius: 0;
-    }
-
-    .saida .item p {
-        opacity: 1;
-        font-size: 10px;
-        color: rgba(255, 255, 255, 0.55);
     }
 
     .saida img {
-        width: 22px !important;
-        height: 22px !important;
+        width: 28px;
+        height: 28px;
+    }
+
+    .saida .item p,
+    .saida .item a#perfil_botao p {
+        opacity: 1 !important;
+        font-size: 9px;
     }
 
     .box {
