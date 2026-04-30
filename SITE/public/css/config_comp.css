@@ -183,9 +183,6 @@ body{
 
 }
 
-
-/* Escolher componentes */
-
 body .opcoes {
     width: 100%;
     height: 100vh;
@@ -301,7 +298,6 @@ input::placeholder {
 
 @media (max-width: 768px) {
 
-    /* SIDEBAR vira barra inferior */
     .sidebar {
         width: 100%;
         height: 60px;
@@ -333,7 +329,7 @@ input::placeholder {
     }
 
     .campo {
-        margin-top: 30px; /* mais espaço no mobile */
+        margin-top: 30px;
         gap: 4vh;
         
     }
@@ -341,7 +337,7 @@ input::placeholder {
     .campo .card-componentes {
         width: 90%;
         height: 80px;
-        background-size: 50px; /* imagem menor no celular */
+        background-size: 50px;
         background-position: 90% center;
     
     }
